@@ -5,7 +5,15 @@ import Dat from './dat';
 import Swarm from './swarm';
 
 export type StorageOpts = {
+  /**
+   * Factory to create persistant storage for the given dat archive address. Returns
+   * a RandomAccess factory as used by the hyperdrive constructor.
+   */
   persistantStorageFactory?: (key: string) => Promise<Hyperdrive.RandomAccessFactory>
+  /**
+   * Function to delete the persistant storage for the specified dat address.
+   */
+  persistantStorageDeleter?: (key: string) => Promise<void>
 }
 
 export type DatConfig = {
@@ -13,9 +21,9 @@ export type DatConfig = {
   swarmFactory: () => Swarm
 }
 
-type LoadOptions = {
+export type LoadOptions = {
   persist: boolean
-}
+} & Hyperdrive.HyperdriveOptions
 
 export default class DatLoaderBase {
 
@@ -33,9 +41,10 @@ export default class DatLoaderBase {
     return this._swarm;
   }
 
-  async load(address: Buffer, options?: LoadOptions & Hyperdrive.HyperdriveOptions): Promise<Dat> {
+  async load(address: Buffer, options?: LoadOptions): Promise<Dat> {
     const addressStr = address.toString('hex');
-    const storage = options.persist && this.config.persistantStorageFactory ? await this.config.persistantStorageFactory(addressStr) : ram;
+    const persist = options.persist && this.config.persistantStorageFactory 
+    const storage = persist ? await this.config.persistantStorageFactory(addressStr) : ram;
     const drive = this.config.hyperdriveFactory(storage, address, options);
     // wait for drive to be ready
     await new Promise((resolve, reject) => {
@@ -48,9 +57,16 @@ export default class DatLoaderBase {
     return dat;
   }
 
-  async create(options: LoadOptions & Hyperdrive.HyperdriveOptions = { persist: true }): Promise<Dat> {
+  async create(options: LoadOptions = { persist: true }): Promise<Dat> {
     const kp = keyPair();
     options.secretKey = kp.secretKey;
     return this.load(kp.publicKey, options);
+  }
+
+  async delete(address: string): Promise<void> {
+    if (!this.config.persistantStorageDeleter) {
+      throw new Error('No deletion function provided');
+    }
+    return this.config.persistantStorageDeleter(address);
   }
 }
