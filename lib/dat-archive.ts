@@ -18,7 +18,7 @@ export interface DatArchive {
 
 export default function createDatArchive(drive: Hyperdrive): DatArchive {
   return DatArchiveImpl({
-    key: this.drive.key.toString(),
-    _dataStructure: this.drive,
+    key: drive.key.toString(),
+    _dataStructure: drive,
   })
 }

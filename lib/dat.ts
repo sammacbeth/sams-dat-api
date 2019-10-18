@@ -1,10 +1,16 @@
+import StrictEventEmitter from 'strict-event-emitter-types';
 import { EventEmitter } from 'events';
 import Hyperdrive from '@sammacbeth/types/hyperdrive';
 import Swarm from './swarm';
 import createDatArchive, { DatArchive } from './dat-archive';
 
+interface DatEvents {
+  join: void
+  leave: void
+  close: void
+}
 
-export default class Dat extends EventEmitter {
+export default class Dat extends (EventEmitter as new () => StrictEventEmitter<EventEmitter, DatEvents>) {
   drive: Hyperdrive
   _archive: DatArchive
   swarm: Swarm
