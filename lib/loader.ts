@@ -17,7 +17,7 @@ type LoadOptions = {
   persist: boolean
 }
 
-export default class API {
+export default class DatLoaderBase {
 
   config: DatConfig & StorageOpts
   _swarm: Swarm

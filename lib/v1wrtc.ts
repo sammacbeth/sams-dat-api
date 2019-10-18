@@ -1,5 +1,5 @@
 import Hyperdrive = require('hyperdrive');
-import API, { StorageOpts } from './api';
+import DatLoaderBase, { StorageOpts } from './loader';
 import { DiscoveryOptions } from './network/hyperdiscovery';
 import HyperWebRTC, { WRTCDiscoveryOptions } from './network/hyperwebrtc';
 
@@ -11,7 +11,7 @@ export type CombinedOptions = {
 /**
  * DatV1 with additional help from discovery-swarm-wrtc
  */
-export default class DatV1WebRTC extends API {
+export default class DatV1WebRTCLoader extends DatLoaderBase {
   constructor(opts?: CombinedOptions) {
     super({
       hyperdriveFactory: (storage, key, opts) => new Hyperdrive(storage, key, opts),

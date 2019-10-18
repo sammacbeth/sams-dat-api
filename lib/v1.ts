@@ -1,8 +1,8 @@
 import Hyperdrive = require('hyperdrive');
-import API, { StorageOpts } from './api';
+import DatLoaderBase, { StorageOpts } from './loader';
 import Hyperdiscovery, { DiscoveryOptions } from './network/hyperdiscovery';
 
-export default class DatV1 extends API {
+export default class DatV1Loader extends DatLoaderBase {
   constructor(opts?: StorageOpts & DiscoveryOptions) {
     super({
       hyperdriveFactory: (storage, key, opts) => new Hyperdrive(storage, key, opts),
