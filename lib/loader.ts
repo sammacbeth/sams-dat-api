@@ -4,7 +4,7 @@ import Dat from './dat';
 import Swarm from './types/swarm';
 import { ReplicableBase } from './types/replicable';
 import { HyperLoader } from './types/hyperloader';
-import Hyperdrive, { HyperdriveOptions } from './types/hyperdrive';
+import { HyperdriveOptions, HyperdriveCommon } from './types/hyperdrive';
 import { RandomAccessFactory } from './types/random-access';
 
 export type StorageOpts = {
@@ -28,7 +28,7 @@ export type LoadOptions = {
   persist: boolean
 } & HyperdriveOptions
 
-export default class DatLoaderBase<T extends Hyperdrive> implements HyperLoader<T, Dat> {
+export default class DatLoaderBase<T extends HyperdriveCommon> implements HyperLoader<T, Dat<T>> {
 
   config: DatConfig<T> & StorageOpts
   _swarm: Swarm<T>
@@ -44,7 +44,7 @@ export default class DatLoaderBase<T extends Hyperdrive> implements HyperLoader<
     return this._swarm;
   }
 
-  async load(address: Buffer, options?: LoadOptions): Promise<Dat> {
+  async load(address: Buffer, options?: LoadOptions): Promise<Dat<T>> {
     const addressStr = address.toString('hex');
     const persist = options.persist && this.config.persistantStorageFactory 
     const storage = persist ? await this.config.persistantStorageFactory(addressStr) : ram;
@@ -60,7 +60,7 @@ export default class DatLoaderBase<T extends Hyperdrive> implements HyperLoader<
     return dat;
   }
 
-  async create(options: LoadOptions = { persist: true }): Promise<Dat> {
+  async create(options: LoadOptions = { persist: true }): Promise<Dat<T>> {
     const kp = keyPair();
     options.secretKey = kp.secretKey;
     return this.load(kp.publicKey, options);

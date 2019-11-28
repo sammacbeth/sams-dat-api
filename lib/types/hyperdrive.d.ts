@@ -1,8 +1,8 @@
 import { EventEmitter } from 'events';
 import { Stats } from 'fs';
-import { Hypercore } from './hypercore';
+import { Hypercore, HypercoreBase } from './hypercore';
 import { Duplex } from 'stream';
-import { Replicable } from './replicable';
+import { Replicable, ReplicableBase } from './replicable';
 import { RandomAccessFactory } from './random-access';
 
 // Type definitions for hyperdrive 9.16.0
@@ -61,14 +61,8 @@ type ReplicationOptions = {
 type SuccessCallback = (error: Error) => void
 type ResultCallback<T> = (error: Error, result?: T) => void
 
-export default class Hyperdrive extends EventEmitter implements Replicable {
-
-  constructor(storage: string, opts?: HyperdriveOptions)
-  constructor(storage: string, key: Buffer, opts?: HyperdriveOptions)
-  constructor(storage: RandomAccessFactory, opts?: HyperdriveOptions)
-  constructor(storage: RandomAccessFactory, key: Buffer, opts?: HyperdriveOptions)
-
-  /**
+export interface HyperdriveCommon extends ReplicableBase {
+/**
    * Get the current version of the archive (incrementing number).
    */
   version: number
@@ -85,8 +79,8 @@ export default class Hyperdrive extends EventEmitter implements Replicable {
 
   writable: boolean
 
-  metadata: Hypercore
-  content: Hypercore
+  metadata: HypercoreBase
+  content: HypercoreBase
 
   ready(callback: SuccessCallback): void
 
@@ -95,7 +89,7 @@ export default class Hyperdrive extends EventEmitter implements Replicable {
    * @param version 
    * @param opts
    */
-  checkout(version: number, opts?: CheckoutOptions): Hyperdrive
+  checkout(version: number, opts?: CheckoutOptions): HyperdriveCommon
 
   /**
    * Download all files in path of current version. If no path is specified this will download all files.
@@ -104,6 +98,61 @@ export default class Hyperdrive extends EventEmitter implements Replicable {
     * @param path 
     * @param callback 
     */
+  download(path: string, callback?: SuccessCallback): void
+  download(callback?: SuccessCallback): void
+
+
+  createReadStream(name: string, options?: ReadOptions & CachedOption): NodeJS.ReadableStream
+  readFile(name: string, options: EncodingOption & CachedOption, callback: ResultCallback<Buffer | string>): void
+  readFile(name: string, callback: ResultCallback<Buffer | string>): void
+
+  createWriteStream(name: string, options?: FileOptions): NodeJS.WritableStream
+  writeFile(name: string, buffer: Buffer, options?: FileOptions & EncodingOption | string, callback?: SuccessCallback): void
+  writeFile(name: string, buffer: Buffer, callback?: SuccessCallback): void
+
+  unlink(name: string, callback?: SuccessCallback): void
+  mkdir(name: string, options?: FileOptions | number, callback?: SuccessCallback): void
+  rmdir(name: string, callback?: SuccessCallback): void
+
+  readdir(name: string, options: CachedOption, callback?: ResultCallback<string[]>): void
+  readdir(name: string, callback?: ResultCallback<string[]>): void
+
+  stat(name: string, options: CachedOption & WaitOption, callback: ResultCallback<Stats>): void
+  stat(name: string, callback: ResultCallback<Stats>): void
+  lstat(name: string, options: CachedOption & WaitOption, callback: ResultCallback<Stats>): void
+  lstat(name: string, callback: ResultCallback<Stats>): void
+
+  access(name: string, options: CachedOption & WaitOption, callback: SuccessCallback): void
+
+  open(name: string, flags: string, mode: number, options: { download?: boolean }, callback: ResultCallback<number>): void
+  open(name: string, flags: string, mode: number, callback: ResultCallback<number>): void
+
+  read(fd: number, buf: Buffer, offset: number, len: number, position: number, callback: (error: Error, length?: number, buffer?: Buffer) => void): void
+
+  close(fd: number, callback?: SuccessCallback): void
+  close(callback?: SuccessCallback): void
+
+  // TODO: Find actual shapes
+  history(options?: any): any
+  extension(name: string, message: Buffer): void
+  createDiffStream(version: number, options?: any): any
+}
+
+export default class Hyperdrive extends EventEmitter implements HyperdriveCommon, Replicable {
+  constructor(storage: string, opts?: HyperdriveOptions)
+  constructor(storage: string, key: Buffer, opts?: HyperdriveOptions)
+  constructor(storage: RandomAccessFactory, opts?: HyperdriveOptions)
+  constructor(storage: RandomAccessFactory, key: Buffer, opts?: HyperdriveOptions)
+
+  version: number
+  key: Buffer
+  discoveryKey: Buffer
+  writable: boolean
+  metadata: Hypercore
+  content: Hypercore
+
+  ready(callback: SuccessCallback): void
+  checkout(version: number, opts?: CheckoutOptions): Hyperdrive
   download(path: string, callback?: SuccessCallback): void
   download(callback?: SuccessCallback): void
 

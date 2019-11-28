@@ -1,22 +1,22 @@
 import Dat from "./dat";
 import DatLoaderBase, { LoadOptions } from "./loader";
-import Hyperdrive from './types/hyperdrive';
+import { HyperdriveCommon } from './types/hyperdrive';
 
 export type SwarmOptions = {
   autoSwarm?: boolean,
 };
 
-export default class API {
-  dats = new Map<string, Dat>();
-  loader: DatLoaderBase<Hyperdrive>
+export default class API<D extends HyperdriveCommon> {
+  dats = new Map<string, Dat<D>>();
+  loader: DatLoaderBase<D>
 
-  constructor(loader: DatLoaderBase<Hyperdrive>) {
+  constructor(loader: DatLoaderBase<D>) {
     this.loader = loader;
   }
 
-  async getDat(address: string, options?: LoadOptions & SwarmOptions): Promise<Dat> {
+  async getDat(address: string, options?: LoadOptions & SwarmOptions): Promise<Dat<D>> {
     const autoSwarm = !options || options.autoSwarm !== false;
-    const handleAutoJoin = async (dat: Dat) => {
+    const handleAutoJoin = async (dat: Dat<D>) => {
       if (!dat.isSwarming && autoSwarm) {
         await dat.joinSwarm();
       }
@@ -59,5 +59,4 @@ export default class API {
     }
     this.loader.swarm.close();
   }
-
 }

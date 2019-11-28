@@ -1,6 +1,6 @@
 import DatArchiveImpl = require('@sammacbeth/dat-node/lib/dat-archive')
 import DatAPI from './';
-import Hyperdrive from './types/hyperdrive';
+import Hyperdrive, { HyperdriveCommon } from './types/hyperdrive';
 
 /**
  * TODO: This is not a complete spec yet...
@@ -16,7 +16,7 @@ export interface DatArchive {
   configure(opts?): Promise<void>
 }
 
-export default function createDatArchive(drive: Hyperdrive): DatArchive {
+export default function createDatArchive(drive: HyperdriveCommon): DatArchive {
   return DatArchiveImpl({
     key: drive.key.toString(),
     _dataStructure: drive,

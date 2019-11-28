@@ -2,7 +2,7 @@ import StrictEventEmitter from 'strict-event-emitter-types';
 import { EventEmitter } from 'events';
 import { ReplicableBase } from "./replicable";
 import Swarm from "./swarm";
-import Hyperdrive from './hyperdrive';
+import Hyperdrive, { HyperdriveCommon } from './hyperdrive';
 
 interface DatEvents {
   join: void
@@ -18,6 +18,6 @@ export interface Swarmable<T extends ReplicableBase> extends StrictEventEmitter<
   close(): void
 }
 
-export interface IDat<D extends Hyperdrive> extends Swarmable<D>, StrictEventEmitter<EventEmitter, DatEvents> {
+export interface IDat<D extends HyperdriveCommon> extends Swarmable<D>, StrictEventEmitter<EventEmitter, DatEvents> {
   readonly drive: D
 }
