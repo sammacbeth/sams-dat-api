@@ -1,5 +1,5 @@
 import WRTCDiscovery = require('@geut/discovery-swarm-webrtc');
-import { Replicable } from '../swarm';
+import { Replicable } from '../types/replicable';
 import HyperDiscovery, { DiscoveryOptions } from './hyperdiscovery';
 
 export type WRTCDiscoveryOptions = {
@@ -12,7 +12,7 @@ export type WRTCDiscoveryOptions = {
   requestTimeout?: number,
 }
 
-export default class HyperWebRTC extends HyperDiscovery {
+export default class HyperWebRTC<T extends Replicable> extends HyperDiscovery<T> {
   wrtc: WRTCDiscovery
 
   constructor(discOpts?: DiscoveryOptions, wrtcOpts?: WRTCDiscoveryOptions) {

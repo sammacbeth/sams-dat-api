@@ -7,7 +7,7 @@ const api = new API(new Dat1Loader());
 const datAddr = '41f8a987cfeba80a037e51cc8357d513b62514de36f2f9b3d3eeec7a8fb3b5a5';
 
 (async function() {
-  const dat = await api.getDat(datAddr, true, {
+  const dat = await api.getDat(datAddr, {
     persist: false,
     sparse: true,
   });

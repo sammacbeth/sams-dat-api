@@ -1,40 +1,43 @@
-import { Hyperdrive } from '@sammacbeth/types/hyperdrive';
 import ram = require('random-access-memory');
 import { keyPair } from 'hypercore-crypto';
 import Dat from './dat';
-import Swarm from './swarm';
+import Swarm from './types/swarm';
+import { ReplicableBase } from './types/replicable';
+import { HyperLoader } from './types/hyperloader';
+import Hyperdrive, { HyperdriveOptions } from './types/hyperdrive';
+import { RandomAccessFactory } from './types/random-access';
 
 export type StorageOpts = {
   /**
    * Factory to create persistant storage for the given dat archive address. Returns
    * a RandomAccess factory as used by the hyperdrive constructor.
    */
-  persistantStorageFactory?: (key: string) => Promise<Hyperdrive.RandomAccessFactory>
+  persistantStorageFactory?: (key: string) => Promise<RandomAccessFactory>
   /**
    * Function to delete the persistant storage for the specified dat address.
    */
   persistantStorageDeleter?: (key: string) => Promise<void>
 }
 
-export type DatConfig = {
-  hyperdriveFactory: (storage: Hyperdrive.RandomAccessFactory, key: Buffer, opts?: Hyperdrive.HyperdriveOptions) => Hyperdrive.Hyperdrive
-  swarmFactory: () => Swarm
+export type DatConfig<T extends ReplicableBase> = {
+  hyperdriveFactory: (storage: RandomAccessFactory, key: Buffer, opts?: HyperdriveOptions) => T
+  swarmFactory: () => Swarm<T>
 }
 
 export type LoadOptions = {
   persist: boolean
-} & Hyperdrive.HyperdriveOptions
+} & HyperdriveOptions
 
-export default class DatLoaderBase {
+export default class DatLoaderBase<T extends Hyperdrive> implements HyperLoader<T, Dat> {
 
-  config: DatConfig & StorageOpts
-  _swarm: Swarm
+  config: DatConfig<T> & StorageOpts
+  _swarm: Swarm<T>
 
-  constructor(config: DatConfig & StorageOpts) {
+  constructor(config: DatConfig<T> & StorageOpts) {
     this.config = config;
   }
 
-  get swarm(): Swarm {
+  get swarm(): Swarm<T> {
     if (!this._swarm) {
       this._swarm = this.config.swarmFactory();
     }

@@ -1,8 +1,10 @@
 import StrictEventEmitter from 'strict-event-emitter-types';
 import { EventEmitter } from 'events';
-import Hyperdrive from '@sammacbeth/types/hyperdrive';
-import Swarm from './swarm';
+import Hyperdrive from './types/hyperdrive';
 import createDatArchive, { DatArchive } from './dat-archive';
+import { IDat } from './types/dat';
+import { ReplicableBase } from './types/replicable';
+import Swarm from './types/swarm';
 
 interface DatEvents {
   join: void
@@ -10,20 +12,22 @@ interface DatEvents {
   close: void
 }
 
-export default class Dat extends (EventEmitter as new () => StrictEventEmitter<EventEmitter, DatEvents>) {
-  drive: Hyperdrive
+export default class Dat extends EventEmitter implements IDat<Hyperdrive>  {
   _archive: DatArchive
-  swarm: Swarm
+  swarm: Swarm<Hyperdrive>
   ready: Promise<void>
+
+  drive: Hyperdrive
 
   isSwarming = false
   isOpen = true
   locks = new Set<string>()
 
-  constructor(drive: Hyperdrive, swarm: Swarm) {
+  constructor(data: Hyperdrive, swarm: Swarm<Hyperdrive>) {
     super();
-    this.drive = drive;
+    this.drive = data;
     this.swarm = swarm;
+    this.ready = Promise.resolve();
     this.ready = new Promise((resolve, reject) => {
       if (!this.drive.writable && !this.drive.metadata.length) {
         this.drive.metadata.update(err => {

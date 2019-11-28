@@ -1,6 +1,7 @@
 import Discovery = require('hyperdiscovery');
 import { EventEmitter } from 'events';
-import Swarm, { Replicable } from '../swarm';
+import Swarm from '../types/swarm';
+import { Replicable } from '../types/replicable';
 
 export type DiscoveryOptions = {
   id?: Buffer
@@ -11,7 +12,7 @@ export type DiscoveryOptions = {
   autoListen?: boolean
 }
 
-export default class HyperDiscovery extends EventEmitter implements Swarm {
+export default class HyperDiscovery<T extends Replicable> extends EventEmitter implements Swarm<T> {
   disc: Discovery
   events = ['listening', 'join', 'leave', 'peer', 'connecting', 'connect-failed', 'handshaking',
   'handshake-timeout', 'connection', 'connection-closed', 'error']

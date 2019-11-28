@@ -1,6 +1,6 @@
 import DatArchiveImpl = require('@sammacbeth/dat-node/lib/dat-archive')
 import DatAPI from './';
-import Hyperdrive from '@sammacbeth/types/hyperdrive';
+import Hyperdrive from './types/hyperdrive';
 
 /**
  * TODO: This is not a complete spec yet...

@@ -1,15 +1,21 @@
 import Dat from "./dat";
 import DatLoaderBase, { LoadOptions } from "./loader";
+import Hyperdrive from './types/hyperdrive';
+
+export type SwarmOptions = {
+  autoSwarm?: boolean,
+};
 
 export default class API {
   dats = new Map<string, Dat>();
-  loader: DatLoaderBase
+  loader: DatLoaderBase<Hyperdrive>
 
-  constructor(loader: DatLoaderBase) {
+  constructor(loader: DatLoaderBase<Hyperdrive>) {
     this.loader = loader;
   }
 
-  async getDat(address: string, autoSwarm = true, options?: LoadOptions ): Promise<Dat> {
+  async getDat(address: string, options?: LoadOptions & SwarmOptions): Promise<Dat> {
+    const autoSwarm = !options || options.autoSwarm !== false;
     const handleAutoJoin = async (dat: Dat) => {
       if (!dat.isSwarming && autoSwarm) {
         await dat.joinSwarm();
@@ -27,7 +33,8 @@ export default class API {
     return dat;
   }
 
-  async createDat(autoSwarm = true, options?: LoadOptions) {
+  async createDat(options?: LoadOptions & SwarmOptions) {
+    const autoSwarm = !options || options.autoSwarm === false;
     const dat = await this.loader.create(options);
     if (autoSwarm) {
       await dat.joinSwarm();
