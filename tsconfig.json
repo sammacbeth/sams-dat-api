@@ -4,5 +4,10 @@
     "module": "commonjs",
     "sourceMap": true,
     "typeRoots": ["node_modules/@types"],
+    "plugins": [
+      {
+        "name": "typescript-tslint-plugin"
+      }
+    ]
   }
 }

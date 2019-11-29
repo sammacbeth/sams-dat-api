@@ -1,13 +1,13 @@
 import { EventEmitter } from 'events';
-import { HyperdriveCommon } from '@sammacbeth/dat-types/lib/hyperdrive';
+import { IHyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
 import { IDat } from '@sammacbeth/dat-types/lib/dat';
 import { ReplicableBase } from '@sammacbeth/dat-types/lib/replicable';
-import Swarm from '@sammacbeth/dat-types/lib/swarm';
+import ISwarm from '@sammacbeth/dat-types/lib/swarm';
 // import createDatArchive, { DatArchive } from './dat-archive';
 
-export default class Dat<D extends HyperdriveCommon & ReplicableBase> extends EventEmitter implements IDat<D>  {
+export default class Dat<D extends IHyperdrive & ReplicableBase> extends EventEmitter implements IDat<D>  {
   // _archive: DatArchive
-  swarm: Swarm<D>
+  swarm: ISwarm<D>
   ready: Promise<void>
 
   drive: D
@@ -16,7 +16,7 @@ export default class Dat<D extends HyperdriveCommon & ReplicableBase> extends Ev
   isOpen = true
   locks = new Set<string>()
 
-  constructor(data: D, swarm: Swarm<D>) {
+  constructor(data: D, swarm: ISwarm<D>) {
     super();
     this.drive = data;
     this.swarm = swarm;

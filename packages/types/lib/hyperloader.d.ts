@@ -1,9 +1,9 @@
-import { Replicable, ReplicableBase } from "./replicable";
-import Swarm from "./swarm";
-import { IDat, Swarmable } from "./dat";
+import { IDat, ISwarmable } from "./dat";
+import { IReplicable, IReplicableBase } from "./replicable";
+import ISwarm from "./swarm";
 
-export interface HyperLoader<T extends ReplicableBase, D extends Swarmable<T>> {
-  swarm: Swarm<T>
+export interface IHyperLoader<T extends IReplicableBase, D extends ISwarmable<T>> {
+  swarm: ISwarm<T>
   load(address: Buffer, options: any): Promise<D>
   create(): Promise<D>
   delete(address: string): Promise<void>

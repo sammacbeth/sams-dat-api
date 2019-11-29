@@ -1,23 +1,24 @@
-import StrictEventEmitter from 'strict-event-emitter-types';
 import { EventEmitter } from 'events';
-import { ReplicableBase } from "./replicable";
-import Swarm from "./swarm";
-import Hyperdrive, { HyperdriveCommon } from './hyperdrive';
+import StrictEventEmitter from 'strict-event-emitter-types';
+import Hyperdrive, { IHyperdrive } from './hyperdrive';
+import { ReplicableBase } from './replicable';
+import ISwarm from './swarm';
 
-interface DatEvents {
-  join: void
-  leave: void
-  close: void
+interface IDatEvents {
+  join: void;
+  leave: void;
+  close: void;
 }
 
-export interface Swarmable<T extends ReplicableBase> extends StrictEventEmitter<EventEmitter, DatEvents> {
-  readonly swarm: Swarm<T>
+export interface ISwarmable<T extends ReplicableBase>
+  extends StrictEventEmitter<EventEmitter, IDatEvents> {
+  readonly swarm: ISwarm<T>;
 
-  joinSwarm(): Promise<void>
-  leaveSwarm(): void
-  close(): void
+  joinSwarm(): Promise<void>;
+  leaveSwarm(): void;
+  close(): void;
 }
 
-export interface IDat<D extends HyperdriveCommon> extends Swarmable<D> {
-  readonly drive: D
+export interface IDat<D extends IHyperdrive> extends ISwarmable<D> {
+  readonly drive: D;
 }

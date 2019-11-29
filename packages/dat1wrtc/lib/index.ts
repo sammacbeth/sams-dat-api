@@ -8,7 +8,7 @@ import HyperWebRTC, { WRTCDiscoveryOptions } from '@sammacbeth/dat-network-hyper
 export type CombinedOptions = {
   hyperdiscoveryOpts?: DiscoveryOptions,
   wrtcOpts?: WRTCDiscoveryOptions,
-} & StorageOpts
+} & StorageOpts;
 
 /**
  * DatV1 with additional help from discovery-swarm-wrtc

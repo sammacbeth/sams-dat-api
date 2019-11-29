@@ -1,9 +1,9 @@
 import ram = require('random-access-memory');
 import { keyPair } from 'hypercore-crypto';
-import Swarm from '@sammacbeth/dat-types/lib/swarm';
+import ISwarm from '@sammacbeth/dat-types/lib/swarm';
 import { ReplicableBase } from '@sammacbeth/dat-types/lib/replicable';
-import { HyperLoader } from '@sammacbeth/dat-types/lib/hyperloader';
-import { HyperdriveOptions, HyperdriveCommon } from '@sammacbeth/dat-types/lib/hyperdrive';
+import { IHyperLoader } from '@sammacbeth/dat-types/lib/hyperloader';
+import { HyperdriveOptions, IHyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
 import { RandomAccessFactory } from '@sammacbeth/dat-types/lib/random-access';
 import Dat from './dat';
 
@@ -21,23 +21,23 @@ export type StorageOpts = {
 
 export type DatConfig<T extends ReplicableBase> = {
   hyperdriveFactory: (storage: RandomAccessFactory, key: Buffer, opts?: HyperdriveOptions) => T
-  swarmFactory: () => Swarm<T>
+  swarmFactory: () => ISwarm<T>
 }
 
 export type LoadOptions = {
   persist: boolean
 } & HyperdriveOptions
 
-export default class DatLoaderBase<T extends HyperdriveCommon> implements HyperLoader<T, Dat<T>> {
+export default class DatLoaderBase<T extends IHyperdrive> implements IHyperLoader<T, Dat<T>> {
 
   config: DatConfig<T> & StorageOpts
-  _swarm: Swarm<T>
+  _swarm: ISwarm<T>
 
   constructor(config: DatConfig<T> & StorageOpts) {
     this.config = config;
   }
 
-  get swarm(): Swarm<T> {
+  get swarm(): ISwarm<T> {
     if (!this._swarm) {
       this._swarm = this.config.swarmFactory();
     }
