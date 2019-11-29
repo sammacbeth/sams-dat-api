@@ -12,6 +12,6 @@
     "clean": "lerna run clean --parallel && lerna clean --yes",
     "build": "lerna run build --parallel",
     "test": "lerna run test",
-    "lint": "lerna run lint"
+    "lint": "lerna run lint --parallel"
   }
 }

@@ -14,7 +14,7 @@
     "lib"
   ],
   "scripts": {
-    "lint": "tslint --config ../../tslint.json lib/*"
+    "lint": "tslint --config ../../tslint.json --project tsconfig.json"
   },
   "devDependencies": {
     "@types/jest": "^24.0.23",

@@ -14,7 +14,8 @@
   ],
   "scripts": {
     "clean": "rm -r lib/*.js lib/*.map",
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "tslint --config ../../tslint.json --project tsconfig.json"
   },
   "devDependencies": {
     "@types/jest": "^24.0.23",

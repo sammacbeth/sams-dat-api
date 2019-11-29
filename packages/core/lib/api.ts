@@ -1,30 +1,30 @@
 import { IHyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
-import Dat from "./dat";
-import DatLoaderBase, { LoadOptions } from "./loader";
+import Dat from './dat';
+import DatLoaderBase, { LoadOptions } from './loader';
 
 export type SwarmOptions = {
-  autoSwarm?: boolean,
+  autoSwarm?: boolean;
 };
 
 export default class HyperdriveAPI<D extends IHyperdrive> {
-  dats = new Map<string, Dat<D>>();
-  loader: DatLoaderBase<D>
+  public dats = new Map<string, Dat<D>>();
+  public loader: DatLoaderBase<D>;
 
   constructor(loader: DatLoaderBase<D>) {
     this.loader = loader;
   }
 
-  async getDat(address: string, options?: LoadOptions & SwarmOptions): Promise<Dat<D>> {
+  public async getDat(address: string, options?: LoadOptions & SwarmOptions): Promise<Dat<D>> {
     const autoSwarm = !options || options.autoSwarm !== false;
-    const handleAutoJoin = async (dat: Dat<D>) => {
-      if (!dat.isSwarming && autoSwarm) {
-        await dat.joinSwarm();
+    const handleAutoJoin = async (datInst: Dat<D>) => {
+      if (!datInst.isSwarming && autoSwarm) {
+        await datInst.joinSwarm();
       }
-    }
+    };
     if (this.dats.has(address)) {
-      const dat = this.dats.get(address);
-      handleAutoJoin(dat);
-      return dat;
+      const datFromCache = this.dats.get(address);
+      handleAutoJoin(datFromCache);
+      return datFromCache;
     }
     const dat = await this.loader.load(Buffer.from(address, 'hex'), options);
     this.dats.set(address, dat);
@@ -33,19 +33,19 @@ export default class HyperdriveAPI<D extends IHyperdrive> {
     return dat;
   }
 
-  async createDat(options?: LoadOptions & SwarmOptions) {
+  public async createDat(options?: LoadOptions & SwarmOptions) {
     const autoSwarm = !options || options.autoSwarm === false;
     const dat = await this.loader.create(options);
     if (autoSwarm) {
       await dat.joinSwarm();
     }
-    const address = dat.drive.key.toString('hex')
+    const address = dat.drive.key.toString('hex');
     this.dats.set(address, dat);
     dat.on('close', () => this.dats.delete(address));
     return dat;
   }
 
-  deleteDatData(address: string) {
+  public deleteDatData(address: string) {
     if (this.dats.has(address)) {
       const dat = this.dats.get(address);
       dat.close();
@@ -53,7 +53,7 @@ export default class HyperdriveAPI<D extends IHyperdrive> {
     return this.loader.delete(address);
   }
 
-  shutdown() {
+  public shutdown() {
     for (const dat of this.dats.values()) {
       dat.close();
     }

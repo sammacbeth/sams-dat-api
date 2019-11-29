@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events';
 import { Stats } from 'fs';
 import { Duplex } from 'stream';
-import { Hypercore, HypercoreBase } from './hypercore';
+import { Hypercore, IHypercore } from './hypercore';
 import { RandomAccessFactory } from './random-access';
 import { IReplicable, IReplicableBase } from './replicable';
 
@@ -79,8 +79,8 @@ export interface IHyperdrive extends IReplicableBase {
 
   writable: boolean;
 
-  metadata: HypercoreBase;
-  content: HypercoreBase;
+  metadata: IHypercore;
+  content: IHypercore;
 
   ready(callback: SuccessCallback): void;
 

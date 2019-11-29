@@ -1,20 +1,21 @@
-import { EventEmitter } from 'events';
-import { IHyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
 import { IDat } from '@sammacbeth/dat-types/lib/dat';
-import { ReplicableBase } from '@sammacbeth/dat-types/lib/replicable';
+import { IHyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
+import { IReplicableBase } from '@sammacbeth/dat-types/lib/replicable';
 import ISwarm from '@sammacbeth/dat-types/lib/swarm';
+import { EventEmitter } from 'events';
 // import createDatArchive, { DatArchive } from './dat-archive';
 
-export default class Dat<D extends IHyperdrive & ReplicableBase> extends EventEmitter implements IDat<D>  {
+export default class Dat<D extends IHyperdrive & IReplicableBase> extends EventEmitter
+  implements IDat<D> {
   // _archive: DatArchive
-  swarm: ISwarm<D>
-  ready: Promise<void>
+  public swarm: ISwarm<D>;
+  public ready: Promise<void>;
 
-  drive: D
+  public drive: D;
 
-  isSwarming = false
-  isOpen = true
-  locks = new Set<string>()
+  public isSwarming = false;
+  public isOpen = true;
+  protected locks = new Set<string>();
 
   constructor(data: D, swarm: ISwarm<D>) {
     super();
@@ -23,10 +24,13 @@ export default class Dat<D extends IHyperdrive & ReplicableBase> extends EventEm
     this.ready = Promise.resolve();
     this.ready = new Promise((resolve, reject) => {
       if (!this.drive.writable && !this.drive.metadata.length) {
-        this.drive.metadata.update(err => {
-          if (err) reject(err)
-          else resolve()
-        })
+        this.drive.metadata.update((err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        });
       } else {
         resolve();
       }
@@ -44,7 +48,7 @@ export default class Dat<D extends IHyperdrive & ReplicableBase> extends EventEm
   //   return this._archive;
   // }
 
-  async joinSwarm() {
+  public async joinSwarm() {
     this.swarm.add(this.drive);
     this.emit('join');
     this.isSwarming = true;
@@ -54,11 +58,11 @@ export default class Dat<D extends IHyperdrive & ReplicableBase> extends EventEm
 
     if (!this.drive.writable) {
       // always download all metadata
-      this.drive.metadata.download({start: 0, end: -1})
+      this.drive.metadata.download({ start: 0, end: -1 });
     }
   }
 
-  leaveSwarm() {
+  public leaveSwarm() {
     if (this.isSwarming && !this.locked) {
       this.swarm.remove(this.drive);
       this.isSwarming = false;
@@ -66,7 +70,7 @@ export default class Dat<D extends IHyperdrive & ReplicableBase> extends EventEm
     }
   }
 
-  close() {
+  public close() {
     if (this.locked) {
       return;
     }
@@ -80,11 +84,11 @@ export default class Dat<D extends IHyperdrive & ReplicableBase> extends EventEm
     return this.locks.size > 0;
   }
 
-  lock(key: string) {
+  public lock(key: string) {
     this.locks.add(key);
   }
 
-  unlock(key: string) {
+  public unlock(key: string) {
     this.locks.delete(key);
   }
 }

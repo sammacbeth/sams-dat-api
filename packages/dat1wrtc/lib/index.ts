@@ -1,13 +1,13 @@
-import HyperdriveImpl = require('hyperdrive');
-import Hyperdrive from '@sammacbeth/dat-types/lib/hyperdrive';
-import DatLoaderBase, { StorageOpts } from '@sammacbeth/dat-api-core/lib/loader';
 import HyperdriveAPI from '@sammacbeth/dat-api-core/lib/api';
+import DatLoaderBase, { StorageOpts } from '@sammacbeth/dat-api-core/lib/loader';
 import { DiscoveryOptions } from '@sammacbeth/dat-network-hyperdiscovery';
 import HyperWebRTC, { WRTCDiscoveryOptions } from '@sammacbeth/dat-network-hyperwebrtc';
+import Hyperdrive from '@sammacbeth/dat-types/lib/hyperdrive';
+import HyperdriveImpl = require('hyperdrive');
 
 export type CombinedOptions = {
-  hyperdiscoveryOpts?: DiscoveryOptions,
-  wrtcOpts?: WRTCDiscoveryOptions,
+  hyperdiscoveryOpts?: DiscoveryOptions;
+  wrtcOpts?: WRTCDiscoveryOptions;
 } & StorageOpts;
 
 /**
@@ -16,9 +16,9 @@ export type CombinedOptions = {
 export class DatV1WebRTCLoader extends DatLoaderBase<Hyperdrive> {
   constructor(opts: CombinedOptions = {}) {
     super({
-      hyperdriveFactory: (storage, key, opts) => new HyperdriveImpl(storage, key, opts),
+      hyperdriveFactory: (storage, key, driveOpts) => new HyperdriveImpl(storage, key, driveOpts),
+      persistantStorageFactory: opts && opts.persistantStorageFactory,
       swarmFactory: () => new HyperWebRTC(opts.hyperdiscoveryOpts || {}, opts.wrtcOpts || {}),
-      persistantStorageFactory: opts && opts.persistantStorageFactory
     });
   }
 }

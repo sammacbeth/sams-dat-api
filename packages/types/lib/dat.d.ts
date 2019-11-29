@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events';
 import StrictEventEmitter from 'strict-event-emitter-types';
 import Hyperdrive, { IHyperdrive } from './hyperdrive';
-import { ReplicableBase } from './replicable';
+import { IReplicableBase } from './replicable';
 import ISwarm from './swarm';
 
 interface IDatEvents {
@@ -10,7 +10,7 @@ interface IDatEvents {
   close: void;
 }
 
-export interface ISwarmable<T extends ReplicableBase>
+export interface ISwarmable<T extends IReplicableBase>
   extends StrictEventEmitter<EventEmitter, IDatEvents> {
   readonly swarm: ISwarm<T>;
 

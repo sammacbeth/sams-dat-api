@@ -16,7 +16,8 @@
   "scripts": {
     "clean": "rm -r lib/*.js lib/*.map",
     "build": "tsc",
-    "test": "jest --config ./jest.config.js ./test/"
+    "test": "jest --config ./jest.config.js ./test/",
+    "lint": "tslint --config ../../tslint.json --project tsconfig.json"
   },
   "dependencies": {
     "@sammacbeth/dat-api-core": "^0.0.0",
