@@ -13,7 +13,7 @@
     "dist"
   ],
   "scripts": {
-    "clean": "rm -r lib/*.js lib/*.map",
+    "clean": "rm -r dist/",
     "build": "tsc",
     "lint": "tslint --config ../../tslint.json --project tsconfig.json"
   },

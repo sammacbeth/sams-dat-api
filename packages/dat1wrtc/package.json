@@ -5,7 +5,7 @@
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "",
   "license": "MIT",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "directories": {
     "lib": "lib",
     "test": "test"
@@ -14,7 +14,7 @@
     "lib"
   ],
   "scripts": {
-    "clean": "rm -r lib/*.js lib/*.map",
+    "clean": "rm -r dist/",
     "build": "tsc",
     "test": "jest --config ./jest.config.js ./test/",
     "lint": "tslint --config ../../tslint.json --project tsconfig.json"

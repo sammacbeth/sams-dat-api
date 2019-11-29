@@ -5,7 +5,7 @@
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "",
   "license": "MIT",
-  "main": "lib/hyperdiscovery.js",
+  "main": "dist/hyperdiscovery.js",
   "directories": {
     "lib": "lib"
   },
@@ -13,7 +13,7 @@
     "lib"
   ],
   "scripts": {
-    "clean": "rm -r lib/*.js lib/*.map",
+    "clean": "rm -r dist/",
     "build": "tsc",
     "lint": "tslint --config ../../tslint.json --project tsconfig.json"
   },
