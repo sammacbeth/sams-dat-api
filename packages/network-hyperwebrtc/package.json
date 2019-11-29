@@ -1,7 +1,7 @@
 {
   "name": "@sammacbeth/dat-network-hyperwebrtc",
   "version": "0.0.0",
-  "description": "> TODO: description",
+  "description": "DAT Discovery network using hyperdiscovery and webrtc",
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "",
   "license": "MIT",

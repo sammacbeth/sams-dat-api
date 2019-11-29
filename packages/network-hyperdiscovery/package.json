@@ -1,7 +1,7 @@
 {
   "name": "@sammacbeth/dat-network-hyperdiscovery",
   "version": "0.0.0",
-  "description": "> TODO: description",
+  "description": "DAT Discovery network using the hyperdiscovery module",
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "",
   "license": "MIT",

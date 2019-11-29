@@ -1,7 +1,7 @@
 {
   "name": "@sammacbeth/dat-api-v1",
   "version": "0.0.0",
-  "description": "> TODO: description",
+  "description": "DAT v1 API",
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "",
   "license": "MIT",
