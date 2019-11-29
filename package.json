@@ -10,8 +10,15 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "clean": "lerna run clean --parallel && lerna clean --yes",
-    "build": "lerna run build --parallel",
+    "build": "lerna run build",
     "test": "lerna run test",
     "lint": "lerna run lint --parallel"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sammacbeth/sams-dat-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sammacbeth/sams-dat-api/issues"
   }
 }

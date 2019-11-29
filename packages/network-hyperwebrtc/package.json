@@ -13,7 +13,7 @@
     "lib"
   ],
   "scripts": {
-    "clean": "rm -r dist/",
+    "clean": "rm -rf dist/",
     "build": "tsc",
     "lint": "tslint --config ../../tslint.json --project tsconfig.json"
   },

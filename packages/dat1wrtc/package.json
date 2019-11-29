@@ -14,7 +14,7 @@
     "lib"
   ],
   "scripts": {
-    "clean": "rm -r dist/",
+    "clean": "rm -rf dist/",
     "build": "tsc",
     "test": "jest --config ./jest.config.js ./test/",
     "lint": "tslint --config ../../tslint.json --project tsconfig.json"

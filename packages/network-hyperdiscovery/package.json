@@ -6,6 +6,7 @@
   "homepage": "",
   "license": "MIT",
   "main": "dist/hyperdiscovery.js",
+  "types": "lib/hyperdiscovery.ts",
   "directories": {
     "lib": "lib"
   },
@@ -13,7 +14,7 @@
     "lib"
   ],
   "scripts": {
-    "clean": "rm -r dist/",
+    "clean": "rm -rf dist/",
     "build": "tsc",
     "lint": "tslint --config ../../tslint.json --project tsconfig.json"
   },
