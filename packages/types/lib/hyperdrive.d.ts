@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events';
 import { Stats } from 'fs';
-import { Hypercore, HypercoreBase } from './hypercore';
 import { Duplex } from 'stream';
+import { Hypercore, HypercoreBase } from './hypercore';
 import { Replicable, ReplicableBase } from './replicable';
 import { RandomAccessFactory } from './random-access';
 

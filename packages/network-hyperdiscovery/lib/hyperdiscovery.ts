@@ -1,7 +1,7 @@
 import Discovery = require('hyperdiscovery');
 import { EventEmitter } from 'events';
-import Swarm from '../types/swarm';
-import { Replicable } from '../types/replicable';
+import Swarm from '@sammacbeth/dat-types/lib/swarm';
+import { Replicable } from '@sammacbeth/dat-types/lib/replicable';
 
 export type DiscoveryOptions = {
   id?: Buffer

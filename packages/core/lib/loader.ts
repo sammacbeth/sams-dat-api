@@ -1,11 +1,11 @@
 import ram = require('random-access-memory');
 import { keyPair } from 'hypercore-crypto';
+import Swarm from '@sammacbeth/dat-types/lib/swarm';
+import { ReplicableBase } from '@sammacbeth/dat-types/lib/replicable';
+import { HyperLoader } from '@sammacbeth/dat-types/lib/hyperloader';
+import { HyperdriveOptions, HyperdriveCommon } from '@sammacbeth/dat-types/lib/hyperdrive';
+import { RandomAccessFactory } from '@sammacbeth/dat-types/lib/random-access';
 import Dat from './dat';
-import Swarm from './types/swarm';
-import { ReplicableBase } from './types/replicable';
-import { HyperLoader } from './types/hyperloader';
-import { HyperdriveOptions, HyperdriveCommon } from './types/hyperdrive';
-import { RandomAccessFactory } from './types/random-access';
 
 export type StorageOpts = {
   /**

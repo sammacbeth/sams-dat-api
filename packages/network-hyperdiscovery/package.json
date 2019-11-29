@@ -1,0 +1,28 @@
+{
+  "name": "@sammacbeth/dat-network-hyperdiscovery",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Sam Macbeth <sam@cliqz.com>",
+  "homepage": "",
+  "license": "MIT",
+  "main": "lib/hyperdiscovery.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "clean": "rm -r lib/*.js lib/*.map",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@sammacbeth/dat-types": "^0.0.0",
+    "hyperdiscovery": "^10.2.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "jest": "^24.9.0",
+    "typescript": "^3.7.2"
+  }
+}

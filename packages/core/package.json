@@ -1,0 +1,30 @@
+{
+  "name": "@sammacbeth/dat-api-core",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Sam Macbeth <sam@cliqz.com>",
+  "homepage": "",
+  "license": "MIT",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib",
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rm -r lib/*.js lib/*.map",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.14",
+    "jest": "^24.9.0",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "@sammacbeth/dat-types": "^0.0.0",
+    "hypercore-crypto": "^1.0.0",
+    "random-access-memory": "^3.1.1"
+  }
+}

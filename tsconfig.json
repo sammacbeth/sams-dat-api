@@ -1,9 +1,8 @@
 {
-    "compilerOptions": {
-      "target": "es2017",
-      "module": "commonjs",
-      "sourceMap": true,
-      "typeRoots": ["node_modules/@types"],
-      "outDir": "build/"
-    }
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "sourceMap": true,
+    "typeRoots": ["node_modules/@types"],
+  }
 }

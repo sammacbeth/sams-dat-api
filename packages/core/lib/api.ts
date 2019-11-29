@@ -1,12 +1,12 @@
+import { HyperdriveCommon } from '@sammacbeth/dat-types/lib/hyperdrive';
 import Dat from "./dat";
 import DatLoaderBase, { LoadOptions } from "./loader";
-import { HyperdriveCommon } from './types/hyperdrive';
 
 export type SwarmOptions = {
   autoSwarm?: boolean,
 };
 
-export default class API<D extends HyperdriveCommon> {
+export default class HyperdriveAPI<D extends HyperdriveCommon> {
   dats = new Map<string, Dat<D>>();
   loader: DatLoaderBase<D>
 

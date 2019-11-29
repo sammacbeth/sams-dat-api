@@ -1,6 +1,6 @@
 import WRTCDiscovery = require('@geut/discovery-swarm-webrtc');
-import { Replicable } from '../types/replicable';
-import HyperDiscovery, { DiscoveryOptions } from './hyperdiscovery';
+import { Replicable } from '@sammacbeth/dat-types/lib/replicable';
+import HyperDiscovery, { DiscoveryOptions } from '@sammacbeth/dat-network-hyperdiscovery';
 
 export type WRTCDiscoveryOptions = {
   id?: Buffer

@@ -1,5 +1,5 @@
-import { EventEmitter } from "events";
-import { Replicable, ReplicableBase } from "./replicable";
+import { EventEmitter } from 'events';
+import { Replicable, ReplicableBase } from './replicable';
 
 /**
  * A Swarm is able to find peers and initiate replication with them via the provided

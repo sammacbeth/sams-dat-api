@@ -18,6 +18,6 @@ export interface Swarmable<T extends ReplicableBase> extends StrictEventEmitter<
   close(): void
 }
 
-export interface IDat<D extends HyperdriveCommon> extends Swarmable<D>, StrictEventEmitter<EventEmitter, DatEvents> {
+export interface IDat<D extends HyperdriveCommon> extends Swarmable<D> {
   readonly drive: D
 }

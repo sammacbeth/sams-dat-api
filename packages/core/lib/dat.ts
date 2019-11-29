@@ -1,19 +1,12 @@
-import StrictEventEmitter from 'strict-event-emitter-types';
 import { EventEmitter } from 'events';
-import Hyperdrive, { HyperdriveCommon } from './types/hyperdrive';
-import createDatArchive, { DatArchive } from './dat-archive';
-import { IDat } from './types/dat';
-import { ReplicableBase } from './types/replicable';
-import Swarm from './types/swarm';
-
-interface DatEvents {
-  join: void
-  leave: void
-  close: void
-}
+import { HyperdriveCommon } from '@sammacbeth/dat-types/lib/hyperdrive';
+import { IDat } from '@sammacbeth/dat-types/lib/dat';
+import { ReplicableBase } from '@sammacbeth/dat-types/lib/replicable';
+import Swarm from '@sammacbeth/dat-types/lib/swarm';
+// import createDatArchive, { DatArchive } from './dat-archive';
 
 export default class Dat<D extends HyperdriveCommon & ReplicableBase> extends EventEmitter implements IDat<D>  {
-  _archive: DatArchive
+  // _archive: DatArchive
   swarm: Swarm<D>
   ready: Promise<void>
 
@@ -44,12 +37,12 @@ export default class Dat<D extends HyperdriveCommon & ReplicableBase> extends Ev
     return this.drive.writable;
   }
 
-  get archive() {
-    if (!this._archive) {
-      this._archive = createDatArchive(this.drive);
-    }
-    return this._archive;
-  }
+  // get archive() {
+  //   if (!this._archive) {
+  //     this._archive = createDatArchive(this.drive);
+  //   }
+  //   return this._archive;
+  // }
 
   async joinSwarm() {
     this.swarm.add(this.drive);

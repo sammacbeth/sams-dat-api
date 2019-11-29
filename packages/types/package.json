@@ -1,0 +1,25 @@
+{
+  "name": "@sammacbeth/dat-types",
+  "version": "0.0.0",
+  "description": "Types for Dat projects",
+  "author": "Sam Macbeth <sam@cliqz.com>",
+  "homepage": "",
+  "license": "MIT",
+  "types": "lib/",
+  "module": "lib/",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {},
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.14",
+    "jest": "^24.9.0",
+    "strict-event-emitter-types": "^2.0.0",
+    "typescript": "^3.7.2"
+  }
+}

@@ -1,26 +1,16 @@
 {
   "name": "@sammacbeth/dat-api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "tsc"
-  },
-  "author": "Sam Macbeth",
-  "license": "MIT",
+  "private": true,
   "devDependencies": {
-    "@sammacbeth/types": "^1.1.1",
-    "@types/node": "^12.11.1",
-    "typescript": "^3.6.3",
-    "wrtc": "^0.4.2"
+    "lerna": "^3.19.0"
   },
-  "dependencies": {
-    "@geut/discovery-swarm-webrtc": "^2.2.3",
-    "@sammacbeth/dat-node": "^1.0.3",
-    "hypercore-crypto": "^1.0.0",
-    "hyperdiscovery": "^10.1.0",
-    "hyperdrive": "^9.16.0",
-    "random-access-memory": "^3.1.1",
-    "strict-event-emitter-types": "^2.0.0"
+  "workspaces": [
+    "./packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna run clean && lerna clean --yes",
+    "build": "lerna run build",
+    "test": "lerna run test"
   }
 }
