@@ -17,9 +17,7 @@
     "lint": "tslint --config ../../tslint.json --project tsconfig.json"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.23",
     "@types/node": "^12.12.14",
-    "jest": "^24.9.0",
     "strict-event-emitter-types": "^2.0.0",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",

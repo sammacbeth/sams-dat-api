@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+import 'mocha';
 import apiFactory, { DatV1API } from '../';
 
 describe('HyperdriveAPI', () => {
@@ -26,7 +28,7 @@ describe('HyperdriveAPI', () => {
           reject(err);
           dat.close();
         } else {
-          expect(files).toHaveLength(11);
+          expect(files).to.have.length(11);
           dat.close();
           resolve();
         }

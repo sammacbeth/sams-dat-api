@@ -31,7 +31,7 @@ describe('Protocol Handler', function () {
 
       try {
         await resolvePath(dat, '/posts.html', 33);
-        fail('Should throw not found for posts.html');
+        expect.fail('Should throw not found for posts.html');
       } catch (e) {
         expect(e.message).to.equal('NOT FOUND');
       }
