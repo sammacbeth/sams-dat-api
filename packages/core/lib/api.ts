@@ -34,7 +34,7 @@ export default class HyperdriveAPI<D extends IHyperdrive> {
   }
 
   public async createDat(options?: LoadOptions & SwarmOptions) {
-    const autoSwarm = !options || options.autoSwarm === false;
+    const autoSwarm = !options || options.autoSwarm !== false;
     const dat = await this.loader.create(options);
     if (autoSwarm) {
       await dat.joinSwarm();

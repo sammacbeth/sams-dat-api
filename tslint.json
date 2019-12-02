@@ -4,6 +4,7 @@
     "exclude": ["node_modules/**"]
   },
   "rules": {
-    "interface-over-type-literal": false
+    "interface-over-type-literal": false,
+    "max-classes-per-file": false
   }
 }

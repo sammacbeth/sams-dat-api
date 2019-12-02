@@ -10,10 +10,23 @@ import pda = require('pauls-dat-api');
 
 export type DriveLoadingOptions = SwarmOptions & LoadOptions;
 
-const ERRORS = {
-  NETWORK_TIMEOUT: 'NETWORK_TIMEOUT',
-  NOT_FOUND: 'NOT FOUND',
-};
+export class NotFoundError extends Error {
+  constructor(url) {
+    super(`Could not find content at address: ${url}`);
+  }
+}
+
+export class IsADirectoryError extends Error {
+  constructor(url) {
+    super(`${url} is a Directory with no index`);
+  }
+}
+
+export class NetworkTimeoutError extends Error {
+  constructor(url, timeout) {
+    super(`Timed out while loading ${url} after ${timeout}ms`);
+  }
+}
 
 function timeoutWithError(ms, errorCtr) {
   return new Promise((_, reject) => {
@@ -75,7 +88,7 @@ export async function resolvePath(dat: IDat<IHyperdrive>, pathname: string, vers
     }
   }
 
-  throw new Error(ERRORS.NOT_FOUND);
+  throw new NotFoundError(`dat://${dat.drive.key.toString('hex')}${pathname}`);
 }
 
 export default function createHandler(
@@ -83,82 +96,28 @@ export default function createHandler(
   resolveDns: (host: string) => Promise<string>,
   loadingOptions: DriveLoadingOptions = { autoSwarm: true, persist: true, sparse: true },
 ) {
-  return function handleRequest(url: string, timeout: number = 30000) {
-    const { host, pathname, version } = parseUrl(url);
-    const body = new ReadableStream({
-      async start(controller) {
-        let address: string;
-        // resolve host to a dat hex address
-        try {
-          address = await resolveDns(host);
-        } catch (e) {
-          controller.error('DNS Lookup failed');
-          return;
+  return async function handleRequest(url: string, timeout: number = 30000): Promise<NodeJS.ReadableStream> {
+    const { protocol, host, pathname, version } = parseUrl(url);
+    if (protocol !== 'dat:' || !host) {
+      throw new Error('Not a dat URL');
+    }
+    // resolve host to a dat hex address
+    const address = await resolveDns(host);
+    // load the dat at the given address
+    const timer: Promise<any> = timeoutWithError(timeout, () => new NetworkTimeoutError(url, timeout));
+    const loadStream = new Promise<NodeJS.ReadableStream>(async (resolve, reject) => {
+      try {
+        const dat = await loader.getDat(address, loadingOptions);
+        await dat.ready;
+        const { drive, directory, path } = await resolvePath(dat, pathname, version);
+        if (directory) {
+          throw new IsADirectoryError(url);
         }
-        // load the dat at the given address
-        const timer = timeoutWithError(timeout, () => 'Request timed out');
-        let stream: NodeJS.ReadableStream;
-        try {
-          const loadStream = loader
-            .getDat(address, loadingOptions)
-            .then(async (dat) => {
-              await dat.ready;
-              return resolvePath(dat, pathname, version);
-            })
-            .then(({ drive, directory, path }) => {
-              if (directory) {
-                controller.enqueue('Directory listing');
-                return;
-              }
-              stream = drive.createReadStream(path, { start: 0 });
-            });
-          await Promise.race([loadStream, timer]);
-        } catch (e) {
-          controller.error(e);
-          return;
-        }
-
-        let streamComplete;
-        let gotFirstChunk = false;
-        // timeout in case we don't get the first chunk within 30s
-        const streamTimeout = new Promise<void>((resolve, reject) => {
-          const streamTimer = setTimeout(() => {
-            if (!gotFirstChunk) {
-              return reject(new Error(ERRORS.NETWORK_TIMEOUT));
-            }
-            return resolve();
-          }, 30000);
-          streamComplete = () => {
-            clearTimeout(streamTimer);
-            resolve();
-          };
-        });
-
-        stream.on('close', () => {
-          controller.close();
-        });
-        stream.on('end', () => {
-          controller.close();
-          streamComplete();
-        });
-        stream.on('error', (e) => {
-          controller.error(e);
-        });
-        stream.on('data', (chunk) => {
-          gotFirstChunk = true;
-          controller.enqueue(chunk);
-        });
-        try {
-          await streamTimeout;
-        } catch (e) {
-          controller.enqueue('Timed out while loading file from the network');
-        }
-      },
+        resolve(drive.createReadStream(path, { start: 0 }));
+      } catch (e) {
+        reject(e);
+      }
     });
-    return new Response(body, {
-      headers: {
-        'content-type': mime.getType(decodeURIComponent(pathname)) || 'text/html',
-      },
-    });
+    return Promise.race([loadStream, timer]);
   };
 }

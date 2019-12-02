@@ -7,7 +7,6 @@ import { EventEmitter } from 'events';
 
 export default class Dat<D extends IHyperdrive & IReplicableBase> extends EventEmitter
   implements IDat<D> {
-  // _archive: DatArchive
   public swarm: ISwarm<D>;
   public ready: Promise<void>;
 
@@ -40,13 +39,6 @@ export default class Dat<D extends IHyperdrive & IReplicableBase> extends EventE
   get isOwner() {
     return this.drive.writable;
   }
-
-  // get archive() {
-  //   if (!this._archive) {
-  //     this._archive = createDatArchive(this.drive);
-  //   }
-  //   return this._archive;
-  // }
 
   public async joinSwarm() {
     this.swarm.add(this.drive);
