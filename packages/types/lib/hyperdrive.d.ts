@@ -15,7 +15,7 @@ type CheckoutOptions = {
   treeCacheSize?: number;
 };
 
-type HyperdriveOptions = CheckoutOptions & {
+export type HyperdriveOptions = CheckoutOptions & {
   sparse?: boolean;
   sparseMetadata?: boolean;
   latest?: boolean;
