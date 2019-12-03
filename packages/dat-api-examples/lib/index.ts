@@ -10,10 +10,8 @@ const api = apiFactory({
   // create a dat and work with it's hyperdrive
   const dat = await api.createDat({ persist: true });
   await dat.ready;
-  console.log('Created a Dat at address', dat.drive.key.toString('hex'));
-  dat.drive.writeFile('file.txt', Buffer.from('hello world', 'utf8'), () =>
-    console.log('wrote some data into the dat!'),
-  );
+  // dat address: dat.drive.key.toString('hex'));
+  dat.drive.writeFile('file.txt', Buffer.from('hello world', 'utf8'));
 
   // join and leave the network
   dat.joinSwarm();
@@ -26,8 +24,7 @@ const api = apiFactory({
   );
   // wait for data
   await existing.ready;
-  console.log('Loaded remote dat');
-  const files = await new Promise((resolve, reject) => {
+  await new Promise((resolve, reject) => {
     existing.drive.readdir('/', (err, files) => {
       if (err) {
         return reject('error listing directory');
@@ -35,7 +32,6 @@ const api = apiFactory({
       resolve(files);
     });
   });
-  console.log('Dat has files:', files);
 
   // close all dats and cleanup
   api.shutdown();
