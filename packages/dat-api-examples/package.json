@@ -1,7 +1,7 @@
 {
   "name": "@sammacbeth/dat-api-examples",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "> TODO: description",
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "https://github.com/sammacbeth/sams-dat-api#readme",
@@ -29,7 +29,7 @@
     "url": "https://github.com/sammacbeth/sams-dat-api/issues"
   },
   "dependencies": {
-    "@sammacbeth/dat-api-v1": "^0.0.2",
+    "@sammacbeth/dat-api-v1": "^0.0.3",
     "ts-node": "^8.5.4"
   }
 }
