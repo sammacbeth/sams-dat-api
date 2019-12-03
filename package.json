@@ -1,5 +1,6 @@
 {
   "name": "@sammacbeth/dat-api",
+  "private": true,
   "devDependencies": {
     "lerna": "^3.19.0"
   },
