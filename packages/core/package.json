@@ -5,6 +5,9 @@
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "directories": {
     "lib": "lib"
   },

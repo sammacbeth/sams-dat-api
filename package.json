@@ -19,5 +19,8 @@
   },
   "bugs": {
     "url": "https://github.com/sammacbeth/sams-dat-api/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

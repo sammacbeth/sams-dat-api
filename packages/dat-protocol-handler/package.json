@@ -5,6 +5,9 @@
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "https://github.com/sammacbeth/sams-dat-api#readme",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/dat-protocol-handler.js",
   "directories": {
     "lib": "lib"
