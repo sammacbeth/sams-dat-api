@@ -1,0 +1,33 @@
+{
+  "name": "@sammacbeth/dat-api-examples",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Sam Macbeth <sam@cliqz.com>",
+  "homepage": "https://github.com/sammacbeth/sams-dat-api#readme",
+  "license": "MIT",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sammacbeth/sams-dat-api.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node lib/index.ts",
+    "lint": "tslint --config ../../tslint.json --project tsconfig.json"
+  },
+  "bugs": {
+    "url": "https://github.com/sammacbeth/sams-dat-api/issues"
+  },
+  "dependencies": {
+    "@sammacbeth/dat-api-v1": "^0.0.0",
+    "ts-node": "^8.5.4"
+  }
+}
