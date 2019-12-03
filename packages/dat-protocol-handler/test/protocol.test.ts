@@ -23,6 +23,10 @@ describe('Protocol Handler', function() {
     datAddr = dat.drive.key.toString('hex');
   });
 
+  afterEach(async () => {
+    dat.close();
+  })
+
   after(() => {
     api.shutdown();
   });

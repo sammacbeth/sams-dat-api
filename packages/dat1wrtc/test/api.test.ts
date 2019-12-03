@@ -2,7 +2,8 @@ import { expect } from 'chai';
 import 'mocha';
 import apiFactory, { DatV1API } from '../';
 
-describe('HyperdriveAPI', () => {
+describe('HyperdriveAPI', function () {
+  this.timeout(10000);
 
   const datAddr = '41f8a987cfeba80a037e51cc8357d513b62514de36f2f9b3d3eeec7a8fb3b5a5';
   let api: DatV1API;
