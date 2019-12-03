@@ -1,5 +1,5 @@
 import DatArchiveImpl = require('@sammacbeth/dat-node/lib/dat-archive');
-import Hyperdrive from '@sammacbeth/dat-types/lib/hyperdrive';
+import { IHyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
 
 export type TimeoutOption = {
   timeout?: number;
@@ -26,7 +26,7 @@ export interface IDatArchive {
   download(path: string, opts?: TimeoutOption): Promise<void>
 }
 
-export default function createDatArchive(drive: Hyperdrive): IDatArchive {
+export default function createDatArchive(drive: IHyperdrive): IDatArchive {
   return DatArchiveImpl({
     _dataStructure: drive,
     key: drive.key.toString(),
