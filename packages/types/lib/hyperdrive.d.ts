@@ -159,7 +159,7 @@ export interface IHyperdrive extends IReplicableBase {
   createDiffStream(version: number, options?: any): any;
 }
 
-export default class Hyperdrive extends EventEmitter implements IHyperdrive, IReplicable {
+export class Hyperdrive extends EventEmitter implements IHyperdrive, IReplicable {
   public version: number;
   public key: Buffer;
   public discoveryKey: Buffer;
@@ -245,3 +245,5 @@ export default class Hyperdrive extends EventEmitter implements IHyperdrive, IRe
 
   public replicate(options?: ReplicationOptions): Duplex;
 }
+
+export default Hyperdrive;
