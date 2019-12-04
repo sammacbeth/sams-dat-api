@@ -1,5 +1,5 @@
-import HyperdriveAPI from '@sammacbeth/dat-api-core/lib/api';
-import DatLoaderBase, { StorageOpts } from '@sammacbeth/dat-api-core/lib/loader';
+import HyperdriveAPI from '@sammacbeth/dat-api-core/dist/api';
+import DatLoaderBase, { StorageOpts } from '@sammacbeth/dat-api-core/dist/loader';
 import Hyperdiscovery, { DiscoveryOptions } from '@sammacbeth/dat-network-hyperdiscovery';
 import Hyperdrive from '@sammacbeth/dat-types/lib/hyperdrive';
 import HyperdriveImpl = require('hyperdrive');
