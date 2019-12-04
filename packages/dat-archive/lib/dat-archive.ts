@@ -1,4 +1,4 @@
-import HyperdriveAPI from '@sammacbeth/dat-api-core/lib/api';
+import HyperdriveAPI, { SwarmOptions } from '@sammacbeth/dat-api-core/lib/api';
 import DatArchiveImpl = require('@sammacbeth/dat-node/lib/dat-archive');
 import { IHyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
 import pda from 'pauls-dat-api';
