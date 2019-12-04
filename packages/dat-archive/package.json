@@ -23,8 +23,10 @@
     "lint": "tslint --config ../../tslint.json --project tsconfig.json"
   },
   "dependencies": {
+    "@sammacbeth/dat-api-core": "^0.0.3",
     "@sammacbeth/dat-node": "^1.0.3",
-    "@sammacbeth/dat-types": "^0.0.3"
+    "@sammacbeth/dat-types": "^0.0.3",
+    "pauls-dat-api": "^8.1.0"
   },
   "devDependencies": {
     "tslint": "^5.20.1",
