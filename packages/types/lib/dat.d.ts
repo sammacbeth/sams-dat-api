@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 import StrictEventEmitter from 'strict-event-emitter-types';
-import Hyperdrive, { IHyperdrive } from './hyperdrive';
+import { IHyperdrive } from './hyperdrive';
 import { IReplicableBase } from './replicable';
 import ISwarm from './swarm';
 
@@ -10,15 +10,17 @@ interface IDatEvents {
   close: void;
 }
 
-export interface ISwarmable<T extends IReplicableBase>
-  extends StrictEventEmitter<EventEmitter, IDatEvents> {
-  readonly swarm: ISwarm<T>;
-
+export interface ISwarmable extends StrictEventEmitter<EventEmitter, IDatEvents> {
+  isSwarming: boolean;
   joinSwarm(): Promise<void>;
   leaveSwarm(): void;
   close(): void;
 }
 
-export interface IDat<D extends IHyperdrive> extends ISwarmable<D> {
-  readonly drive: D;
+export interface IDat extends ISwarmable {
+  readonly drive: IHyperdrive;
+  isSwarming: boolean;
+  isOpen: boolean;
+  isOwner: boolean;
+  ready: Promise<void>;
 }

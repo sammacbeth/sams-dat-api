@@ -1,14 +1,14 @@
+import { IDat } from '@sammacbeth/dat-types/lib/dat';
 import { IHyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
 import { EventEmitter } from 'events';
 import StrictEventEmitter from 'strict-event-emitter-types';
-import Dat from './dat';
 import DatLoaderBase, { LoadOptions } from './loader';
 
 // Events emitted by the API
 interface IAPIEvents {
-  load: (dat: Dat<IHyperdrive>) => void;
-  use: (dat: Dat<IHyperdrive>) => void;
-  create: (dat: Dat<IHyperdrive>) => void;
+  load: (dat: IDat) => void;
+  use: (dat: IDat) => void;
+  create: (dat: IDat) => void;
   delete: (address: string) => void;
 }
 
@@ -16,10 +16,12 @@ export type SwarmOptions = {
   autoSwarm?: boolean;
 };
 
+export type AbstractHyperdriveAPI = HyperdriveAPI<IHyperdrive>;
+
 export default class HyperdriveAPI<
   D extends IHyperdrive
 > extends (EventEmitter as new () => StrictEventEmitter<EventEmitter, IAPIEvents>) {
-  public dats = new Map<string, Dat<D>>();
+  public dats = new Map<string, IDat>();
   public loader: DatLoaderBase<D>;
 
   constructor(loader: DatLoaderBase<D>) {
@@ -27,9 +29,9 @@ export default class HyperdriveAPI<
     this.loader = loader;
   }
 
-  public async getDat(address: string, options?: LoadOptions & SwarmOptions): Promise<Dat<D>> {
+  public async getDat(address: string, options?: LoadOptions & SwarmOptions): Promise<IDat> {
     const autoSwarm = !options || options.autoSwarm !== false;
-    const handleAutoJoin = async (datInst: Dat<D>) => {
+    const handleAutoJoin = async (datInst: IDat) => {
       if (!datInst.isSwarming && autoSwarm) {
         await datInst.joinSwarm();
       }
@@ -48,7 +50,7 @@ export default class HyperdriveAPI<
     return dat;
   }
 
-  public async createDat(options?: LoadOptions & SwarmOptions) {
+  public async createDat(options?: LoadOptions & SwarmOptions): Promise<IDat> {
     const autoSwarm = !options || options.autoSwarm !== false;
     const dat = await this.loader.create(options);
     if (autoSwarm) {

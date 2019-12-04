@@ -1,9 +1,7 @@
-import HyperdriveAPI, { SwarmOptions } from '@sammacbeth/dat-api-core/lib/api';
-import { LoadOptions } from '@sammacbeth/dat-api-core/lib/loader';
-import { IDat } from '@sammacbeth/dat-types/lib/dat';
+import HyperdriveAPI, { SwarmOptions } from '@sammacbeth/dat-api-core/dist/api';
+import { LoadOptions } from '@sammacbeth/dat-api-core/dist/loader';
 import { IHyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
 import { Stats } from 'fs';
-import mime = require('mime');
 import parseUrl = require('parse-dat-url');
 import { join as joinPaths } from 'path';
 import pda = require('pauls-dat-api');
@@ -36,8 +34,8 @@ function timeoutWithError(ms, errorCtr) {
   });
 }
 
-export async function resolvePath(dat: IDat<IHyperdrive>, pathname: string, version?: number) {
-  const drive = version ? dat.drive.checkout(version) : dat.drive;
+export async function resolvePath(drive: IHyperdrive, pathname: string, version?: number) {
+  const checkout = version ? drive.checkout(version) : drive;
   const manifest = await pda.readManifest(drive).catch((_) => ({}));
   const root = manifest.web_root || '';
   const path = decodeURIComponent(pathname);
@@ -51,7 +49,7 @@ export async function resolvePath(dat: IDat<IHyperdrive>, pathname: string, vers
   async function tryStat(testPath: string) {
     result.path = testPath;
     return new Promise<Stats | false>((resolve, reject) => {
-      drive.stat(testPath, (err, file) => {
+      checkout.stat(testPath, (err, file) => {
         if (err) {
           return resolve(false);
         }
@@ -88,15 +86,18 @@ export async function resolvePath(dat: IDat<IHyperdrive>, pathname: string, vers
     }
   }
 
-  throw new NotFoundError(`dat://${dat.drive.key.toString('hex')}${pathname}`);
+  throw new NotFoundError(`dat://${checkout.key.toString('hex')}${pathname}`);
 }
 
-export default function createHandler(
-  loader: HyperdriveAPI<IHyperdrive>,
+export default function createHandler<D extends IHyperdrive>(
+  node: HyperdriveAPI<D>,
   resolveDns: (host: string) => Promise<string>,
   loadingOptions: DriveLoadingOptions = { autoSwarm: true, persist: true, sparse: true },
 ) {
-  return async function handleRequest(url: string, timeout: number = 30000): Promise<NodeJS.ReadableStream> {
+  return async function handleRequest(
+    url: string,
+    timeout: number = 30000,
+  ): Promise<NodeJS.ReadableStream> {
     const { protocol, host, pathname, version } = parseUrl(url);
     if (protocol !== 'dat:' || !host) {
       throw new Error('Not a dat URL');
@@ -104,12 +105,15 @@ export default function createHandler(
     // resolve host to a dat hex address
     const address = await resolveDns(host);
     // load the dat at the given address
-    const timer: Promise<any> = timeoutWithError(timeout, () => new NetworkTimeoutError(url, timeout));
+    const timer: Promise<any> = timeoutWithError(
+      timeout,
+      () => new NetworkTimeoutError(url, timeout),
+    );
     const loadStream = new Promise<NodeJS.ReadableStream>(async (resolve, reject) => {
       try {
-        const dat = await loader.getDat(address, loadingOptions);
+        const dat = await node.getDat(address, loadingOptions);
         await dat.ready;
-        const { drive, directory, path } = await resolvePath(dat, pathname, version);
+        const { drive, directory, path } = await resolvePath(dat.drive, pathname, version);
         if (directory) {
           throw new IsADirectoryError(url);
         }

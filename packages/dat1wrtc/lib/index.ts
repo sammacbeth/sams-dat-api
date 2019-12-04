@@ -2,7 +2,7 @@ import HyperdriveAPI from '@sammacbeth/dat-api-core/dist/api';
 import DatLoaderBase, { StorageOpts } from '@sammacbeth/dat-api-core/dist/loader';
 import { DiscoveryOptions } from '@sammacbeth/dat-network-hyperdiscovery';
 import HyperWebRTC, { WRTCDiscoveryOptions } from '@sammacbeth/dat-network-hyperwebrtc';
-import Hyperdrive from '@sammacbeth/dat-types/lib/hyperdrive';
+import { Hyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
 import HyperdriveImpl = require('hyperdrive');
 
 export type CombinedOptions = {

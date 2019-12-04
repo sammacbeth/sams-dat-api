@@ -1,4 +1,4 @@
-import { AbstractHyperdriveAPI, SwarmOptions } from '@sammacbeth/dat-api-core/lib/api';
+import HyperdriveAPI from '@sammacbeth/dat-api-core/lib/api';
 import DatArchiveImpl = require('@sammacbeth/dat-node/lib/dat-archive');
 import { IHyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
 import pda from 'pauls-dat-api';
@@ -13,7 +13,7 @@ export type DatArchiveCreationOptions = {
   type?: string[];
   links?: any;
   prompt?: boolean;
-}
+};
 
 /**
  * TODO: This is not a complete spec yet...
@@ -36,8 +36,8 @@ export interface IDatArchive {
   download(path: string, opts?: TimeoutOption): Promise<void>;
 }
 
-export async function create(
-  node: AbstractHyperdriveAPI,
+export async function create<D extends IHyperdrive>(
+  node: HyperdriveAPI<D>,
   datOpts: { persist: boolean } & SwarmOptions,
   manifest: DatArchiveCreationOptions,
 ): Promise<IDatArchive> {
@@ -46,8 +46,8 @@ export async function create(
   return createDatArchive(dat.drive);
 }
 
-export async function fork(
-  node: AbstractHyperdriveAPI,
+export async function fork<D extends IHyperdrive>(
+  node: HyperdriveAPI<D>,
   srcDrive: IHyperdrive,
   datOpts: { persist: boolean } & SwarmOptions,
   manifest: DatArchiveCreationOptions,

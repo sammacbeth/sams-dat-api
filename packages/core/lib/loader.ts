@@ -28,7 +28,7 @@ export type LoadOptions = {
   persist: boolean;
 } & HyperdriveOptions;
 
-export default class DatLoaderBase<T extends IHyperdrive> implements IHyperLoader<T, Dat<T>> {
+export default class DatLoaderBase<T extends IHyperdrive> implements IHyperLoader<IHyperdrive, Dat<IHyperdrive>> {
   public config: DatConfig<T> & StorageOpts;
   protected pSwarm: ISwarm<T>;
 

@@ -245,5 +245,3 @@ export class Hyperdrive extends EventEmitter implements IHyperdrive, IReplicable
 
   public replicate(options?: ReplicationOptions): Duplex;
 }
-
-export default Hyperdrive;

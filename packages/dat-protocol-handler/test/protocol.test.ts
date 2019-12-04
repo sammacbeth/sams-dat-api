@@ -1,6 +1,5 @@
-import Dat from '@sammacbeth/dat-api-core/lib/dat';
 import apiFactory, { DatV1API } from '@sammacbeth/dat-api-v1';
-import Hyperdrive from '@sammacbeth/dat-types/lib/hyperdrive';
+import { IDat } from '@sammacbeth/dat-types/lib/dat';
 import { expect } from 'chai';
 import 'mocha';
 import pda = require('pauls-dat-api');
@@ -11,7 +10,7 @@ const MOCK_HTML = '<html></html>';
 describe('Protocol Handler', function() {
   let datAddr = '';
   let api: DatV1API;
-  let dat: Dat<Hyperdrive>;
+  let dat: IDat;
 
   before(async () => {
     api = apiFactory();
@@ -25,7 +24,7 @@ describe('Protocol Handler', function() {
 
   afterEach(async () => {
     dat.close();
-  })
+  });
 
   after(() => {
     api.shutdown();
@@ -34,24 +33,24 @@ describe('Protocol Handler', function() {
   describe('#resolvePath', () => {
     it('file in root', async () => {
       await pda.writeFile(dat.drive, '/file.html', MOCK_HTML);
-      expect((await resolvePath(dat, '/file.html')).path).to.equal('/file.html');
+      expect((await resolvePath(dat.drive, '/file.html')).path).to.equal('/file.html');
     });
 
     it('index from root directory', async () => {
       await pda.writeFile(dat.drive, '/index.html', MOCK_HTML);
-      expect((await resolvePath(dat, '/')).path).to.equal('/index.html');
+      expect((await resolvePath(dat.drive, '/')).path).to.equal('/index.html');
     });
 
     it('index in subdirectory', async () => {
       await pda.mkdir(dat.drive, 'test');
       await pda.writeFile(dat.drive, '/test/index.html', 'MOCK_HTML');
-      expect((await resolvePath(dat, '/test/')).path).to.equal('/test/index.html');
-      expect((await resolvePath(dat, '/test')).path).to.equal('/test/index.html');
+      expect((await resolvePath(dat.drive, '/test/')).path).to.equal('/test/index.html');
+      expect((await resolvePath(dat.drive, '/test')).path).to.equal('/test/index.html');
     });
 
     it('html referenced without extension', async () => {
       await pda.writeFile(dat.drive, '/test.html', MOCK_HTML);
-      expect((await resolvePath(dat, '/test')).path).to.equal('/test.html');
+      expect((await resolvePath(dat.drive, '/test')).path).to.equal('/test.html');
     });
 
     it('uses version option', async () => {
@@ -59,16 +58,16 @@ describe('Protocol Handler', function() {
       await pda.mkdir(dat.drive, 'test');
       await pda.writeFile(dat.drive, '/test/index.html', MOCK_HTML);
       await pda.unlink(dat.drive, '/test.html');
-      expect((await resolvePath(dat, '/test')).path).to.equal('/test/index.html');
-      expect((await resolvePath(dat, '/test', 1)).path).to.equal('/test.html');
+      expect((await resolvePath(dat.drive, '/test')).path).to.equal('/test/index.html');
+      expect((await resolvePath(dat.drive, '/test', 1)).path).to.equal('/test.html');
       // note that without trailing test, the .html extension detection takes precidence over dir index
-      expect((await resolvePath(dat, '/test', 3)).path).to.equal('/test.html');
-      expect((await resolvePath(dat, '/test/', 3)).path).to.equal('/test/index.html');
+      expect((await resolvePath(dat.drive, '/test', 3)).path).to.equal('/test.html');
+      expect((await resolvePath(dat.drive, '/test/', 3)).path).to.equal('/test/index.html');
     });
 
     it('not found throws', async () => {
       try {
-        await resolvePath(dat, '/test.html');
+        await resolvePath(dat.drive, '/test.html');
         expect.fail('Should throw not found for not found');
       } catch (e) {
         expect(e).to.be.an.instanceOf(NotFoundError);
@@ -80,7 +79,7 @@ describe('Protocol Handler', function() {
         await pda.mkdir(dat.drive, 'test');
         await pda.writeFile(dat.drive, '/test/index.html', MOCK_HTML);
         await pda.writeManifest(dat.drive, { web_root: '/test/' });
-        expect((await resolvePath(dat, '/')).path).to.equal('/test/index.html');
+        expect((await resolvePath(dat.drive, '/')).path).to.equal('/test/index.html');
       });
     });
 
@@ -88,13 +87,13 @@ describe('Protocol Handler', function() {
       it('prevents not found error', async () => {
         await pda.writeFile(dat.drive, '/test.html', MOCK_HTML);
         await pda.writeManifest(dat.drive, { fallback_page: '/test.html' });
-        expect((await resolvePath(dat, '/something')).path).to.equal('/test.html');
+        expect((await resolvePath(dat.drive, '/something')).path).to.equal('/test.html');
       });
 
       it('not found when fallback page does not exist', async () => {
         await pda.writeManifest(dat.drive, { fallback_page: '/test.html' });
         try {
-          await resolvePath(dat, '/something');
+          await resolvePath(dat.drive, '/something');
           expect.fail('Should throw not found for not found');
         } catch (e) {
           expect(e).to.be.an.instanceOf(NotFoundError);
@@ -105,7 +104,7 @@ describe('Protocol Handler', function() {
         await pda.writeFile(dat.drive, '/test.html', MOCK_HTML);
         await pda.writeFile(dat.drive, '/index.html', MOCK_HTML);
         await pda.writeManifest(dat.drive, { fallback_page: '/test.html' });
-        expect((await resolvePath(dat, '/')).path).to.equal('/index.html');
+        expect((await resolvePath(dat.drive, '/')).path).to.equal('/index.html');
       });
     });
   });
