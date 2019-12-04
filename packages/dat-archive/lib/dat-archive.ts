@@ -77,7 +77,7 @@ export async function fork<D extends IHyperdrive>(
 
 export default function createDatArchive(drive: IHyperdrive): IDatArchive {
   return new DatArchiveImpl({
-    _dataStructure: drive,
-    key: drive.key.toString(),
+    dataStructure: drive,
+    key: drive.key.toString('hex'),
   });
 }
