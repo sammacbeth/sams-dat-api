@@ -24,7 +24,7 @@ export interface IDatArchive {
   configure(opts?: any): Promise<void>;
   stat(filepath: string, opts?: TimeoutOption): Promise<any>;
   readFile(path: string, opts?: TimeoutOption | any): Promise<string | ArrayBuffer>;
-  readdir(path: string, opts?: TimeoutOption | any): Promise<string[]>;
+  readdir(path: string, opts?: TimeoutOption | any): Promise<any[]>;
   writeFile(path: string, data: string | ArrayBuffer, opts?: any): Promise<void>;
   mkdir(path: string): Promise<void>;
   unlink(path: string): Promise<void>;
@@ -33,7 +33,7 @@ export interface IDatArchive {
   rename(oldPath: string, newPath: string, opts?: any): Promise<void>;
   history(opts?: any): Promise<void>;
   checkout(version: number): void;
-  download(path: string, opts?: TimeoutOption): Promise<void>;
+  download(path?: string, opts?: TimeoutOption): Promise<void>;
 }
 
 export async function create<D extends IHyperdrive>(
@@ -76,7 +76,7 @@ export async function fork<D extends IHyperdrive>(
 }
 
 export default function createDatArchive(drive: IHyperdrive): IDatArchive {
-  return DatArchiveImpl({
+  return new DatArchiveImpl({
     _dataStructure: drive,
     key: drive.key.toString(),
   });
