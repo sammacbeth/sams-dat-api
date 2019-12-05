@@ -1,6 +1,6 @@
 {
   "name": "@sammacbeth/dat-api-v1",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "DAT v1 API",
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "",
@@ -24,9 +24,9 @@
     "lint": "tslint --config ../../tslint.json --project tsconfig.json"
   },
   "dependencies": {
-    "@sammacbeth/dat-api-core": "^0.0.7",
-    "@sammacbeth/dat-network-hyperdiscovery": "^0.0.6",
-    "@sammacbeth/dat-types": "^0.0.6",
+    "@sammacbeth/dat-api-core": "^0.1.0",
+    "@sammacbeth/dat-network-hyperdiscovery": "^0.0.7",
+    "@sammacbeth/dat-types": "^0.1.0",
     "hyperdrive": "^9.16.0"
   },
   "devDependencies": {
