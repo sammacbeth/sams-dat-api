@@ -70,10 +70,16 @@ export default class HyperdriveAPI<
     return this.loader.delete(address);
   }
 
+  /**
+   * Closes all Dats and the swarm.
+   *
+   * The API can be used again after a shutdown. The swarm will be lazily recreated if needed by an
+   * API call.
+   */
   public shutdown() {
     for (const dat of this.dats.values()) {
       dat.close();
     }
-    this.loader.swarm.close();
+    this.loader.suspend();
   }
 }

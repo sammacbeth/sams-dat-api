@@ -28,7 +28,8 @@ export type LoadOptions = {
   persist: boolean;
 } & HyperdriveOptions;
 
-export default class DatLoaderBase<T extends IHyperdrive> implements IHyperLoader<IHyperdrive, Dat<IHyperdrive>> {
+export default class DatLoaderBase<T extends IHyperdrive>
+  implements IHyperLoader<IHyperdrive, Dat<IHyperdrive>> {
   public config: DatConfig<T> & StorageOpts;
   protected pSwarm: ISwarm<T>;
 
@@ -73,5 +74,15 @@ export default class DatLoaderBase<T extends IHyperdrive> implements IHyperLoade
       throw new Error('No deletion function provided');
     }
     return this.config.persistantStorageDeleter(address);
+  }
+
+  /**
+   * Shutdown swarm and suspend network activity
+   */
+  public suspend(): void {
+    if (this.pSwarm) {
+      this.pSwarm.close();
+      this.pSwarm = null;
+    }
   }
 }
