@@ -1,6 +1,6 @@
 {
   "name": "@sammacbeth/dat-archive",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "DatArchive high level Hyperdrive API",
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "https://github.com/sammacbeth/sams-dat-api#readme",
