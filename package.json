@@ -10,7 +10,8 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "clean": "lerna run clean --parallel && lerna clean --yes",
-    "build": "lerna run build --concurrency 1",
+    "build": "tsc --build ./packages/tsconfig.project.json",
+    "watch": "tsc --build ./packages/tsconfig.project.json --watch",
     "test": "lerna run test",
     "lint": "lerna run lint --parallel"
   },

@@ -1,0 +1,32 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./types/tsconfig.json",
+    },
+    {
+      "path": "./core/tsconfig.json",
+    },
+    {
+      "path": "./network-hyperdiscovery/tsconfig.json",
+    },
+    {
+      "path": "./network-hyperwebrtc/tsconfig.json",
+    },
+    {
+      "path": "./dat-archive/tsconfig.json",
+    },
+    {
+      "path": "./dat-protocol-handler/tsconfig.json",
+    },
+    {
+      "path": "./dat1/tsconfig.json",
+    },
+    {
+      "path": "./dat1wrtc/tsconfig.json",
+    },
+    {
+      "path": "./dat-api-examples/tsconfig.json",
+    },
+  ]
+}
