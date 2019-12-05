@@ -1,5 +1,4 @@
-import HyperdriveAPI, { SwarmOptions } from '@sammacbeth/dat-api-core/dist/api';
-import { LoadOptions } from '@sammacbeth/dat-api-core/dist/loader';
+import HyperdriveAPI, { LoadOptions, SwarmOptions } from '@sammacbeth/dat-api-core/';
 import { IHyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
 import { Stats } from 'fs';
 import parseUrl = require('parse-dat-url');

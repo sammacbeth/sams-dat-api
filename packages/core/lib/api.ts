@@ -16,8 +16,6 @@ export type SwarmOptions = {
   autoSwarm?: boolean;
 };
 
-export type AbstractHyperdriveAPI = HyperdriveAPI<IHyperdrive>;
-
 export default class HyperdriveAPI<
   D extends IHyperdrive
 > extends (EventEmitter as new () => StrictEventEmitter<EventEmitter, IAPIEvents>) {

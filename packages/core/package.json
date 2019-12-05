@@ -8,6 +8,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "dist/index.js",
   "directories": {
     "lib": "lib"
   },
