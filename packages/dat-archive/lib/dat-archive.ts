@@ -1,7 +1,7 @@
 import HyperdriveAPI, { SwarmOptions } from '@sammacbeth/dat-api-core/';
 import DatArchiveImpl = require('@sammacbeth/dat-node/lib/dat-archive');
 import { IHyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
-import pda from 'pauls-dat-api';
+import pda = require('pauls-dat-api');
 
 export type TimeoutOption = {
   timeout?: number;
@@ -65,6 +65,7 @@ export async function fork<D extends IHyperdrive>(
     }
   });
   const dstDat = await node.createDat(datOpts);
+  await dstDat.ready;
   await pda.writeManifest(dstDat.drive, dstManifest);
   await pda.exportArchiveToArchive({
     dstArchive: dstDat.drive,
