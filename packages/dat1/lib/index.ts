@@ -7,8 +7,8 @@ export class DatV1Loader extends DatLoaderBase<Hyperdrive> {
   constructor(opts?: StorageOpts & DiscoveryOptions) {
     super({
       hyperdriveFactory: (storage, key, driveOpts) => new HyperdriveImpl(storage, key, driveOpts),
-      persistantStorageFactory: opts && opts.persistantStorageFactory,
       swarmFactory: () => new Hyperdiscovery(opts),
+      ...opts,
     });
   }
 }

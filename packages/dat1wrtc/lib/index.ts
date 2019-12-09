@@ -16,8 +16,8 @@ export class DatV1WebRTCLoader extends DatLoaderBase<Hyperdrive> {
   constructor(opts: CombinedOptions = {}) {
     super({
       hyperdriveFactory: (storage, key, driveOpts) => new HyperdriveImpl(storage, key, driveOpts),
-      persistantStorageFactory: opts && opts.persistantStorageFactory,
       swarmFactory: () => new HyperWebRTC(opts.hyperdiscoveryOpts || {}, opts.wrtcOpts || {}),
+      ...opts,
     });
   }
 }
