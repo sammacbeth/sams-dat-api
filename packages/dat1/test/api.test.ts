@@ -21,6 +21,7 @@ describe('HyperdriveAPI', function() {
         deletedSet.add(key);
         return Promise.resolve();
       },
+      autoListen: false,
     });
   });
 
@@ -49,6 +50,7 @@ describe('HyperdriveAPI', function() {
         }
       });
     });
+    const swarm: any = api.loader.swarm;
   });
 
   describe('persist', () => {
@@ -69,6 +71,16 @@ describe('HyperdriveAPI', function() {
       await api.deleteDatData(addr);
       expect(deletedSet).to.have.length(1);
       expect(deletedSet).to.contain(addr);
+    });
+  });
+
+  describe('Swarm options', () => {
+    it('load dat without announcing', async () => {
+      const dat = await api.getDat(datAddr, { autoSwarm: true, persist: false, announce: false });
+      await dat.ready;
+      const swarm: any = api.loader.swarm;
+      const addr: string = Object.keys(swarm.disc._swarm._discovery._announcing)[0];
+      expect(addr.endsWith(':0')).to.be.true;
     });
   });
 });

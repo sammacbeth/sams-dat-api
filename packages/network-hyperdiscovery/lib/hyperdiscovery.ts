@@ -1,5 +1,5 @@
 import { IReplicable } from '@sammacbeth/dat-types/lib/replicable';
-import ISwarm from '@sammacbeth/dat-types/lib/swarm';
+import ISwarm, { JoinSwarmOptions } from '@sammacbeth/dat-types/lib/swarm';
 import { EventEmitter } from 'events';
 import Discovery = require('hyperdiscovery');
 
@@ -10,6 +10,8 @@ export type DiscoveryOptions = {
   tcp?: any;
   dht?: any;
   autoListen?: boolean;
+  upload?: boolean;
+  download?: boolean;
 };
 
 export default class HyperDiscovery<T extends IReplicable> extends EventEmitter
@@ -37,8 +39,8 @@ export default class HyperDiscovery<T extends IReplicable> extends EventEmitter
     });
   }
 
-  public add(feed: IReplicable) {
-    this.disc.add(feed);
+  public add(feed: IReplicable, options?: JoinSwarmOptions) {
+    this.disc.add(feed, options);
   }
 
   public remove(feed: IReplicable) {

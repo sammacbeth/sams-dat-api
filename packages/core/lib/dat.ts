@@ -1,7 +1,7 @@
 import { IDat, ISwarmable } from '@sammacbeth/dat-types/lib/dat';
 import { IHyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
 import { IReplicableBase } from '@sammacbeth/dat-types/lib/replicable';
-import ISwarm from '@sammacbeth/dat-types/lib/swarm';
+import ISwarm, { JoinSwarmOptions } from '@sammacbeth/dat-types/lib/swarm';
 import { EventEmitter } from 'events';
 
 export default class Dat<D extends IHyperdrive & IReplicableBase> extends EventEmitter
@@ -38,8 +38,8 @@ export default class Dat<D extends IHyperdrive & IReplicableBase> extends EventE
     return this.drive.writable;
   }
 
-  public async joinSwarm() {
-    this.swarm.add(this.drive);
+  public async joinSwarm(options?: JoinSwarmOptions) {
+    this.swarm.add(this.drive, options);
     this.emit('join');
     this.isSwarming = true;
 

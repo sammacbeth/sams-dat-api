@@ -1,5 +1,6 @@
 import { IDat } from '@sammacbeth/dat-types/lib/dat';
 import { IHyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
+import { JoinSwarmOptions } from '@sammacbeth/dat-types/lib/swarm';
 import { EventEmitter } from 'events';
 import StrictEventEmitter from 'strict-event-emitter-types';
 import DatLoaderBase, { LoadOptions } from './loader';
@@ -9,6 +10,7 @@ interface IAPIEvents {
   load: (dat: IDat) => void;
   use: (dat: IDat) => void;
   create: (dat: IDat) => void;
+  close: (address: string) => void;
   delete: (address: string) => void;
 }
 
@@ -27,11 +29,11 @@ export default class HyperdriveAPI<
     this.loader = loader;
   }
 
-  public async getDat(address: string, options?: LoadOptions & SwarmOptions): Promise<IDat> {
+  public async getDat(address: string, options?: LoadOptions & SwarmOptions & JoinSwarmOptions): Promise<IDat> {
     const autoSwarm = !options || options.autoSwarm !== false;
     const handleAutoJoin = async (datInst: IDat) => {
       if (!datInst.isSwarming && autoSwarm) {
-        await datInst.joinSwarm();
+        await datInst.joinSwarm(options);
       }
     };
     if (this.dats.has(address)) {
@@ -43,20 +45,20 @@ export default class HyperdriveAPI<
     const dat = await this.loader.load(Buffer.from(address, 'hex'), options);
     this.dats.set(address, dat);
     handleAutoJoin(dat);
-    dat.on('close', () => this.dats.delete(address));
+    dat.on('close', this.onClose.bind(this, address));
     this.emit('load', dat);
     return dat;
   }
 
-  public async createDat(options?: LoadOptions & SwarmOptions): Promise<IDat> {
+  public async createDat(options?: LoadOptions & SwarmOptions & JoinSwarmOptions): Promise<IDat> {
     const autoSwarm = !options || options.autoSwarm !== false;
     const dat = await this.loader.create(options);
     if (autoSwarm) {
-      await dat.joinSwarm();
+      await dat.joinSwarm(options);
     }
     const address = dat.drive.key.toString('hex');
     this.dats.set(address, dat);
-    dat.on('close', () => this.dats.delete(address));
+    dat.on('close', this.onClose.bind(this, address));
     this.emit('create', dat);
     return dat;
   }
@@ -81,5 +83,10 @@ export default class HyperdriveAPI<
       dat.close();
     }
     this.loader.suspend();
+  }
+
+  private onClose(address: string) {
+    this.dats.delete(address);
+    this.emit('close', address);
   }
 }
