@@ -80,7 +80,8 @@ describe('HyperdriveAPI', function() {
       await dat.ready;
       const swarm: any = api.loader.swarm;
       const addr: string = Object.keys(swarm.disc._swarm._discovery._announcing)[0];
-      expect(addr.endsWith(':0')).to.be.true;
+      const port = addr.split(':')[1]
+      expect(port).to.be.eql('0');
     });
   });
 });
