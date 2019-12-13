@@ -50,7 +50,6 @@ describe('HyperdriveAPI', function() {
         }
       });
     });
-    const swarm: any = api.loader.swarm;
   });
 
   describe('persist', () => {
