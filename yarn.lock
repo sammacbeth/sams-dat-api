@@ -3151,19 +3151,6 @@ hypercore@^7.5.0:
   optionalDependencies:
     fd-lock "^1.0.2"
 
-hyperdiscovery@^10.2.1:
-  version "10.2.1"
-  resolved "https://registry.yarnpkg.com/hyperdiscovery/-/hyperdiscovery-10.2.1.tgz#1a8907c96a9faff07f785d31be181c4d30b01b75"
-  integrity sha512-r3rBOLOfkREh+yaPcu/6B6itNL+g+/7YqXOPGTbxJUEQuC9JmORerkD2lZic+x4ELjxbUOx95NHYNqsG67paSA==
-  dependencies:
-    dat-encoding "^5.0.1"
-    dat-swarm-defaults "^1.0.2"
-    debug "^4.1.1"
-    discovery-swarm "^5.1.4"
-    discovery-swarm-web "^2.0.0"
-    hypercore-protocol "^6.9.0"
-    mutexify "^1.2.0"
-
 hyperdiscovery@^9.0.0, hyperdiscovery@^9.0.2:
   version "9.0.2"
   resolved "https://registry.yarnpkg.com/hyperdiscovery/-/hyperdiscovery-9.0.2.tgz#2ce2f9abf37cf0f50c013f8a08ece4038cb8956b"
@@ -3173,6 +3160,18 @@ hyperdiscovery@^9.0.0, hyperdiscovery@^9.0.2:
     dat-swarm-defaults "^1.0.2"
     debug "^4.1.1"
     discovery-swarm "^5.1.4"
+    hypercore-protocol "^6.9.0"
+    mutexify "^1.2.0"
+
+"hyperdiscovery@git+https://git@github.com/datproject/hyperdiscovery.git#235a19ef14a8ca702c801f855c6281baa65f9bb4":
+  version "10.2.1"
+  resolved "git+https://git@github.com/datproject/hyperdiscovery.git#235a19ef14a8ca702c801f855c6281baa65f9bb4"
+  dependencies:
+    dat-encoding "^5.0.1"
+    dat-swarm-defaults "^1.0.2"
+    debug "^4.1.1"
+    discovery-swarm "^5.1.4"
+    discovery-swarm-web "^2.0.0"
     hypercore-protocol "^6.9.0"
     mutexify "^1.2.0"
 
