@@ -113,6 +113,7 @@ describe('HyperdriveAPI', function() {
       });
       expect(dir).to.have.length(1);
       expect(dir).to.contain('test');
+      datRemote.close();
     });
 
     it('download: disables data download', async () => {
@@ -123,7 +124,10 @@ describe('HyperdriveAPI', function() {
       const datRemote = await api.getDat(datOriginal.drive.key.toString('hex'), { persist: false, download: false });
       await new Promise((resolve, reject) => {
         datRemote.ready.then(() => reject('should not be ready'));
-        setTimeout(() => resolve(), 300);
+        setTimeout(() => {
+          resolve()
+          datRemote.close();
+        }, 300);
       });
     });
   })
