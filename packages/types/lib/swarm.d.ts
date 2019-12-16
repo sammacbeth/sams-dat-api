@@ -4,6 +4,8 @@ import { IReplicable, IReplicableBase } from './replicable';
 export type JoinSwarmOptions = {
   announce?: boolean;
   lookup?: boolean;
+  upload?: boolean;
+  download?: boolean;
 };
 /**
  * A Swarm is able to find peers and initiate replication with them via the provided
