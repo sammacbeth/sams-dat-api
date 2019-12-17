@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@sammacbeth/dat-types": "^0.1.0",
-    "hyperdiscovery": "^10.2.1"
+    "hyperdiscovery": "git+https://git@github.com/sammacbeth/hyperdiscovery.git#39cff7f"
   },
   "devDependencies": {
     "tslint": "^5.20.1",

@@ -2,7 +2,7 @@ import { EventEmitter } from 'events';
 import StrictEventEmitter from 'strict-event-emitter-types';
 import { IHyperdrive } from './hyperdrive';
 import { IReplicableBase } from './replicable';
-import ISwarm from './swarm';
+import ISwarm, { JoinSwarmOptions } from './swarm';
 
 interface IDatEvents {
   join: void;
@@ -12,7 +12,7 @@ interface IDatEvents {
 
 export interface ISwarmable extends StrictEventEmitter<EventEmitter, IDatEvents> {
   isSwarming: boolean;
-  joinSwarm(): Promise<void>;
+  joinSwarm(options?: JoinSwarmOptions): Promise<void>;
   leaveSwarm(): void;
   close(): void;
 }

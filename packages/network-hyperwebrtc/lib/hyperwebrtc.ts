@@ -1,6 +1,7 @@
 import WRTCDiscovery = require('@geut/discovery-swarm-webrtc');
 import HyperDiscovery, { DiscoveryOptions } from '@sammacbeth/dat-network-hyperdiscovery';
 import { IReplicable } from '@sammacbeth/dat-types/lib/replicable';
+import { JoinSwarmOptions } from '@sammacbeth/dat-types/lib/swarm';
 
 export type WRTCDiscoveryOptions = {
   id?: Buffer;
@@ -31,8 +32,8 @@ export default class HyperWebRTC<T extends IReplicable> extends HyperDiscovery<T
     });
   }
 
-  public add(feed: IReplicable) {
-    this.disc.add(feed);
+  public add(feed: IReplicable, options?: JoinSwarmOptions) {
+    this.disc.add(feed, options);
     this.wrtc.join(feed.discoveryKey);
   }
 

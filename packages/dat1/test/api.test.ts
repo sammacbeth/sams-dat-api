@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import ram = require('random-access-memory');
 import 'mocha';
 import apiFactory, { DatV1API } from '../';
+import { fail } from 'assert';
 
 describe('HyperdriveAPI', function() {
   this.timeout(10000);
@@ -21,6 +22,7 @@ describe('HyperdriveAPI', function() {
         deletedSet.add(key);
         return Promise.resolve();
       },
+      autoListen: false,
     });
   });
 
@@ -71,4 +73,62 @@ describe('HyperdriveAPI', function() {
       expect(deletedSet).to.contain(addr);
     });
   });
+
+  describe('Swarm options', () => {
+    it('load dat without announcing', async () => {
+      const dat = await api.getDat(datAddr, { autoSwarm: true, persist: false, announce: false });
+      await dat.ready;
+      const swarm: any = api.loader.swarm;
+      const addr: string = Object.keys(swarm.disc._swarm._discovery._announcing)[0];
+      const port = addr.split(':')[1]
+      expect(port).to.be.eql('0');
+    });
+  });
+
+  describe('upload and download options', () => {
+    let apiNoUpload: DatV1API;
+
+    beforeEach(() => {
+      apiNoUpload = apiFactory();
+    });
+
+    afterEach(() => {
+      apiNoUpload.shutdown();
+    })
+
+    // While the option exists in the documentation, support in the code in hypercore 7
+    // seems to not be there.
+    it('upload: does not disable data upload', async () => {
+      const datOriginal = await apiNoUpload.createDat({ persist: false, upload: false });
+      await datOriginal.ready;
+      datOriginal.drive.writeFile('test', Buffer.from('hello world', 'utf8'));
+
+      const datRemote = await api.getDat(datOriginal.drive.key.toString('hex'), { persist: false });
+      await datRemote.ready;
+      const dir = await new Promise((resolve, reject) => {
+        datRemote.drive.readdir('/', (err, files) => {
+          if (err) return reject(err);
+          resolve(files);
+        });
+      });
+      expect(dir).to.have.length(1);
+      expect(dir).to.contain('test');
+      datRemote.close();
+    });
+
+    it('download: disables data download', async () => {
+      const datOriginal = await apiNoUpload.createDat({ persist: false, upload: false });
+      await datOriginal.ready;
+      datOriginal.drive.writeFile('test', Buffer.from('hello world', 'utf8'));
+
+      const datRemote = await api.getDat(datOriginal.drive.key.toString('hex'), { persist: false, download: false });
+      await new Promise((resolve, reject) => {
+        datRemote.ready.then(() => reject('should not be ready'));
+        setTimeout(() => {
+          resolve()
+          datRemote.close();
+        }, 300);
+      });
+    });
+  })
 });
