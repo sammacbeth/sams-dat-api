@@ -30,10 +30,9 @@ export type LoadOptions = {
 
 export default class DatLoaderBase<T extends IHyperdrive>
   implements IHyperLoader<IHyperdrive, Dat<IHyperdrive>> {
-  public config: DatConfig<T> & StorageOpts;
   protected pSwarm: ISwarm<T>;
 
-  constructor(config: DatConfig<T> & StorageOpts) {
+  constructor(public config: DatConfig<T> & StorageOpts) {
     this.config = config;
   }
 
