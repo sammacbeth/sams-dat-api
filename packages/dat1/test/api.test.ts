@@ -80,8 +80,28 @@ describe('HyperdriveAPI', function() {
       await dat.ready;
       const swarm: any = api.loader.swarm;
       const addr: string = Object.keys(swarm.disc._swarm._discovery._announcing)[0];
-      const port = addr.split(':')[1]
+      const port = addr.split(':')[1];
       expect(port).to.be.eql('0');
+    });
+
+    it('swarm defaults no announce', async () => {
+      api = apiFactory({}, { persist: false, announce: false });
+      const dat = await api.getDat(datAddr, { autoSwarm: true, persist: false });
+      await dat.ready;
+      const swarm: any = api.loader.swarm;
+      const addr: string = Object.keys(swarm.disc._swarm._discovery._announcing)[0];
+      const port = addr.split(':')[1];
+      expect(port).to.be.eql('0');
+    });
+
+    it('swarm defaults can be overridden', async () => {
+      api = apiFactory({}, { persist: false, announce: false });
+      const dat = await api.getDat(datAddr, { autoSwarm: true, persist: false, announce: true });
+      await dat.ready;
+      const swarm: any = api.loader.swarm;
+      const addr: string = Object.keys(swarm.disc._swarm._discovery._announcing)[0];
+      const port = addr.split(':')[1];
+      expect(port).to.not.be.eql('0');
     });
   });
 
@@ -94,7 +114,7 @@ describe('HyperdriveAPI', function() {
 
     afterEach(() => {
       apiNoUpload.shutdown();
-    })
+    });
 
     // While the option exists in the documentation, support in the code in hypercore 7
     // seems to not be there.
@@ -103,7 +123,9 @@ describe('HyperdriveAPI', function() {
       await datOriginal.ready;
       datOriginal.drive.writeFile('test', Buffer.from('hello world', 'utf8'));
 
-      const datRemote = await api.getDat(datOriginal.drive.key.toString('hex'), { persist: false });
+      const datRemote = await api.getDat(datOriginal.drive.key.toString('hex'), {
+        persist: false,
+      });
       await datRemote.ready;
       const dir = await new Promise((resolve, reject) => {
         datRemote.drive.readdir('/', (err, files) => {
@@ -121,14 +143,17 @@ describe('HyperdriveAPI', function() {
       await datOriginal.ready;
       datOriginal.drive.writeFile('test', Buffer.from('hello world', 'utf8'));
 
-      const datRemote = await api.getDat(datOriginal.drive.key.toString('hex'), { persist: false, download: false });
+      const datRemote = await api.getDat(datOriginal.drive.key.toString('hex'), {
+        persist: false,
+        download: false,
+      });
       await new Promise((resolve, reject) => {
         datRemote.ready.then(() => reject('should not be ready'));
         setTimeout(() => {
-          resolve()
+          resolve();
           datRemote.close();
         }, 300);
       });
     });
-  })
+  });
 });
