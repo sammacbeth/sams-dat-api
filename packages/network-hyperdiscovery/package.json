@@ -1,6 +1,6 @@
 {
   "name": "@sammacbeth/dat-network-hyperdiscovery",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "DAT Discovery network using the hyperdiscovery module",
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "",
@@ -23,7 +23,7 @@
     "lint": "tslint --config ../../tslint.json --project tsconfig.json"
   },
   "dependencies": {
-    "@sammacbeth/dat-types": "^0.1.0",
+    "@sammacbeth/dat-types": "^0.2.0",
     "hyperdiscovery": "git+https://git@github.com/sammacbeth/hyperdiscovery.git#39cff7f"
   },
   "devDependencies": {
