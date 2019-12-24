@@ -23,10 +23,11 @@ export type ReplicationOptions = {
   download?: boolean;
   encrypt?: boolean;
   upload?: boolean;
+  stream?: any;
 };
 
 export type NoiseOptions = {
-  keyPair: {
+  keyPair?: {
     publicKey: Buffer;
     secretKey: Buffer;
   };

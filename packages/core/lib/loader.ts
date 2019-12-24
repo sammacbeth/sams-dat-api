@@ -20,7 +20,7 @@ export type StorageOpts = {
 };
 
 export type DatConfig<T extends IReplicableBase> = {
-  hyperdriveFactory: (storage: RandomAccessFactory, key: Buffer, opts?: HyperdriveOptions) => T;
+  hyperdriveFactory: (storage: RandomAccessFactory, key: Buffer, opts?: LoadOptions) => T;
   swarmFactory: () => ISwarm<T>;
 };
 
@@ -32,9 +32,7 @@ export default class DatLoaderBase<T extends IHyperdrive>
   implements IHyperLoader<IHyperdrive, Dat<IHyperdrive>> {
   protected pSwarm: ISwarm<T>;
 
-  constructor(public config: DatConfig<T> & StorageOpts) {
-    this.config = config;
-  }
+  constructor(public config: DatConfig<T> & StorageOpts) {}
 
   get swarm(): ISwarm<T> {
     if (!this.pSwarm) {
@@ -65,6 +63,7 @@ export default class DatLoaderBase<T extends IHyperdrive>
   public async create(options: LoadOptions = { persist: true }): Promise<Dat<T>> {
     const kp = keyPair();
     options.secretKey = kp.secretKey;
+    options.keyPair = kp;
     return this.load(kp.publicKey, options);
   }
 

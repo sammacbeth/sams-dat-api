@@ -47,7 +47,7 @@ export default class HyperdriveAPI<
       this.emit('use', datFromCache);
       return datFromCache;
     }
-    const dat = await this.loader.load(Buffer.from(address, 'hex'), options);
+    const dat = await this.loader.load(Buffer.from(address, 'hex'), datOptions);
     this.dats.set(address, dat);
     handleAutoJoin(dat);
     dat.on('close', this.onClose.bind(this, address));
@@ -60,7 +60,7 @@ export default class HyperdriveAPI<
     const autoSwarm = datOptions.autoSwarm !== false;
     const dat = await this.loader.create(options);
     if (autoSwarm) {
-      await dat.joinSwarm(options);
+      await dat.joinSwarm(datOptions);
     }
     const address = dat.drive.key.toString('hex');
     this.dats.set(address, dat);
