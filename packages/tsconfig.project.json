@@ -26,6 +26,9 @@
       "path": "./dat1wrtc/tsconfig.json",
     },
     {
+      "path": "./dat2/tsconfig.json",
+    },
+    {
       "path": "./dat-api-examples/tsconfig.json",
     },
   ]

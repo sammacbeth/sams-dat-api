@@ -1,0 +1,50 @@
+{
+  "name": "@sammacbeth/dat2-api",
+  "version": "0.0.0",
+  "description": "Dat v2 API",
+  "author": "Sam Macbeth <sam@cliqz.com>",
+  "homepage": "https://github.com/sammacbeth/sams-dat-api#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib",
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist/",
+    "build": "tsc",
+    "test": "mocha -r ts-node/register test/*.test.ts",
+    "lint": "tslint --config ../../tslint.json --project tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sammacbeth/sams-dat-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sammacbeth/sams-dat-api/issues"
+  },
+  "dependencies": {
+    "@sammacbeth/dat-api-core": "^0.3.0",
+    "@sammacbeth/dat-types": "^0.2.0",
+    "hyperdrive": "^10.5.4",
+    "hyperswarm": "^2.4.0",
+    "pump": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.7",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^13.1.0",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "rimraf": "^3.0.0",
+    "ts-node": "^8.5.4",
+    "tslint": "^5.20.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.7.4",
+    "typescript-tslint-plugin": "^0.5.5"
+  }
+}
