@@ -22,7 +22,7 @@
     "lint": "tslint --config ../../tslint.json --project tsconfig.json"
   },
   "devDependencies": {
-    "@types/node": "^12.12.14",
+    "@types/node": "^13.1.2",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.7.2",
