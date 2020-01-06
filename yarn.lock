@@ -3422,7 +3422,7 @@ hyperdrive@^10.5.4:
     thunky "^1.0.3"
     unixify "^1.0.0"
 
-hyperdrive@^9.14.0, hyperdrive@^9.16.0:
+hyperdrive@^9.14.0:
   version "9.16.0"
   resolved "https://registry.yarnpkg.com/hyperdrive/-/hyperdrive-9.16.0.tgz#eaf87edf6e6f48e7fd0bd9f0aea0b50458661bbc"
   integrity sha512-2iw4baOLmYEs8hWzGUmdgqLHIvjjhiM125kKhQv1aFaiwqDMLtZJ8JsxyeaRZZmMSaC9TuXwjUmU/rrPPgIoVA==
