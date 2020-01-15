@@ -30,7 +30,7 @@
   "dependencies": {
     "@sammacbeth/dat-api-core": "^0.3.0",
     "@sammacbeth/dat-types": "^0.2.0",
-    "hyperdrive": "^10.5.4",
+    "hyperdrive": "^10.7.4",
     "hyperswarm": "^2.4.0",
     "pump": "^3.0.0"
   },

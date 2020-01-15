@@ -3423,32 +3423,7 @@ hyperdrive-schemas@beta:
   resolved "https://registry.yarnpkg.com/hyperdrive-schemas/-/hyperdrive-schemas-1.0.0.tgz#c93707b5baf9a93db53f8bdec1d9db855fb437e9"
   integrity sha512-+DrTEx9gduW3J9FJeGxskqvuBMq3uT35Rvss7TKhxYL3qKM1QhCxvDalC6TTns7sP3WZLsYtwc0nwFrZYO1JgQ==
 
-hyperdrive@^10.5.4:
-  version "10.5.4"
-  resolved "https://registry.yarnpkg.com/hyperdrive/-/hyperdrive-10.5.4.tgz#d02f6e2dd44c62c571349ace5299a75ecac7270f"
-  integrity sha512-LCAAA99bkifPHFS5hvSu9hsQ9mqIZ7tQVexlsOGYco07SnTVyCorE9vu5hKIbbROnRN69aEvftY8OhhVvEdFlw==
-  dependencies:
-    byte-stream "^2.1.0"
-    corestore "^5.0.0"
-    custom-error-class "^1.0.0"
-    duplexify "^3.7.1"
-    filesystem-constants "^1.0.0"
-    hypercore-byte-stream "^1.0.2"
-    hypercore-protocol "^7.2.0"
-    hyperdrive-schemas beta
-    mountable-hypertrie "^2.2.0"
-    mutexify "^1.2.0"
-    nanoiterator "^1.2.0"
-    pump "^3.0.0"
-    pumpify "^1.5.1"
-    sodium-universal "^2.0.0"
-    stackable-nanoiterator "^1.1.1"
-    stream-collector "^1.0.1"
-    through2 "^3.0.0"
-    thunky "^1.0.3"
-    unixify "^1.0.0"
-
-hyperdrive@^9.14.0, hyperdrive@^9.16.0:
+hyperdrive@9.16.0, hyperdrive@^9.14.0, hyperdrive@^9.16.0:
   version "9.16.0"
   resolved "https://registry.yarnpkg.com/hyperdrive/-/hyperdrive-9.16.0.tgz#eaf87edf6e6f48e7fd0bd9f0aea0b50458661bbc"
   integrity sha512-2iw4baOLmYEs8hWzGUmdgqLHIvjjhiM125kKhQv1aFaiwqDMLtZJ8JsxyeaRZZmMSaC9TuXwjUmU/rrPPgIoVA==
@@ -3466,6 +3441,31 @@ hyperdrive@^9.14.0, hyperdrive@^9.16.0:
     stream-each "^1.2.0"
     thunky "^1.0.2"
     uint64be "^2.0.1"
+    unixify "^1.0.0"
+
+hyperdrive@^10.7.4:
+  version "10.7.4"
+  resolved "https://registry.yarnpkg.com/hyperdrive/-/hyperdrive-10.7.4.tgz#81b02dbaac5c0d45a9d6409e7ed10214e4363756"
+  integrity sha512-Tw1Dfww31M2afezPCHS1D4Fspa05G2ILMMeyhO+2zQKRBevmNyJDnl0gjhhLjWZBaLFfAIAKo1IHFcglIEUHrQ==
+  dependencies:
+    byte-stream "^2.1.0"
+    corestore "^5.0.0"
+    custom-error-class "^1.0.0"
+    duplexify "^3.7.1"
+    filesystem-constants "^1.0.0"
+    hypercore-byte-stream "^1.0.2"
+    hypercore-protocol "^7.2.0"
+    hyperdrive-schemas beta
+    mountable-hypertrie "^2.4.0"
+    mutexify "^1.2.0"
+    nanoiterator "^1.2.0"
+    pump "^3.0.0"
+    pumpify "^1.5.1"
+    sodium-universal "^2.0.0"
+    stackable-nanoiterator "^1.1.1"
+    stream-collector "^1.0.1"
+    through2 "^3.0.0"
+    thunky "^1.0.3"
     unixify "^1.0.0"
 
 hyperswarm@^2.4.0:
@@ -3487,11 +3487,31 @@ hypertrie-multigraph@^3.0.0:
     nanoiterator "^1.2.0"
     stackable-nanoiterator "^1.0.0"
 
-hypertrie@^4.0.0, hypertrie@^4.2.0:
+hypertrie@^4.0.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/hypertrie/-/hypertrie-4.2.0.tgz#e0b1a8230c254743e5ebc887bc7890335c8c41f4"
   integrity sha512-kEfC1tOoC/Yg6x4wihZ4H74t+tjHybRzU87sJnqStcuCPHcM1extBtO7M9FV+2EyW25v0w8+0anprutrsyq/tw==
   dependencies:
+    bulk-write-stream "^1.1.4"
+    codecs "^2.0.0"
+    hypercore "^8.0.0"
+    inherits "^2.0.3"
+    inspect-custom-symbol "^1.1.0"
+    is-options "^1.0.1"
+    mutexify "^1.2.0"
+    nanoiterator "^1.2.0"
+    protocol-buffers-encodings "^1.1.0"
+    sodium-universal "^2.0.0"
+    thunky "^1.0.2"
+    unordered-set "^2.0.1"
+    varint "^5.0.0"
+
+hypertrie@^4.2.2:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/hypertrie/-/hypertrie-4.2.3.tgz#0343f89491e10a8561b18de74d2b980851c61067"
+  integrity sha512-T9JXjgMMmeW5gEALD0KSUNXaLyz+Ys8KOIaTJjBVNLtMFje8DP8LNj44IsaIK/zrASVKOt07QXt+MDcEaFYVjQ==
+  dependencies:
+    array-lru "^1.1.1"
     bulk-write-stream "^1.1.4"
     codecs "^2.0.0"
     hypercore "^8.0.0"
@@ -4601,12 +4621,12 @@ mostly-minimal-spanning-tree@^1.0.1:
     randomize-array "^1.2.0"
     xor-distance "^2.0.0"
 
-mountable-hypertrie@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/mountable-hypertrie/-/mountable-hypertrie-2.2.0.tgz#97e32ead781ee4ede6ee3fb4f8867b2ad5a1437a"
-  integrity sha512-FFiBowLMFmS+BX7BkBIV6RKkD8NkQBT6IoPVHkHUO2dDp+F3gbbR36/yhQMHyia/B71HCYFjCHApGfrC9NcE5A==
+mountable-hypertrie@^2.4.0:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/mountable-hypertrie/-/mountable-hypertrie-2.4.2.tgz#19a4e9fc33f56b3afdfc8ff343b6bff94cabc54a"
+  integrity sha512-XYzqvSkIKZGIPXtBmKwEs9Bd6DGfZullT4hoA97yPd5HwVOCxScw42F5m00Vp7tycfAx3iUDqXci1tbaRubdgA==
   dependencies:
-    hypertrie "^4.2.0"
+    hypertrie "^4.2.2"
     is-options "^1.0.1"
     nanoiterator "^1.2.0"
     protocol-buffers "^4.1.0"
