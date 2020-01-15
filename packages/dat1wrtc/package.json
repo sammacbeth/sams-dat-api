@@ -1,6 +1,6 @@
 {
   "name": "@sammacbeth/dat-api-v1wrtc",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "DAT v1 API with webrtc discovery",
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "",
@@ -24,10 +24,10 @@
     "lint": "tslint --config ../../tslint.json --project tsconfig.json"
   },
   "dependencies": {
-    "@sammacbeth/dat-api-core": "^0.3.0",
-    "@sammacbeth/dat-network-hyperdiscovery": "^0.1.0",
-    "@sammacbeth/dat-network-hyperwebrtc": "^0.1.0",
-    "@sammacbeth/dat-types": "^0.2.0",
+    "@sammacbeth/dat-api-core": "^0.4.0",
+    "@sammacbeth/dat-network-hyperdiscovery": "^0.1.1",
+    "@sammacbeth/dat-network-hyperwebrtc": "^0.1.1",
+    "@sammacbeth/dat-types": "^0.3.0",
     "hyperdrive": "^9.16.0"
   },
   "devDependencies": {
