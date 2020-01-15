@@ -22,5 +22,6 @@ export interface IDat extends ISwarmable {
   isSwarming: boolean;
   isOpen: boolean;
   isOwner: boolean;
+  isPersisted: boolean;
   ready: Promise<void>;
 }

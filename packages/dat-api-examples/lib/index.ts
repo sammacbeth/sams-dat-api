@@ -2,9 +2,18 @@ import apiFactory from '@sammacbeth/dat-api-v1';
 import raf = require('random-access-file');
 
 // create an API using file persistence
-const api = apiFactory({
-  persistantStorageFactory: (address) => Promise.resolve((file) => raf(`data/${address}/${file}`)),
-});
+const api = apiFactory(
+  {
+    persistantStorageFactory: (address) =>
+      Promise.resolve((file) => raf(`data/${address}/${file}`)),
+  },
+  {
+    driveOptions: {
+      sparse: true,
+    },
+    persist: false,
+  },
+);
 
 (async () => {
   // create a dat and work with it's hyperdrive
@@ -20,7 +29,6 @@ const api = apiFactory({
   // load an existing dat in memory
   const existing = await api.getDat(
     '41f8a987cfeba80a037e51cc8357d513b62514de36f2f9b3d3eeec7a8fb3b5a5',
-    { persist: false, sparse: true },
   );
   // wait for data
   await existing.ready;

@@ -19,9 +19,15 @@
   "scripts": {
     "clean": "rm -rf dist/",
     "build": "tsc",
+    "test": "mocha -r ts-node/register test/*.test.ts",
     "lint": "tslint --config ../../tslint.json --project tsconfig.json"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.6",
+    "@types/mocha": "^5.2.7",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "ts-node": "^8.5.4",
     "@types/node": "^12.12.14",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",

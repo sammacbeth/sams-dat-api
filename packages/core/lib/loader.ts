@@ -20,13 +20,14 @@ export type StorageOpts = {
 };
 
 export type DatConfig<T extends IReplicableBase> = {
-  hyperdriveFactory: (storage: RandomAccessFactory, key: Buffer, opts?: LoadOptions) => T;
+  hyperdriveFactory: (storage: RandomAccessFactory, key: Buffer, opts?: HyperdriveOptions) => T;
   swarmFactory: () => ISwarm<T>;
 };
 
 export type LoadOptions = {
-  persist: boolean;
-} & HyperdriveOptions;
+  persist?: boolean;
+  driveOptions?: HyperdriveOptions;
+};
 
 export default class DatLoaderBase<T extends IHyperdrive>
   implements IHyperLoader<IHyperdrive, Dat<IHyperdrive>> {
@@ -45,7 +46,7 @@ export default class DatLoaderBase<T extends IHyperdrive>
     const addressStr = address.toString('hex');
     const persist = options.persist && this.config.persistantStorageFactory;
     const storage = persist ? await this.config.persistantStorageFactory(addressStr) : ram;
-    const drive = this.config.hyperdriveFactory(storage, address, options);
+    const drive = this.config.hyperdriveFactory(storage, address, options.driveOptions);
     // wait for drive to be ready
     await new Promise((resolve, reject) => {
       drive.ready((err) => {
@@ -56,14 +57,17 @@ export default class DatLoaderBase<T extends IHyperdrive>
         }
       });
     });
-    const dat = new Dat(drive, this.swarm);
+    const dat = new Dat(drive, this.swarm, !!persist);
     return dat;
   }
 
   public async create(options: LoadOptions = { persist: true }): Promise<Dat<T>> {
     const kp = keyPair();
-    options.secretKey = kp.secretKey;
-    options.keyPair = kp;
+    options.driveOptions = {
+      keyPair: kp,
+      secretKey: kp.secretKey,
+      ...options.driveOptions,
+    };
     return this.load(kp.publicKey, options);
   }
 

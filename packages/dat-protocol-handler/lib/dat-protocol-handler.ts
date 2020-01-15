@@ -91,7 +91,11 @@ export async function resolvePath(drive: IHyperdrive, pathname: string, version?
 export default function createHandler<D extends IHyperdrive>(
   node: HyperdriveAPI<D>,
   resolveDns: (host: string) => Promise<string>,
-  loadingOptions: DriveLoadingOptions = { autoSwarm: true, persist: true, sparse: true },
+  loadingOptions: DriveLoadingOptions = {
+    autoSwarm: true,
+    driveOptions: { sparse: true },
+    persist: true,
+  },
 ) {
   return async function handleRequest(
     url: string,

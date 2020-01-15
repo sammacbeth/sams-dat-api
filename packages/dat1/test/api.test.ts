@@ -13,17 +13,25 @@ describe('HyperdriveAPI', function() {
   const deletedSet = new Set();
 
   beforeEach(() => {
-    api = apiFactory({
-      persistantStorageFactory: (key) => {
-        persistedSet.add(key);
-        return ram;
+    api = apiFactory(
+      {
+        persistantStorageFactory: (key) => {
+          persistedSet.add(key);
+          return ram;
+        },
+        persistantStorageDeleter: (key) => {
+          deletedSet.add(key);
+          return Promise.resolve();
+        },
+        autoListen: false,
       },
-      persistantStorageDeleter: (key) => {
-        deletedSet.add(key);
-        return Promise.resolve();
+      {
+        driveOptions: {
+          sparse: true,
+        },
+        persist: false,
       },
-      autoListen: false,
-    });
+    );
   });
 
   afterEach(() => {
@@ -33,10 +41,7 @@ describe('HyperdriveAPI', function() {
   });
 
   it('can checkout and list directory', async () => {
-    const dat = await api.getDat(datAddr, {
-      persist: false,
-      sparse: true,
-    });
+    const dat = await api.getDat(datAddr);
 
     await dat.ready;
     await new Promise((resolve, reject) => {
@@ -76,7 +81,10 @@ describe('HyperdriveAPI', function() {
 
   describe('Swarm options', () => {
     it('load dat without announcing', async () => {
-      const dat = await api.getDat(datAddr, { autoSwarm: true, persist: false, announce: false });
+      const dat = await api.getDat(datAddr, {
+        autoSwarm: true,
+        swarmOptions: { announce: false },
+      });
       await dat.ready;
       const swarm: any = api.loader.swarm;
       const addr: string = Object.keys(swarm.disc._swarm._discovery._announcing)[0];
@@ -85,7 +93,7 @@ describe('HyperdriveAPI', function() {
     });
 
     it('swarm defaults no announce', async () => {
-      api = apiFactory({}, { persist: false, announce: false });
+      api = apiFactory({}, { persist: false, swarmOptions: { announce: false } });
       const dat = await api.getDat(datAddr, { autoSwarm: true, persist: false });
       await dat.ready;
       const swarm: any = api.loader.swarm;
@@ -95,8 +103,12 @@ describe('HyperdriveAPI', function() {
     });
 
     it('swarm defaults can be overridden', async () => {
-      api = apiFactory({}, { persist: false, announce: false });
-      const dat = await api.getDat(datAddr, { autoSwarm: true, persist: false, announce: true });
+      api = apiFactory({}, { persist: false, swarmOptions: { announce: false } });
+      const dat = await api.getDat(datAddr, {
+        autoSwarm: true,
+        persist: false,
+        swarmOptions: { announce: true },
+      });
       await dat.ready;
       const swarm: any = api.loader.swarm;
       const addr: string = Object.keys(swarm.disc._swarm._discovery._announcing)[0];
@@ -119,7 +131,10 @@ describe('HyperdriveAPI', function() {
     // While the option exists in the documentation, support in the code in hypercore 7
     // seems to not be there.
     it('upload: does not disable data upload', async () => {
-      const datOriginal = await apiNoUpload.createDat({ persist: false, upload: false });
+      const datOriginal = await apiNoUpload.createDat({
+        persist: false,
+        swarmOptions: { upload: false },
+      });
       await datOriginal.ready;
       datOriginal.drive.writeFile('test', Buffer.from('hello world', 'utf8'));
 
@@ -139,13 +154,16 @@ describe('HyperdriveAPI', function() {
     });
 
     it('download: disables data download', async () => {
-      const datOriginal = await apiNoUpload.createDat({ persist: false, upload: false });
+      const datOriginal = await apiNoUpload.createDat({
+        persist: false,
+        swarmOptions: { upload: false },
+      });
       await datOriginal.ready;
       datOriginal.drive.writeFile('test', Buffer.from('hello world', 'utf8'));
 
       const datRemote = await api.getDat(datOriginal.drive.key.toString('hex'), {
         persist: false,
-        download: false,
+        swarmOptions: { download: false },
       });
       await new Promise((resolve, reject) => {
         datRemote.ready.then(() => reject('should not be ready'));
