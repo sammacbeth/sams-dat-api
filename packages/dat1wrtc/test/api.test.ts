@@ -18,8 +18,10 @@ describe('HyperdriveAPI', function() {
 
   it('can checkout and list directory', async () => {
     const dat = await api.getDat(datAddr, {
+      driveOptions: {
+        sparse: true,
+      },
       persist: false,
-      sparse: true,
     });
 
     await dat.ready;
@@ -39,7 +41,11 @@ describe('HyperdriveAPI', function() {
 
   describe('Swarm options', () => {
     it('load dat without announcing', async () => {
-      const dat = await api.getDat(datAddr, { autoSwarm: true, persist: false, announce: false });
+      const dat = await api.getDat(datAddr, {
+        autoSwarm: true,
+        persist: false,
+        swarmOptions: { announce: false },
+      });
       await dat.ready;
       const swarm: any = api.loader.swarm;
       const addr: string = Object.keys(swarm.disc._swarm._discovery._announcing)[0];

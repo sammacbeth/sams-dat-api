@@ -14,7 +14,7 @@ export default class Dat<D extends IHyperdrive & IReplicableBase> extends EventE
   public isSwarming = false;
   public isOpen = true;
 
-  constructor(data: D, swarm: ISwarm<D>) {
+  constructor(data: D, swarm: ISwarm<D>, public isPersisted: boolean) {
     super();
     this.drive = data;
     this.swarm = swarm;

@@ -17,7 +17,28 @@ interface IAPIEvents {
 export type SwarmOptions = {
   autoSwarm?: boolean;
 };
-export type DatOptions = LoadOptions & SwarmOptions & JoinSwarmOptions;
+export type DatOptions = LoadOptions &
+  SwarmOptions & {
+    swarmOptions?: JoinSwarmOptions;
+  };
+
+function mergeOptions(defaults: DatOptions, options?: DatOptions): DatOptions {
+  if (!options) {
+    return defaults;
+  }
+  options.driveOptions = {
+    ...defaults.driveOptions,
+    ...options.driveOptions,
+  };
+  options.swarmOptions = {
+    ...defaults.swarmOptions,
+    ...options.swarmOptions,
+  };
+  return {
+    ...defaults,
+    ...options,
+  };
+}
 
 export default class HyperdriveAPI<
   D extends IHyperdrive
@@ -34,11 +55,12 @@ export default class HyperdriveAPI<
   }
 
   public async getDat(address: string, options?: DatOptions): Promise<IDat> {
-    const datOptions = Object.assign({}, this.defaultDatOptions, options);
+    // merge options
+    const datOptions = mergeOptions(this.defaultDatOptions, options);
     const autoSwarm = datOptions.autoSwarm !== false;
     const handleAutoJoin = async (datInst: IDat) => {
       if (!datInst.isSwarming && autoSwarm) {
-        await datInst.joinSwarm(datOptions);
+        await datInst.joinSwarm(datOptions.swarmOptions);
       }
     };
     if (this.dats.has(address)) {
@@ -56,11 +78,11 @@ export default class HyperdriveAPI<
   }
 
   public async createDat(options?: DatOptions): Promise<IDat> {
-    const datOptions = Object.assign({}, this.defaultDatOptions, options);
+    const datOptions = mergeOptions(this.defaultDatOptions, options);
     const autoSwarm = datOptions.autoSwarm !== false;
     const dat = await this.loader.create(options);
     if (autoSwarm) {
-      await dat.joinSwarm(datOptions);
+      await dat.joinSwarm(datOptions.swarmOptions);
     }
     const address = dat.drive.key.toString('hex');
     this.dats.set(address, dat);

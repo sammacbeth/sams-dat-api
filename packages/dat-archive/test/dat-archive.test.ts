@@ -25,15 +25,17 @@ describe('DatArchive', function() {
   describe('createDatArchive for readonly archive', () => {
     let dat: IDat;
     let archive: IDatArchive;
-    let archiveUrl = `dat://${testDatAddr}`;
+    const archiveUrl = `dat://${testDatAddr}`;
     const testFile = 'test.txt';
     const testFileContents = 'Test getting content from file, äü\r\n';
 
     before(async () => {
       dat = await api.getDat(testDatAddr, {
-        persist: false,
         autoSwarm: true,
-        sparse: true,
+        driveOptions: {
+          sparse: true,
+        },
+        persist: false,
       });
       await dat.ready;
       archive = await createDatArchive(dat.drive);

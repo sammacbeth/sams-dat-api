@@ -16,11 +16,15 @@ describe('HyperdriveAPI', function() {
       );
 
       const dat2 = await node2.getDat(dat1.drive.key.toString('hex'), {
-        announce: false,
         autoSwarm: true,
-        lookup: true,
+        driveOptions: {
+          sparse: true,
+        },
         persist: false,
-        sparse: true,
+        swarmOptions: {
+          announce: false,
+          lookup: true,
+        },
       });
       await dat2.ready;
       const files = await new Promise((resolve, reject) => {
@@ -52,7 +56,7 @@ describe('HyperdriveAPI', function() {
       {
         ephemeral: true,
       },
-      { announce: true, autoSwarm: true, persist: false },
+      { autoSwarm: true, persist: false, swarmOptions: { announce: true } },
     );
     const node2 = apiFactory({
       ephemeral: true,
@@ -68,7 +72,7 @@ describe('HyperdriveAPI', function() {
           return Promise.resolve((n) => raf(`./tmpdats/${key}/${n}`));
         },
       },
-      { persist: true, announce: true },
+      { persist: true, swarmOptions: { announce: true } },
     );
     const node2 = apiFactory({
       ephemeral: true,
@@ -76,7 +80,7 @@ describe('HyperdriveAPI', function() {
     try {
       await testLocalSync(node1, node2);
     } finally {
-      await new Promise(resolve => rimraf('./tmpdats', resolve));
+      await new Promise((resolve) => rimraf('./tmpdats', resolve));
     }
   });
 });
