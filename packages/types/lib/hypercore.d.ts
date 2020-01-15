@@ -287,6 +287,7 @@ export class Hypercore extends EventEmitter implements IHypercore, IReplicable {
   public writable: boolean;
   public readable: boolean;
   public key: Buffer;
+  public secretKey: Buffer
   public discoveryKey: Buffer;
   public length: number;
   public byteLength: number;

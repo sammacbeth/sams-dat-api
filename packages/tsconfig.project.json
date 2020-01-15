@@ -31,5 +31,8 @@
     {
       "path": "./dat-api-examples/tsconfig.json",
     },
+    {
+      "path": "./util/tsconfig.json",
+    }
   ]
 }
