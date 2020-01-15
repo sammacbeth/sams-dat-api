@@ -6,6 +6,9 @@
   "homepage": "https://github.com/sammacbeth/sams-dat-api#readme",
   "license": "MIT",
   "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "directories": {
     "lib": "lib",
     "test": "test"
