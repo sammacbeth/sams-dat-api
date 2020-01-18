@@ -11,7 +11,8 @@ export default async function copy(
   src: string,
   dest: IDat,
   destPrefix: string = '',
-  options: { overwrite?: boolean; errorOnExist?: boolean; verbose?: boolean } = {
+  options: { overwrite?: boolean; errorOnExist?: boolean; verbose?: boolean; delete?: boolean } = {
+    delete: false,
     errorOnExist: false,
     overwrite: true,
     verbose: false,
@@ -22,7 +23,7 @@ export default async function copy(
     if (options.verbose) {
       console.log(...msg);
     }
-  }
+  };
   const files = await fs.readdir(src);
   const sync = files.map(async (file) => {
     const fsPath = join(src, file);
@@ -74,10 +75,46 @@ export default async function copy(
       });
     }
   });
-  return Promise.all(sync);
+  // wait for all subdirectories to sync
+  await Promise.all(sync);
+  if (options.delete) {
+    // check for extra folders on dest side
+    const destFiles = new Set<string>(
+      await promisify(dest.drive.readdir.bind(dest.drive))(destPrefix),
+    );
+    files.forEach((f) => destFiles.delete(f));
+    const deletions = [...destFiles].map((f) => {
+      return datDelete(dest, join(destPrefix, f), { verbose: options.verbose });
+    });
+    await Promise.all(deletions);
+  }
 }
 
-async function tryStatDat(dat: IDat, path): Promise<Stats | null> {
+async function datDelete(dat: IDat, path: string, options = { verbose: false }) {
+  const stat = await tryStatDat(dat, path);
+  if (!stat) {
+    // file doesn't exist
+    return;
+  }
+  if (stat.isDirectory()) {
+    const files = await promisify(dat.drive.readdir.bind(dat.drive))(path);
+    const deletions = files.map((f) => {
+      return datDelete(dat, join(path, f));
+    });
+    await Promise.all(deletions);
+    if (options.verbose) {
+      console.log('delete directory', path);
+    }
+    await promisify(dat.drive.rmdir.bind(dat.drive))(path);
+  } else {
+    if (options.verbose) {
+      console.log('delete file', path);
+    }
+    await promisify(dat.drive.unlink.bind(dat.drive))(path);
+  }
+}
+
+async function tryStatDat(dat: IDat, path: string): Promise<Stats | null> {
   return new Promise((resolve) => {
     dat.drive.stat(path, (err, result) => {
       if (err) {

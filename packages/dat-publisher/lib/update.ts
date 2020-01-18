@@ -5,6 +5,7 @@ import fs = require('fs-extra');
 import { tmpdir } from 'os';
 import { join } from 'path';
 import raf = require('random-access-file');
+import rimraf = require('rimraf');
 import { promisify } from 'util';
 import copy from './sync';
 
@@ -19,6 +20,7 @@ export default async function update(
   secretKey: Buffer,
   pubdir: string,
   options: {
+    delete?: boolean;
     verbose?: boolean;
     saveDir?: string;
     seedTime?: number;
@@ -33,6 +35,13 @@ export default async function update(
   }
   if (!(await fs.stat(pubdir)).isDirectory()) {
     throw new Error('pubdir must be a directory');
+  }
+
+  if (!options.saveDir) {
+    const tmpPath = join(tmpdir(), address.toString('hex'));
+    if (fs.existsSync(tmpPath)) {
+      await promisify(rimraf)(tmpPath);
+    }
   }
 
   const loader = new DatV1Loader({
@@ -80,7 +89,7 @@ export default async function update(
 
   // copy in new content
   console.log('Syncing files with local');
-  await copy(pubdir, dat, '/', { overwrite: true, verbose: true });
+  await copy(pubdir, dat, '/', { overwrite: true, verbose: true, delete: options.delete });
 
   console.log(`Synced with local, now at version ${dat.drive.version}`);
 
