@@ -8,7 +8,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "bin": "dist/dat-publisher.js",
+  "bin": "dist/bin.js",
+  "main": "dist/index.js",
   "directories": {
     "lib": "lib"
   },
@@ -23,7 +24,7 @@
     "clean": "rm -rf dist/",
     "build": "tsc",
     "lint": "tslint --config ../../tslint.json --project tsconfig.json",
-    "start": "ts-node lib/dat-publisher.ts"
+    "start": "ts-node lib/bin.ts"
   },
   "bugs": {
     "url": "https://github.com/sammacbeth/sams-dat-api/issues"

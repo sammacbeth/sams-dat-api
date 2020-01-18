@@ -92,5 +92,6 @@ export default async function update(
   setTimeout(() => {
     console.log('Shutting down...');
     dat.leaveSwarm();
+    dat.close();
   }, options.seedTime * 1000);
 }
