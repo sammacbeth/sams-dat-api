@@ -102,5 +102,6 @@ export default async function update(
     console.log('Shutting down...');
     dat.leaveSwarm();
     dat.close();
+    loader.suspend();
   }, options.seedTime * 1000);
 }

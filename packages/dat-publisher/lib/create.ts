@@ -28,4 +28,6 @@ export default async function create(pubdir: string, datDir: string) {
   console.log('Dat created');
   console.log(`Public address: ${dat.drive.key.toString('hex')}`);
   console.log(`Secret key: ${exportSecretKey(dat.drive).toString('hex')}`);
+  dat.close();
+  loader.suspend();
 }
