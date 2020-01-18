@@ -1,6 +1,6 @@
 {
   "name": "@sammacbeth/dat-publisher",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "CLI tools for publishing static sites to Dat",
   "author": "Sam Macbeth <sam@macbeth.cc>",
   "homepage": "https://github.com/sammacbeth/sams-dat-api#readme",
