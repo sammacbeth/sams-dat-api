@@ -63,10 +63,6 @@ export default async function update(
     throw new Error('Could not load the dat. Someone must be seeding it to update!');
   }
 
-  dat.drive.readFile('/index.html', (err, result) => {
-    console.log('1. i read index and it is', result.length);
-  });
-
   // Download everything
   await promisify(dat.drive.download.bind(dat.drive))('/');
   console.log(`Loaded dat ${dat.drive.key.toString('hex')} at version ${dat.drive.version}`);
@@ -86,10 +82,15 @@ export default async function update(
   console.log('Syncing files with local');
   await copy(pubdir, dat, '/', { overwrite: true, verbose: true });
 
-  console.log(`Synced with local, now as version ${dat.drive.version}`);
+  console.log(`Synced with local, now at version ${dat.drive.version}`);
 
   // start seeding again
   dat.joinSwarm({
     announce: true,
   });
+  // seed for seedTime seconds
+  setTimeout(() => {
+    console.log('Shutting down...');
+    dat.leaveSwarm();
+  }, options.seedTime * 1000);
 }
