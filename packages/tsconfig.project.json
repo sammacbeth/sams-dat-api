@@ -33,6 +33,9 @@
     },
     {
       "path": "./util/tsconfig.json",
+    },
+    {
+      "path": "./dat-publisher/tsconfig.json",
     }
   ]
 }

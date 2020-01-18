@@ -1,0 +1,47 @@
+{
+  "name": "@sammacbeth/dat-publisher",
+  "version": "0.0.1",
+  "description": "CLI tools for publishing static sites to Dat",
+  "author": "Sam Macbeth <sam@macbeth.cc>",
+  "homepage": "https://github.com/sammacbeth/sams-dat-api#readme",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": "dist/bin.js",
+  "main": "dist/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sammacbeth/sams-dat-api.git"
+  },
+  "scripts": {
+    "clean": "rm -rf dist/",
+    "build": "tsc",
+    "lint": "tslint --config ../../tslint.json --project tsconfig.json",
+    "start": "ts-node lib/bin.ts"
+  },
+  "bugs": {
+    "url": "https://github.com/sammacbeth/sams-dat-api/issues"
+  },
+  "devDependencies": {
+    "ts-node": "^8.6.2",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "@sammacbeth/dat-api-v1": "^0.4.0",
+    "@sammacbeth/dat-util": "^0.0.2",
+    "@types/fs-extra": "^8.0.1",
+    "@types/node": "^13.1.8",
+    "commander": "^4.1.0",
+    "fs-extra": "^8.1.0",
+    "pump": "^3.0.0",
+    "rimraf": "^3.0.0"
+  }
+}
