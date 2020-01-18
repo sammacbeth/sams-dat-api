@@ -85,8 +85,12 @@ export default async function copy(
     files.forEach((f) => destFiles.delete(f));
     const deletions = [...destFiles].filter((f) => {
       return shouldDeletePath(join(destPrefix, f));
-    }).map((f) => {
-      return datDelete(dest, join(destPrefix, f), { verbose: options.verbose });
+    }).map(async (f) => {
+      try {
+        await datDelete(dest, join(destPrefix, f), { verbose: options.verbose });
+      } catch (e) {
+        console.warn('Error deleting', join(destPrefix, f), e);
+      }
     });
     await Promise.all(deletions);
   }
