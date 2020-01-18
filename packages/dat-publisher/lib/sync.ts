@@ -83,7 +83,9 @@ export default async function copy(
       await promisify(dest.drive.readdir.bind(dest.drive))(destPrefix),
     );
     files.forEach((f) => destFiles.delete(f));
-    const deletions = [...destFiles].map((f) => {
+    const deletions = [...destFiles].filter((f) => {
+      return shouldDeletePath(join(destPrefix, f));
+    }).map((f) => {
       return datDelete(dest, join(destPrefix, f), { verbose: options.verbose });
     });
     await Promise.all(deletions);
@@ -135,4 +137,20 @@ function checksum(stream: NodeJS.ReadableStream): Promise<string> {
       resolve(hash.digest('hex'));
     });
   });
+}
+
+const DEFAULT_IGNORE = new Set([
+  join('dat.json'),
+  join('.well-known', 'dat'),
+  join('.well-known')
+])
+
+function shouldDeletePath(path: string) {
+  if (DEFAULT_IGNORE.has(path)) {
+    return false;
+  }
+  if (path.startsWith('/') && DEFAULT_IGNORE.has(path.slice(1))) {
+    return false;
+  }
+  return true;
 }

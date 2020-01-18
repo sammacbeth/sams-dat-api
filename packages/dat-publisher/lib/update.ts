@@ -89,7 +89,7 @@ export default async function update(
 
   // copy in new content
   console.log('Syncing files with local');
-  await copy(pubdir, dat, '/', { overwrite: true, verbose: true, delete: options.delete });
+  await copy(pubdir, dat, '', { overwrite: true, verbose: true, delete: options.delete });
 
   console.log(`Synced with local, now at version ${dat.drive.version}`);
 
