@@ -1,3 +1,4 @@
+// tslint:disable: no-console
 import { DatV1Loader } from '@sammacbeth/dat-api-v1';
 import fs = require('fs-extra');
 import { join } from 'path';

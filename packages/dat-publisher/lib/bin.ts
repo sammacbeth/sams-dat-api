@@ -30,11 +30,11 @@ program
       const addressBuf = Buffer.from(address, 'hex');
       const secretKey = Buffer.from(secret, 'hex');
       await update(addressBuf, secretKey, pubdir, {
-        verbose,
+        delete: del,
+        loadTimeout: loadtimeout,
         saveDir: datDir,
         seedTime: seedtime,
-        loadTimeout: loadtimeout,
-        delete: del,
+        verbose,
       });
     } catch (e) {
       console.error(e);
