@@ -31,7 +31,19 @@ for (const addrs of Object.values(networkInterfaces())) {
   }
 }
 
-describe('Hyperdiscovery', () => {
+describe('Hyperdiscovery', function() {
+  this.timeout(10000);
+
+  let swarms = [];
+
+  afterEach(() => {
+    // cleanup swarms
+    swarms.forEach((s) => {
+      s.close();
+    });
+    swarms = [];
+  })
+
   it('announces to the network', (done) => {
     const randomPort = 4000 + Math.floor(Math.random() * 10000);
     const disc = new HyperDiscovery({ port: randomPort });
@@ -40,11 +52,11 @@ describe('Hyperdiscovery', () => {
     disc2.on('peer', (peer) => {
       if (peer.port === randomPort && !addresses.has(peer.host)) {
         // this is probably me!
-        disc.close();
-        disc2.close();
         done();
       }
     });
     disc2.add(fakeFeed);
+    swarms.push(disc);
+    swarms.push(disc2);
   });
 });
