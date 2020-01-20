@@ -20,6 +20,7 @@
   "scripts": {
     "clean": "rm -rf dist/",
     "build": "tsc",
+    "test": "mocha -r ts-node/register test/*.test.ts",
     "lint": "tslint --config ../../tslint.json --project tsconfig.json"
   },
   "dependencies": {
@@ -27,6 +28,10 @@
     "hyperdiscovery": "git+https://git@github.com/sammacbeth/hyperdiscovery.git#39cff7f"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.7",
+    "@types/mocha": "^5.2.7",
+    "chai": "^4.2.0",
+    "mocha": "^7.0.0",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.7.2",
