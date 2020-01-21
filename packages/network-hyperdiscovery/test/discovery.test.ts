@@ -9,7 +9,7 @@ const datKey = Buffer.from(
   'hex',
 );
 const discKey = Buffer.from(
-  'e5caa90b5c2cd1fe5d3c176addf818a0aa5b9e3c9dc0488e09bc13cf9d99bce3',
+  'e5caa90b5c2cd1fe5d3c176addf818a0aa5b9e3c9dc0488e09bc13cf9d99bce4',
   'hex',
 );
 const fakeFeed = {
