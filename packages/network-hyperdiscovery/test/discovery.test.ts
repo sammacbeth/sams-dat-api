@@ -1,5 +1,6 @@
 import 'mocha';
 import { networkInterfaces } from 'os';
+import isIpPrivate = require('private-ip');
 
 import HyperDiscovery from '../';
 
@@ -27,7 +28,9 @@ const fakeFeed = {
 const addresses = new Set();
 for (const addrs of Object.values(networkInterfaces())) {
   for (const { address } of addrs) {
-    addresses.add(address);
+    if (isIpPrivate(address)) {
+      addresses.add(address);
+    }
   }
 }
 

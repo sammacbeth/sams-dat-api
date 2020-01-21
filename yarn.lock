@@ -5519,6 +5519,11 @@ pretty-hash@^1.0.1:
   resolved "https://registry.yarnpkg.com/pretty-hash/-/pretty-hash-1.0.1.tgz#16e0579188def56bdb565892bcd05a5d65324807"
   integrity sha1-FuBXkYje9WvbVliSvNBaXWUySAc=
 
+private-ip@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/private-ip/-/private-ip-1.0.5.tgz#22d0183fba09d0ec1a2a4e0f46feb771563d1449"
+  integrity sha1-ItAYP7oJ0OwaKk4PRv63cVY9FEk=
+
 process-nextick-args@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-1.0.7.tgz#150e20b756590ad3f91093f25a4f2ad8bff30ba3"
