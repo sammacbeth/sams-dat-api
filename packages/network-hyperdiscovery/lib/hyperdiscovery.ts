@@ -1,7 +1,8 @@
+import { EventEmitter } from 'events';
+
 import { IReplicable } from '@sammacbeth/dat-types/lib/replicable';
 import ISwarm, { JoinSwarmOptions } from '@sammacbeth/dat-types/lib/swarm';
-import { EventEmitter } from 'events';
-import Discovery = require('hyperdiscovery');
+import Discovery = require('@sammacbeth/hyperdiscovery');
 
 export type DiscoveryOptions = {
   id?: Buffer;
@@ -33,10 +34,24 @@ export default class HyperDiscovery<T extends IReplicable> extends EventEmitter
 
   constructor(opts: DiscoveryOptions) {
     super();
-    this.disc = Discovery(opts);
+    const autoListen = opts && opts.autoListen;
+    this.disc = Discovery({
+      ...opts,
+      autoListen: false,
+    });
+    
     this.events.forEach((event) => {
       this.disc.on(event, (...args) => this.emit(event, ...args));
     });
+
+    this.disc._port = opts && opts.port;
+    if (autoListen) {
+      this.disc.listen();
+    }
+  }
+
+  get port() {
+    return this.disc._port
   }
 
   public add(feed: IReplicable, options?: JoinSwarmOptions) {
