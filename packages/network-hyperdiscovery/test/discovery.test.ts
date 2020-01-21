@@ -45,11 +45,11 @@ describe('Hyperdiscovery', function() {
       s.close();
     });
     swarms = [];
-  })
+  });
 
   it('announces to the network', (done) => {
     const randomPort = 4000 + Math.floor(Math.random() * 10000);
-    const disc = new HyperDiscovery({ port: randomPort });
+    const disc = new HyperDiscovery({ autoListen: true, port: randomPort });
     disc.add(fakeFeed);
     const disc2 = new HyperDiscovery({ autoListen: false });
     disc2.on('peer', (peer) => {

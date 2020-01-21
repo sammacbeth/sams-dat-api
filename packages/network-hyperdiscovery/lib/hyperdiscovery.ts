@@ -34,10 +34,20 @@ export default class HyperDiscovery<T extends IReplicable> extends EventEmitter
 
   constructor(opts: DiscoveryOptions) {
     super();
-    this.disc = Discovery(opts);
+    const autoListen = opts && opts.autoListen;
+    this.disc = Discovery({
+      ...opts,
+      autoListen: false,
+    });
+    
     this.events.forEach((event) => {
       this.disc.on(event, (...args) => this.emit(event, ...args));
     });
+
+    this.disc._port = opts && opts.port;
+    if (autoListen) {
+      this.disc.listen();
+    }
   }
 
   public add(feed: IReplicable, options?: JoinSwarmOptions) {
