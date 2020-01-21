@@ -931,6 +931,19 @@
     toiletdb "^1.4.1"
     websocket-stream "^5.1.2"
 
+"@sammacbeth/hyperdiscovery@^10.2.2":
+  version "10.2.2"
+  resolved "https://registry.yarnpkg.com/@sammacbeth/hyperdiscovery/-/hyperdiscovery-10.2.2.tgz#68b86d742ca91dd73a39dfbb32fa7a0d229f3cf9"
+  integrity sha512-IoR2RWFblTnm9E7glkSVocPr+I5IPEKYjxXqCbcUa7ex5jEXHOBWGAqB9IAPYENvaQs2uEwU45DNwLzwkA9Rqw==
+  dependencies:
+    dat-encoding "^5.0.1"
+    dat-swarm-defaults "^1.0.2"
+    debug "^4.1.1"
+    discovery-swarm "^5.1.4"
+    discovery-swarm-web "^2.0.0"
+    hypercore-protocol "^6.9.0"
+    mutexify "^1.2.0"
+
 "@types/chai@^4.2.5", "@types/chai@^4.2.6", "@types/chai@^4.2.7":
   version "4.2.7"
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.2.7.tgz#1c8c25cbf6e59ffa7d6b9652c78e547d9a41692d"
@@ -3464,18 +3477,6 @@ hyperdiscovery@^9.0.0, hyperdiscovery@^9.0.2:
     dat-swarm-defaults "^1.0.2"
     debug "^4.1.1"
     discovery-swarm "^5.1.4"
-    hypercore-protocol "^6.9.0"
-    mutexify "^1.2.0"
-
-"hyperdiscovery@git+https://git@github.com/sammacbeth/hyperdiscovery.git#39cff7f":
-  version "10.2.1"
-  resolved "git+https://git@github.com/sammacbeth/hyperdiscovery.git#39cff7fc6428cfabee23d22bf2e3b82ab4552c3d"
-  dependencies:
-    dat-encoding "^5.0.1"
-    dat-swarm-defaults "^1.0.2"
-    debug "^4.1.1"
-    discovery-swarm "^5.1.4"
-    discovery-swarm-web "^2.0.0"
     hypercore-protocol "^6.9.0"
     mutexify "^1.2.0"
 

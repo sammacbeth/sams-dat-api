@@ -1,7 +1,8 @@
+import { EventEmitter } from 'events';
+
 import { IReplicable } from '@sammacbeth/dat-types/lib/replicable';
 import ISwarm, { JoinSwarmOptions } from '@sammacbeth/dat-types/lib/swarm';
-import { EventEmitter } from 'events';
-import Discovery = require('hyperdiscovery');
+import Discovery = require('@sammacbeth/hyperdiscovery');
 
 export type DiscoveryOptions = {
   id?: Buffer;
