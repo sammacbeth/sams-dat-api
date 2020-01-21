@@ -1,6 +1,6 @@
 {
   "name": "@sammacbeth/dat-protocol-handler",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Protocol handler to serve hyperdrives",
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "https://github.com/sammacbeth/sams-dat-api#readme",
