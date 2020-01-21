@@ -35,19 +35,19 @@ function timeoutWithError(ms, errorCtr) {
 
 export async function resolvePath(drive: IHyperdrive, pathname: string, version?: number) {
   const checkout = version ? drive.checkout(version) : drive;
-  const manifest = await pda.readManifest(drive).catch((_) => ({}));
+  const manifest = await pda.readManifest(checkout).catch((_) => ({}));
   const root = manifest.web_root || '';
   const path = decodeURIComponent(pathname);
 
   const result = {
     directory: false,
-    drive,
+    drive: checkout,
     path: '',
   };
 
   async function tryStat(testPath: string) {
     result.path = testPath;
-    return new Promise<Stats | false>((resolve, reject) => {
+    return new Promise<Stats | false>((resolve) => {
       checkout.stat(testPath, (err, file) => {
         if (err) {
           return resolve(false);
@@ -116,7 +116,7 @@ export default function createHandler<D extends IHyperdrive>(
       try {
         const dat = await node.getDat(address, loadingOptions);
         await dat.ready;
-        const { drive, directory, path } = await resolvePath(dat.drive, pathname, version);
+        const { drive, directory, path } = await resolvePath(dat.drive, pathname, parseInt(version, 10));
         if (directory) {
           throw new IsADirectoryError(url);
         }
