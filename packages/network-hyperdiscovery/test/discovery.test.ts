@@ -25,15 +25,6 @@ const fakeFeed = {
   },
 };
 
-const addresses = new Set();
-for (const addrs of Object.values(networkInterfaces())) {
-  for (const { address } of addrs) {
-    if (isIpPrivate(address)) {
-      addresses.add(address);
-    }
-  }
-}
-
 describe('Hyperdiscovery', function() {
   this.timeout(10000);
 
@@ -50,13 +41,11 @@ describe('Hyperdiscovery', function() {
 
   it('announces to the network', (done) => {
     const randomPort = 4000 + Math.floor(Math.random() * 10000);
-    console.log('port', randomPort);
     const disc = new HyperDiscovery({ autoListen: true, port: randomPort });
     disc.add(fakeFeed);
     const disc2 = new HyperDiscovery({ autoListen: false });
     disc2.on('peer', (peer) => {
-      console.log('peer', peer.host, peer.port);
-      if (peer.port === disc.port && !addresses.has(peer.host)) {
+      if (peer.port === disc.port && !peer.host.startsWith('127.')) {
         // this is probably me!
         done();
       }
