@@ -42,6 +42,7 @@ describe('Hyperdiscovery', function() {
   afterEach(() => {
     // cleanup swarms
     swarms.forEach((s) => {
+      s.remove(fakeFeed);
       s.close();
     });
     swarms = [];
