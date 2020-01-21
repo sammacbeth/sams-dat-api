@@ -50,10 +50,12 @@ describe('Hyperdiscovery', function() {
 
   it('announces to the network', (done) => {
     const randomPort = 4000 + Math.floor(Math.random() * 10000);
+    console.log('port', randomPort);
     const disc = new HyperDiscovery({ autoListen: true, port: randomPort });
     disc.add(fakeFeed);
     const disc2 = new HyperDiscovery({ autoListen: false });
     disc2.on('peer', (peer) => {
+      console.log('peer', peer.host, peer.port);
       if (peer.port === disc.port && !addresses.has(peer.host)) {
         // this is probably me!
         done();
