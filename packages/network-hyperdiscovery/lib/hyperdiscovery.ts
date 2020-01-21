@@ -50,6 +50,10 @@ export default class HyperDiscovery<T extends IReplicable> extends EventEmitter
     }
   }
 
+  get port() {
+    return this.disc._port
+  }
+
   public add(feed: IReplicable, options?: JoinSwarmOptions) {
     this.disc.add(feed, options);
   }

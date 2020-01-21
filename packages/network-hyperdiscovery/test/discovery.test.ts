@@ -54,7 +54,7 @@ describe('Hyperdiscovery', function() {
     disc.add(fakeFeed);
     const disc2 = new HyperDiscovery({ autoListen: false });
     disc2.on('peer', (peer) => {
-      if (peer.port === randomPort && !addresses.has(peer.host)) {
+      if (peer.port === disc.port && !addresses.has(peer.host)) {
         // this is probably me!
         done();
       }
