@@ -40,6 +40,7 @@ describe('Hyperdiscovery', function() {
   });
 
   it('announces to the network', (done) => {
+    let found = false;
     const randomPort = 4000 + Math.floor(Math.random() * 10000);
     const disc = new HyperDiscovery({ autoListen: true, port: randomPort });
     disc.add(fakeFeed);
@@ -47,7 +48,10 @@ describe('Hyperdiscovery', function() {
     disc2.on('peer', (peer) => {
       if (peer.port === disc.port && !peer.host.startsWith('127.')) {
         // this is probably me!
-        done();
+        if (!found) {
+          found = true;
+          done();
+        }
       }
     });
     disc2.add(fakeFeed);

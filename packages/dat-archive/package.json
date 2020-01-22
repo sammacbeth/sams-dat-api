@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@sammacbeth/dat-api-core": "^0.4.0",
-    "@sammacbeth/dat-node": "^1.0.3",
+    "@sammacbeth/dat-node": "^1.0.4",
     "@sammacbeth/dat-types": "^0.3.0",
     "pauls-dat-api": "^8.1.0"
   },
