@@ -5,6 +5,8 @@ import 'mocha';
 import ram = require('random-access-memory');
 import rimraf = require('rimraf');
 import { promisify } from 'util';
+import { tmpdir } from 'os';
+import { join } from 'path';
 import { exportSecretKey, importSecretKey } from '../';
 
 async function createDrive(...args): Promise<Hyperdrive> {
@@ -37,9 +39,16 @@ describe('Key import/export', () => {
   });
 
   describe('import', () => {
-    const drivePath = './tmp'
-    afterEach(() => {
-      return promisify(rimraf)(drivePath)
+    let drivePath = '';
+
+    beforeEach(() => {
+      drivePath = join(tmpdir(), `${Math.floor(Math.random() * 10000)}`);
+    });
+
+    afterEach((done) => {
+      rimraf(drivePath, { glob: false, maxBusyTries: 1 }, (err) => {
+        done();
+      });
     });
 
     it('makes the drive writable', async () => {
@@ -66,6 +75,9 @@ describe('Key import/export', () => {
       replicate(drive2, drive3);
       const contents = await promisify(drive3.readFile.bind(drive3))('hello', { encoding: 'utf-8' });
       expect(contents).to.eql('workd');
+
+      drive2.close();
+      drive3.close();
     });
 
     it('persists secretKey', async () => {
@@ -80,13 +92,13 @@ describe('Key import/export', () => {
       const secretKey = exportSecretKey(drive1);
       await importSecretKey(drive2, secretKey);
       expect(drive2.writable).to.eql(true);
-      await promisify(drive2.close.bind(drive2))();
+      drive2.close();
 
       // open a new hyperdrive referencing files on disk. This should be writable.
       const drive3 = hyperdrive(drivePath);
       await promisify(drive3.ready.bind(drive3))();
       expect(drive3.writable).to.eql(true);
-      await promisify(drive3.close.bind(drive2))();
+      drive3.close();
     })
   });
 });

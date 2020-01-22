@@ -1,6 +1,7 @@
 import apiFactory, { DatV1API } from '@sammacbeth/dat-api-v1';
 import { expect } from 'chai';
 import 'mocha';
+import { join } from 'path';
 import createDatArchive, { create, fork, IDatArchive } from '../';
 import { IDat } from '@sammacbeth/dat-types/lib/dat';
 
@@ -139,6 +140,16 @@ describe('DatArchive', function() {
         'test.txt',
       ];
 
+      const WINDOWS_STYLE = join('a', 'b') === 'a\\b'
+      function toPlatformPath(...parts: string[]): string {
+        const path = join(...parts);
+        if (WINDOWS_STYLE) {
+          // on windows preceding slashes are included
+          return `\\${path}`;
+        }
+        return path;
+      }
+
       it('reads contents of the directory as an array', async () => {
         const files = await archive.readdir('/');
         expect(files).to.have.length(expectedFiles.length);
@@ -148,13 +159,13 @@ describe('DatArchive', function() {
       it('opts.recursive returns a recursive listing', async () => {
         const files = await archive.readdir('/node_modules/chai/lib', { recursive: true });
         expect(files).to.contain('chai.js');
-        expect(files).to.contain('chai/core/assertions.js');
-        expect(files).to.contain('chai/core');
+        expect(files).to.contain(toPlatformPath('chai', 'core', 'assertions.js'));
+        expect(files).to.contain(toPlatformPath('chai', 'core'));
       });
 
-      it('opts.recursive lists directories with unix-style (/) separators, no preceding slash', async () => {
+      it('opts.recursive lists directories with platform-specific separators', async () => {
         const files = await archive.readdir('/node_modules/chai/lib', { recursive: true });
-        expect(files).to.contain('chai/core/assertions.js');
+        expect(files).to.contain(toPlatformPath('chai', 'core', 'assertions.js'));
       });
 
       it('opts.stat returns an array of stat objects', async () => {
