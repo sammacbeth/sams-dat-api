@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@sammacbeth/dat-types": "^0.3.0",
-    "@sammacbeth/hyperdiscovery": "^10.2.2"
+    "@sammacbeth/hyperdiscovery": "^10.2.3"
   },
   "devDependencies": {
     "@types/chai": "^4.2.7",
