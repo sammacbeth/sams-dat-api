@@ -3526,9 +3526,9 @@ hyperdrive@^10.7.4:
     unixify "^1.0.0"
 
 hyperswarm@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/hyperswarm/-/hyperswarm-2.4.0.tgz#efbed6611f7812e5b5e80fd1d4d7b357c56dcd7a"
-  integrity sha512-24D/zFCbhTh6Ld3zu9dgZzHwoJgnGu7e1eAZmCWKVs3x9rM0keIokmszV8NHYV9WQ3HFQJUKwF6+pGebNugzhA==
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/hyperswarm/-/hyperswarm-2.5.0.tgz#3100d11227168a096c22361ae786c0eb01263d39"
+  integrity sha512-DhckQo54e4JhmKbKJxTfYSkimaU/RQ+5670uJ1BEKv5obYFJgNCaxVebVXMkKhKI2gRYkzcIPXvnpfKR8JqWvQ==
   dependencies:
     "@hyperswarm/discovery" "^1.1.0"
     "@hyperswarm/network" "^1.1.2"
