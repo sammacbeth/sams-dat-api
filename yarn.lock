@@ -932,15 +932,14 @@
     websocket-stream "^5.1.2"
 
 "@sammacbeth/hyperdiscovery@^10.2.2":
-  version "10.2.2"
-  resolved "https://registry.yarnpkg.com/@sammacbeth/hyperdiscovery/-/hyperdiscovery-10.2.2.tgz#68b86d742ca91dd73a39dfbb32fa7a0d229f3cf9"
-  integrity sha512-IoR2RWFblTnm9E7glkSVocPr+I5IPEKYjxXqCbcUa7ex5jEXHOBWGAqB9IAPYENvaQs2uEwU45DNwLzwkA9Rqw==
+  version "10.2.3"
+  resolved "https://registry.yarnpkg.com/@sammacbeth/hyperdiscovery/-/hyperdiscovery-10.2.3.tgz#8657e670b40e958a3b799bf99b0389f96893ff95"
+  integrity sha512-aS3ieZy0jpcN1Z1cB4CLrq/KZapoYCxgzuuefXJ8LfRpWs2PFCru9R94khJdEmfmQ31TNcReGjQXgdUTkQcPUw==
   dependencies:
     dat-encoding "^5.0.1"
     dat-swarm-defaults "^1.0.2"
     debug "^4.1.1"
-    discovery-swarm "^5.1.4"
-    discovery-swarm-web "^2.0.0"
+    discovery-swarm "^6.1.0"
     hypercore-protocol "^6.9.0"
     mutexify "^1.2.0"
 
@@ -2369,35 +2368,7 @@ discovery-swarm-stream@^1.0.0:
     readable-stream "^2.3.6"
     sodium-universal "^2.0.0"
 
-discovery-swarm-stream@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/discovery-swarm-stream/-/discovery-swarm-stream-2.1.1.tgz#031d29c67c9c2dfd588d67e2791bda4ba1021757"
-  integrity sha512-a6h4ZV5KnAh10zot9041o23iTLg3WkZ8ciE8gtdpIdT47pgyMtuYsQeOwQO2l6O4vc4AkVWnkNtpk/dGFuYFJA==
-  dependencies:
-    debug "^4.1.1"
-    hyperdiscovery "^9.0.0"
-    length-prefixed-message "^3.0.3"
-    length-prefixed-stream "^1.6.0"
-    protocol-buffers-encodings "^1.1.0"
-    pump "^3.0.0"
-    readable-stream "^2.3.6"
-    sodium-universal "^2.0.0"
-
-discovery-swarm-web@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/discovery-swarm-web/-/discovery-swarm-web-2.0.0.tgz#5f64a552056da506b1a8ded481ca976f8fbb2447"
-  integrity sha512-z+aWNUUx2G2LSvek24nHpgkk5zS6m++he1OSZ9kY5Wdhjndnla3pkyGPPTzeVyI2OLGLmc5EXC99XFNQ0cJVNw==
-  dependencies:
-    "@geut/discovery-swarm-webrtc" "^2.2.4"
-    debug "^4.1.1"
-    discovery-swarm-stream "^2.1.1"
-    hyperdiscovery "^9.0.2"
-    length-prefixed-message "^3.0.3"
-    randombytes "^2.1.0"
-    websocket-stream "^5.1.2"
-    yargs "^13.2.2"
-
-discovery-swarm@^5.1.2, discovery-swarm@^5.1.4:
+discovery-swarm@^5.1.2:
   version "5.1.4"
   resolved "https://registry.yarnpkg.com/discovery-swarm/-/discovery-swarm-5.1.4.tgz#6a2731410dc327d40608e467a4e9b00c6cebd40b"
   integrity sha512-vkg0bv+FUwSuPxBWzdNPQVNmXQlIbvz1Ygi+A1XefNUhEzfmM+RNndjtjlDgxD/ZUhFir9PX7Hw9iIDVujsOoA==
@@ -2410,6 +2381,20 @@ discovery-swarm@^5.1.2, discovery-swarm@^5.1.4:
     to-buffer "^1.0.1"
   optionalDependencies:
     utp-native "^1.7.2"
+
+discovery-swarm@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/discovery-swarm/-/discovery-swarm-6.1.0.tgz#ea5d46836893b2a89d687d2a10b56a78733cee42"
+  integrity sha512-R5Do28YiUgDbied1ehiP0IflsX1KUJZsYSBpuGVDUCqJVlGDVMzu4uH/a5vQwEj53EQBOLGDcBS68uEIDYGeUg==
+  dependencies:
+    connections "^1.4.2"
+    debug "^4.1.1"
+    discovery-channel "^5.5.1"
+    length-prefixed-message "^3.0.3"
+    pump "^3.0.0"
+    to-buffer "^1.0.1"
+  optionalDependencies:
+    utp-native "^2.1.3"
 
 dns-discovery@^6.0.1:
   version "6.2.3"
@@ -3462,18 +3447,6 @@ hypercore@^8.0.0:
     unordered-set "^2.0.0"
   optionalDependencies:
     fd-lock "^1.0.2"
-
-hyperdiscovery@^9.0.0, hyperdiscovery@^9.0.2:
-  version "9.0.2"
-  resolved "https://registry.yarnpkg.com/hyperdiscovery/-/hyperdiscovery-9.0.2.tgz#2ce2f9abf37cf0f50c013f8a08ece4038cb8956b"
-  integrity sha512-5TbJbb2fyd6iMYyX6XVg+fHMsLgbvzSs2AWD3JAkct7jeo5Inhs4im6joJ3TTjO6QMz4dbhOfqXWKJlixYx53A==
-  dependencies:
-    dat-encoding "^5.0.1"
-    dat-swarm-defaults "^1.0.2"
-    debug "^4.1.1"
-    discovery-swarm "^5.1.4"
-    hypercore-protocol "^6.9.0"
-    mutexify "^1.2.0"
 
 hyperdrive-schemas@beta:
   version "1.0.0"
@@ -5698,7 +5671,7 @@ randomatic@^3.0.0:
     kind-of "^6.0.0"
     math-random "^1.0.1"
 
-randombytes@^2.0.3, randombytes@^2.0.5, randombytes@^2.1.0:
+randombytes@^2.0.3, randombytes@^2.0.5:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.1.0.tgz#df6f84372f0270dc65cdf6291349ab7a473d4f2a"
   integrity sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==
@@ -7372,7 +7345,7 @@ yargs-unparser@1.6.0:
     lodash "^4.17.15"
     yargs "^13.3.0"
 
-yargs@13.3.0, yargs@^13.2.2, yargs@^13.3.0:
+yargs@13.3.0, yargs@^13.3.0:
   version "13.3.0"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-13.3.0.tgz#4c657a55e07e5f2cf947f8a366567c04a0dedc83"
   integrity sha512-2eehun/8ALW8TLoIl7MVaRUrg+yCnenu8B4kBlRxj3GJGDKU1Og7sMXPNm1BYyM1DOJmTZ4YeN/Nwxv+8XJsUA==
