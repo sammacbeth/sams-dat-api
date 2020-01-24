@@ -4,12 +4,13 @@ import { Duplex } from 'stream';
 import { Hypercore, IHypercore } from './hypercore';
 import { RandomAccessFactory } from './random-access';
 import { IReplicable, IReplicableBase, IReplicableNoise } from './replicable';
+import { SuccessCallback, ResultCallback } from './common';
 
 // Type definitions for hyperdrive 9.16.0
 // Project: https://github.com/mafintosh/hyperdrive
 // Definitions by: Sam Macbeth <https://github.com/sammacbeth>
 
-type CheckoutOptions = {
+export type CheckoutOptions = {
   metadataStorageCacheSize?: number;
   contentStorageCacheSize?: number;
   treeCacheSize?: number;
@@ -27,13 +28,13 @@ export type HyperdriveOptions = CheckoutOptions & {
   keyPair?: [Buffer, Buffer];
 };
 
-type ReadOptions = {
+export type ReadOptions = {
   start?: number;
   end?: number;
   length?: number;
 };
 
-type FileOptions = {
+export type FileOptions = {
   mode?: number;
   uid?: number;
   gid?: number;
@@ -41,26 +42,23 @@ type FileOptions = {
   ctime?: number | Date;
 };
 
-type CachedOption = {
+export type CachedOption = {
   cached?: boolean;
 };
 
-type EncodingOption = {
+export type EncodingOption = {
   encoding?: string;
 };
 
-type WaitOption = {
+export type WaitOption = {
   wait?: boolean;
 };
 
-type ReplicationOptions = {
+export type ReplicationOptions = {
   live?: boolean;
   download?: boolean;
   upload?: boolean;
 };
-
-type SuccessCallback = (error: Error) => void;
-type ResultCallback<T> = (error: Error, result?: T) => void;
 
 export interface IHyperdrive extends IReplicableBase {
   /**
@@ -245,91 +243,4 @@ export class Hyperdrive extends EventEmitter implements IHyperdrive, IReplicable
   public createDiffStream(version: number, options?: any): any;
 
   public replicate(options?: ReplicationOptions): Duplex;
-}
-
-export class Hyperdrive10 extends EventEmitter implements IHyperdrive, IReplicableNoise {
-  public version: number;
-  public key: Buffer;
-  public discoveryKey: Buffer;
-  public writable: boolean;
-  public metadata: Hypercore;
-  public content: Hypercore;
-
-  constructor(storage: string | RandomAccessFactory, opts?: HyperdriveOptions);
-  constructor(storage: string | RandomAccessFactory, key: Buffer, opts?: HyperdriveOptions);
-
-  public ready(callback: SuccessCallback): void;
-  public checkout(version: number, opts?: CheckoutOptions): Hyperdrive;
-  public download(path: string, callback?: SuccessCallback): void;
-  public download(callback?: SuccessCallback): void;
-
-  public createReadStream(
-    name: string,
-    options?: ReadOptions & CachedOption,
-  ): NodeJS.ReadableStream;
-  public readFile(
-    name: string,
-    options: EncodingOption & CachedOption,
-    callback: ResultCallback<Buffer | string>,
-  ): void;
-  public readFile(name: string, callback: ResultCallback<Buffer | string>): void;
-
-  public createWriteStream(name: string, options?: FileOptions): NodeJS.WritableStream;
-  public writeFile(
-    name: string,
-    buffer: Buffer,
-    options?: (FileOptions & EncodingOption) | string,
-    callback?: SuccessCallback,
-  ): void;
-  public writeFile(name: string, buffer: Buffer, callback?: SuccessCallback): void;
-
-  public unlink(name: string, callback?: SuccessCallback): void;
-  public mkdir(name: string, options?: FileOptions | number, callback?: SuccessCallback): void;
-  public rmdir(name: string, callback?: SuccessCallback): void;
-
-  public readdir(name: string, options: CachedOption, callback?: ResultCallback<string[]>): void;
-  public readdir(name: string, callback?: ResultCallback<string[]>): void;
-
-  public stat(
-    name: string,
-    options: CachedOption & WaitOption,
-    callback: ResultCallback<Stats>,
-  ): void;
-  public stat(name: string, callback: ResultCallback<Stats>): void;
-  public lstat(
-    name: string,
-    options: CachedOption & WaitOption,
-    callback: ResultCallback<Stats>,
-  ): void;
-  public lstat(name: string, callback: ResultCallback<Stats>): void;
-
-  public access(name: string, options: CachedOption & WaitOption, callback: SuccessCallback): void;
-
-  public open(
-    name: string,
-    flags: string,
-    mode: number,
-    options: { download?: boolean },
-    callback: ResultCallback<number>,
-  ): void;
-  public open(name: string, flags: string, mode: number, callback: ResultCallback<number>): void;
-
-  public read(
-    fd: number,
-    buf: Buffer,
-    offset: number,
-    len: number,
-    position: number,
-    callback: (error: Error, length?: number, buffer?: Buffer) => void,
-  ): void;
-
-  public close(fd: number, callback?: SuccessCallback): void;
-  public close(callback?: SuccessCallback): void;
-
-  // TODO: Find actual shapes
-  public history(options?: any): any;
-  public extension(name: string, message: Buffer): void;
-  public createDiffStream(version: number, options?: any): any;
-
-  public replicate(isInitiator: boolean, options?: ReplicationOptions): Duplex;
 }
