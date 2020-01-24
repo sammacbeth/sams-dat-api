@@ -1,5 +1,5 @@
 import HyperdriveAPI, { DatLoaderBase, DatOptions, StorageOpts } from '@sammacbeth/dat-api-core/';
-import { Hyperdrive10 } from '@sammacbeth/dat-types/lib/hyperdrive';
+import { Hyperdrive10 } from '@sammacbeth/dat-types/lib/hyperdrive10';
 import { IReplicableNoise } from '@sammacbeth/dat-types/lib/replicable';
 import ISwarm, { JoinSwarmOptions } from '@sammacbeth/dat-types/lib/swarm';
 import { EventEmitter } from 'events';

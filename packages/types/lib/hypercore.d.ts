@@ -1,7 +1,9 @@
 import { EventEmitter } from 'events';
 import { Duplex } from 'stream';
+
 import { RandomAccessFactory } from './random-access';
 import { IReplicable, ReplicationOptions } from './replicable';
+import { SuccessCallback } from './common';
 
 // Type definitions for hypercore 7.2
 // Project: https://github.com/mafintosh/hypercore
@@ -74,8 +76,6 @@ type ReadOptions = {
   timeout?: number;
   wait?: boolean;
 };
-
-type SuccessCallback = (error: Error) => void;
 
 interface IHypercore {
   /**
