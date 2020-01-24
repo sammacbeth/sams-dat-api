@@ -29,7 +29,7 @@ export interface IHyperdrive10 extends IHyperdrive {
   /**
    * Unmount a previously-mounted Hyperdrive.
    */
-  unmount(name: string, cb?: SuccessCallback);
+  unmount(name: string, cb?: SuccessCallback): void;
 
   /**
    * Create a stream containing content/metadata feeds for all mounted Hyperdrives.
@@ -41,7 +41,7 @@ export interface IHyperdrive10 extends IHyperdrive {
    * Returns a Map of the content/metadata feeds for all mounted Hyperdrives, keyed by their mountpoints. The results will always include the top-level feeds (with key '/').
    * TODO: specify return type
    */
-  getAllMounts(opts: { memory?: boolean }, cb: ResultCallback<{ [key: string]: any }>);
+  getAllMounts(opts: { memory?: boolean }, cb: ResultCallback<{ [key: string]: any }>): void;
 
   /**
    * Create a symlink from `linkname` to `target`.
@@ -137,8 +137,8 @@ export class Hyperdrive10 extends EventEmitter implements IHyperdrive10, IReplic
 
   // new Hyperdrive10 methods
   public mount(name: string, key: Buffer, opts?: { version?: number }, cb?: SuccessCallback): void;
-  public unmount(name: string, cb?: SuccessCallback);
-  public createMountStream(opts?: any);
-  public getAllMounts(opts: { memory?: boolean }, cb: ResultCallback<{ [key: string]: any }>);
+  public unmount(name: string, cb?: SuccessCallback): void;
+  public createMountStream(opts?: any): any;
+  public getAllMounts(opts: { memory?: boolean }, cb: ResultCallback<{ [key: string]: any }>): void;
   public symlink(target: string, linkname: string, cb?: SuccessCallback): void;
 }
