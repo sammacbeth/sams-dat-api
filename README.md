@@ -11,8 +11,11 @@ It currently contains the following modules:
  * `@sammacbeth/dat-network-hyperwebrtc`: Dat discovery swarm using [hyperdiscovery] plus [discovery-swarm-webrtc].
  * `@sammacbeth/dat-api-v1`: Dat API for v1 Dats, i.e. Hyperdrive 9.x with hyperdiscovery.
  * `@sammacbeth/dat-api-v1wrtc`: As above but using `@sammacbeth/dat-network-hyperwebrtc`.
+ * `@sammacbeth/dat2-api`: Dat API for v2 Dats (experimental).
  * `@sammacbeth/dat-archive`: Factory for the `DatArchive` API.
  * `@sammacbeth/dat-protocol-handler`: Resolves dat URLs to Node Streams, backed by the core API.
+ * `@sammacbeth/dat-publisher`: Command line tool for creating and publishing Dats.
+ * `@sammacbeth/dat-util`: Utility functions for dat (secret key import and export).
 
 ## Usage
 
@@ -40,8 +43,12 @@ const api = apiFactory({
 
   // load an existing dat in memory
   const existing = await api.getDat(
-    '41f8a987cfeba80a037e51cc8357d513b62514de36f2f9b3d3eeec7a8fb3b5a5',
-    { persist: false, sparse: true },
+    '41f8a987cfeba80a037e51cc8357d513b62514de36f2f9b3d3eeec7a8fb3b5a5', {
+      persist: false,
+      driveOptions: {
+        sparse: true,
+      },
+    },
   );
   // wait for data
   await existing.ready;
