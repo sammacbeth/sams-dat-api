@@ -93,9 +93,9 @@
     which "^1.3.1"
 
 "@geut/discovery-swarm-webrtc@^2.2.4":
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/@geut/discovery-swarm-webrtc/-/discovery-swarm-webrtc-2.2.5.tgz#97f92f4708791097355747d9a6492c60b3a1dca5"
-  integrity sha512-m6lQ5Ir+G71aDzlDQKofWIwRDVXxXjc25XgpHDekf+JN4EUpgU6JEH+0gCpcWcdAR25g/LdYfEwL3pP1zaWKrg==
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/@geut/discovery-swarm-webrtc/-/discovery-swarm-webrtc-2.2.7.tgz#74def64fc31734ade251f522bfc9d7552fdb5212"
+  integrity sha512-adb4pMiuho9TbyIztS6+uw0aAQxFkp7MtYhwm4BEHxXUQ0WjwNNAWRPKGKCKc/d4dCiDJHF1e/o63HAQHI5TnQ==
   dependencies:
     debug "^4.1.1"
     delay "^4.3.0"
