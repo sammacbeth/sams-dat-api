@@ -1,6 +1,6 @@
 {
   "name": "@sammacbeth/dat-network-hyperwebrtc",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "DAT Discovery network using hyperdiscovery and webrtc",
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "",
@@ -23,8 +23,8 @@
   },
   "dependencies": {
     "@geut/discovery-swarm-webrtc": "^2.2.4",
-    "@sammacbeth/dat-network-hyperdiscovery": "^0.1.3",
-    "@sammacbeth/dat-types": "^0.3.1"
+    "@sammacbeth/dat-network-hyperdiscovery": "^0.1.4",
+    "@sammacbeth/dat-types": "^0.4.0"
   },
   "devDependencies": {
     "tslint": "^6.0.0",
