@@ -1,0 +1,44 @@
+{
+  "name": "@sammacbeth/dat2-daemon-client",
+  "version": "0.0.1",
+  "description": "Dat v2 API using hyperdrive-daemon backend",
+  "author": "Sam Macbeth <sam@cliqz.com>",
+  "homepage": "https://github.com/sammacbeth/sams-dat-api#readme",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib",
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist/",
+    "build": "tsc",
+    "lint": "tslint --config ../../tslint.json --project tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sammacbeth/sams-dat-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sammacbeth/sams-dat-api/issues"
+  },
+  "dependencies": {
+    "@sammacbeth/dat-api-core": "^0.4.1",
+    "@sammacbeth/dat-types": "^0.3.1",
+    "hyperdrive-daemon-client": "^1.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.1.0",
+    "tslint": "^6.0.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.7.4",
+    "typescript-tslint-plugin": "^0.5.5"
+  }
+}

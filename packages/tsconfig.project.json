@@ -36,6 +36,9 @@
     },
     {
       "path": "./dat-publisher/tsconfig.json",
+    },
+    {
+      "path": "./dat2-daemon-client/tsconfig.json",
     }
   ]
 }

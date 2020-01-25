@@ -3,7 +3,8 @@ import { IHyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
 import { JoinSwarmOptions } from '@sammacbeth/dat-types/lib/swarm';
 import { EventEmitter } from 'events';
 import StrictEventEmitter from 'strict-event-emitter-types';
-import DatLoaderBase, { LoadOptions } from './loader';
+import { LoadOptions } from './loader';
+import { IHyperLoader } from '@sammacbeth/dat-types/lib/hyperloader';
 
 // Events emitted by the API
 interface IAPIEvents {
@@ -44,10 +45,10 @@ export default class HyperdriveAPI<
   D extends IHyperdrive
 > extends (EventEmitter as new () => StrictEventEmitter<EventEmitter, IAPIEvents>) {
   public dats = new Map<string, IDat>();
-  public loader: DatLoaderBase<D>;
+  public loader: IHyperLoader<D, IDat>;
 
   constructor(
-    loader: DatLoaderBase<D>,
+    loader: IHyperLoader<D, IDat>,
     protected defaultDatOptions: DatOptions = { persist: false },
   ) {
     super();
