@@ -3449,9 +3449,9 @@ hypercore@^8.0.0:
     fd-lock "^1.0.2"
 
 hyperdrive-daemon-client@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/hyperdrive-daemon-client/-/hyperdrive-daemon-client-1.5.0.tgz#e983173d2a568362a5f74c7f0bf799f1d0d6915a"
-  integrity sha512-X4LCgZ2tSKWCCAexPLAeXIHxf+WMcl8/lP3OuHEHGZ5z5XOtcuGHHE2CAHC84b2GLjOHr4GKRnG2Ep7MbywXHQ==
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/hyperdrive-daemon-client/-/hyperdrive-daemon-client-1.6.1.tgz#dc19528b0d9ff34f12eed613e88f25fefd55ba82"
+  integrity sha512-349Cxx01rdtb8JoSunBNcEte0D7Xollqo3t7Fm63K68ABgSCO47pV2th0CT1LnwFGtjoUKO/61N9tLWtZCH7IA==
   dependencies:
     "@grpc/grpc-js" "^0.5.1"
     "@mafintosh/streamx" "^1.1.0"
