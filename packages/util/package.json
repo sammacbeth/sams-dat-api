@@ -34,7 +34,7 @@
     "@types/chai": "^4.2.6",
     "@types/mocha": "^7.0.1",
     "chai": "^4.2.0",
-    "hyperdrive": "9.16.0",
+    "hyperdrive": "10.8.10",
     "mocha": "^7.0.0",
     "ts-node": "^8.5.4",
     "tslint": "^6.0.0",
