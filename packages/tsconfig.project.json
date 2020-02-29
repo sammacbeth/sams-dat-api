@@ -39,6 +39,9 @@
     },
     {
       "path": "./dat2-daemon-client/tsconfig.json",
+    },
+    {
+      "path": "./dat-seeder/tsconfig.json",
     }
   ]
 }
