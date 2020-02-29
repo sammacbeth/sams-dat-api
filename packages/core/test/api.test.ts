@@ -1,10 +1,13 @@
-import { Hyperdrive, HyperdriveOptions } from '@sammacbeth/dat-types/lib/hyperdrive';
+import { Hyperdrive, HyperdriveOptions, CheckoutOptions, CachedOption, EncodingOption, FileOptions, WaitOption } from '@sammacbeth/dat-types/lib/hyperdrive';
 import ISwarm, { JoinSwarmOptions } from '@sammacbeth/dat-types/lib/swarm';
 import { expect } from 'chai';
 import { EventEmitter } from 'events';
 import 'mocha';
 import ram = require('random-access-memory');
 import HyperdriveAPI, { DatLoaderBase, DatOptions } from '../';
+import { SuccessCallback, ResultCallback } from '@sammacbeth/dat-types/lib/common';
+import { ReadOptions } from '@sammacbeth/dat-types/lib/hypercore';
+import { ReplicationOptions } from '@sammacbeth/dat-types/lib/replicable';
 
 class MockHyperdrive extends EventEmitter implements Hyperdrive {
   public version: number;
@@ -17,46 +20,46 @@ class MockHyperdrive extends EventEmitter implements Hyperdrive {
     super();
   }
 
-  public ready(callback: import('@sammacbeth/dat-types/lib/hyperdrive').SuccessCallback): void {
+  public ready(callback: SuccessCallback): void {
     callback(null);
   }
   public checkout(
     version: number,
-    opts?: import('@sammacbeth/dat-types/lib/hyperdrive').CheckoutOptions,
+    opts?: CheckoutOptions,
   ): Hyperdrive {
     throw new Error('Method not implemented.');
   }
   public download(
     path: string,
-    callback?: import('@sammacbeth/dat-types/lib/hyperdrive').SuccessCallback,
+    callback?: SuccessCallback,
   ): void;
-  public download(callback?: import('@sammacbeth/dat-types/lib/hyperdrive').SuccessCallback): void;
+  public download(callback?:SuccessCallback): void;
   public download(path?: any, callback?: any) {
     throw new Error('Method not implemented.');
   }
   public createReadStream(
     name: string,
-    options?: import('@sammacbeth/dat-types/lib/hyperdrive').ReadOptions &
-      import('@sammacbeth/dat-types/lib/hyperdrive').CachedOption,
+    options?: ReadOptions &
+      CachedOption,
   ): NodeJS.ReadableStream {
     throw new Error('Method not implemented.');
   }
   public readFile(
     name: string,
-    options: import('@sammacbeth/dat-types/lib/hyperdrive').EncodingOption &
-      import('@sammacbeth/dat-types/lib/hyperdrive').CachedOption,
-    callback: import('@sammacbeth/dat-types/lib/hyperdrive').ResultCallback<string | Buffer>,
+    options: EncodingOption &
+      CachedOption,
+    callback: ResultCallback<string | Buffer>,
   ): void;
   public readFile(
     name: string,
-    callback: import('@sammacbeth/dat-types/lib/hyperdrive').ResultCallback<string | Buffer>,
+    callback: ResultCallback<string | Buffer>,
   ): void;
   public readFile(name: any, options: any, callback?: any) {
     throw new Error('Method not implemented.');
   }
   public createWriteStream(
     name: string,
-    options?: import('@sammacbeth/dat-types/lib/hyperdrive').FileOptions,
+    options?: FileOptions,
   ): NodeJS.WritableStream {
     throw new Error('Method not implemented.');
   }
@@ -65,80 +68,80 @@ class MockHyperdrive extends EventEmitter implements Hyperdrive {
     buffer: Buffer,
     options?:
       | string
-      | (import('@sammacbeth/dat-types/lib/hyperdrive').FileOptions &
-          import('@sammacbeth/dat-types/lib/hyperdrive').EncodingOption),
-    callback?: import('@sammacbeth/dat-types/lib/hyperdrive').SuccessCallback,
+      | (FileOptions &
+          EncodingOption),
+    callback?: SuccessCallback,
   ): void;
   public writeFile(
     name: string,
     buffer: Buffer,
-    callback?: import('@sammacbeth/dat-types/lib/hyperdrive').SuccessCallback,
+    callback?: SuccessCallback,
   ): void;
   public writeFile(name: any, buffer: any, options?: any, callback?: any) {
     throw new Error('Method not implemented.');
   }
   public unlink(
     name: string,
-    callback?: import('@sammacbeth/dat-types/lib/hyperdrive').SuccessCallback,
+    callback?: SuccessCallback,
   ): void {
     throw new Error('Method not implemented.');
   }
   public mkdir(
     name: string,
-    options?: number | import('@sammacbeth/dat-types/lib/hyperdrive').FileOptions,
-    callback?: import('@sammacbeth/dat-types/lib/hyperdrive').SuccessCallback,
+    options?: number | FileOptions,
+    callback?: SuccessCallback,
   ): void {
     throw new Error('Method not implemented.');
   }
   public rmdir(
     name: string,
-    callback?: import('@sammacbeth/dat-types/lib/hyperdrive').SuccessCallback,
+    callback?: SuccessCallback,
   ): void {
     throw new Error('Method not implemented.');
   }
   public readdir(
     name: string,
-    options: import('@sammacbeth/dat-types/lib/hyperdrive').CachedOption,
-    callback?: import('@sammacbeth/dat-types/lib/hyperdrive').ResultCallback<string[]>,
+    options: CachedOption,
+    callback?: ResultCallback<string[]>,
   ): void;
   public readdir(
     name: string,
-    callback?: import('@sammacbeth/dat-types/lib/hyperdrive').ResultCallback<string[]>,
+    callback?: ResultCallback<string[]>,
   ): void;
   public readdir(name: any, options?: any, callback?: any) {
     throw new Error('Method not implemented.');
   }
   public stat(
     name: string,
-    options: import('@sammacbeth/dat-types/lib/hyperdrive').CachedOption &
-      import('@sammacbeth/dat-types/lib/hyperdrive').WaitOption,
-    callback: import('@sammacbeth/dat-types/lib/hyperdrive').ResultCallback<import('fs').Stats>,
+    options: CachedOption &
+      WaitOption,
+    callback: ResultCallback<import('fs').Stats>,
   ): void;
   public stat(
     name: string,
-    callback: import('@sammacbeth/dat-types/lib/hyperdrive').ResultCallback<import('fs').Stats>,
+    callback: ResultCallback<import('fs').Stats>,
   ): void;
   public stat(name: any, options: any, callback?: any) {
     throw new Error('Method not implemented.');
   }
   public lstat(
     name: string,
-    options: import('@sammacbeth/dat-types/lib/hyperdrive').CachedOption &
-      import('@sammacbeth/dat-types/lib/hyperdrive').WaitOption,
-    callback: import('@sammacbeth/dat-types/lib/hyperdrive').ResultCallback<import('fs').Stats>,
+    options: CachedOption &
+      WaitOption,
+    callback: ResultCallback<import('fs').Stats>,
   ): void;
   public lstat(
     name: string,
-    callback: import('@sammacbeth/dat-types/lib/hyperdrive').ResultCallback<import('fs').Stats>,
+    callback: ResultCallback<import('fs').Stats>,
   ): void;
   public lstat(name: any, options: any, callback?: any) {
     throw new Error('Method not implemented.');
   }
   public access(
     name: string,
-    options: import('@sammacbeth/dat-types/lib/hyperdrive').CachedOption &
-      import('@sammacbeth/dat-types/lib/hyperdrive').WaitOption,
-    callback: import('@sammacbeth/dat-types/lib/hyperdrive').SuccessCallback,
+    options: CachedOption &
+      WaitOption,
+    callback: SuccessCallback,
   ): void {
     throw new Error('Method not implemented.');
   }
@@ -147,13 +150,13 @@ class MockHyperdrive extends EventEmitter implements Hyperdrive {
     flags: string,
     mode: number,
     options: { download?: boolean },
-    callback: import('@sammacbeth/dat-types/lib/hyperdrive').ResultCallback<number>,
+    callback: ResultCallback<number>,
   ): void;
   public open(
     name: string,
     flags: string,
     mode: number,
-    callback: import('@sammacbeth/dat-types/lib/hyperdrive').ResultCallback<number>,
+    callback: ResultCallback<number>,
   ): void;
   public open(name: any, flags: any, mode: any, options: any, callback?: any) {
     throw new Error('Method not implemented.');
@@ -170,9 +173,9 @@ class MockHyperdrive extends EventEmitter implements Hyperdrive {
   }
   public close(
     fd: number,
-    callback?: import('@sammacbeth/dat-types/lib/hyperdrive').SuccessCallback,
+    callback?: SuccessCallback,
   ): void;
-  public close(callback?: import('@sammacbeth/dat-types/lib/hyperdrive').SuccessCallback): void;
+  public close(callback?: SuccessCallback): void;
   public close(fd?: any, callback?: any) {
     throw new Error('Method not implemented.');
   }
@@ -186,7 +189,7 @@ class MockHyperdrive extends EventEmitter implements Hyperdrive {
     throw new Error('Method not implemented.');
   }
   public replicate(
-    options?: import('@sammacbeth/dat-types/lib/hyperdrive').ReplicationOptions,
+    options?: ReplicationOptions,
   ): import('stream').Duplex {
     throw new Error('Method not implemented.');
   }

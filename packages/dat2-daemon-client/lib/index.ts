@@ -3,7 +3,7 @@ import { EventEmitter } from 'events';
 
 import HyperdriveAPI, { DatOptions, LoadOptions } from '@sammacbeth/dat-api-core/';
 import { IDat } from '@sammacbeth/dat-types/lib/dat';
-import { Hyperdrive10 } from '@sammacbeth/dat-types/lib/hyperdrive';
+import { Hyperdrive10 } from '@sammacbeth/dat-types/lib/hyperdrive10';
 import { IHyperLoader } from '@sammacbeth/dat-types/lib/hyperloader';
 import ISwarm, { JoinSwarmOptions } from '@sammacbeth/dat-types/lib/swarm';
 

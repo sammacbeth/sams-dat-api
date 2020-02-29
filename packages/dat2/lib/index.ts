@@ -48,7 +48,7 @@ class HyperSwarm<T extends IReplicableNoise> extends EventEmitter implements ISw
             if (this.feeds.has(dkey)) {
               const [feed, feedOpts] = this.feeds.get(dkey);
               // TODO: can we do this with a public API?
-              (feed as any)._corestore.replicate(!!info.client, {
+              (feed as any).corestore.replicate(!!info.client, {
                 ...feedOpts,
                 stream,
               });
