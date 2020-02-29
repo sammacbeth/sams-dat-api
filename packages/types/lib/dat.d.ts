@@ -19,9 +19,14 @@ export interface ISwarmable extends StrictEventEmitter<EventEmitter, IDatEvents>
 
 export interface IDat extends ISwarmable {
   readonly drive: IHyperdrive;
+  /** true iff the dat currently swarming in the network */
   isSwarming: boolean;
+  /** true iff the dat's hyperdrive is open */
   isOpen: boolean;
+  /** true iff the dat is writable */
   isOwner: boolean;
+  /** true iff this dat is using a persistant store */
   isPersisted: boolean;
+  /** Promise that resolves once the `drive` is ready to use */
   ready: Promise<void>;
 }
