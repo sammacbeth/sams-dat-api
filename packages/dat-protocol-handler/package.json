@@ -1,6 +1,6 @@
 {
   "name": "@sammacbeth/dat-protocol-handler",
-  "version": "0.1.4",
+  "version": "0.5.0",
   "description": "Protocol handler to serve hyperdrives",
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "https://github.com/sammacbeth/sams-dat-api#readme",
@@ -31,13 +31,13 @@
   },
   "dependencies": {
     "@sammacbeth/dat-api-core": "^0.5.0",
-    "@sammacbeth/dat-types": "^0.4.0",
+    "@sammacbeth/dat-types": "^0.5.0",
     "mime": "^2.4.4",
     "parse-dat-url": "^3.0.3",
     "pauls-dat-api": "^8.1.0"
   },
   "devDependencies": {
-    "@sammacbeth/dat-api-v1": "^0.4.3",
+    "@sammacbeth/dat-api-v1": "^0.5.0",
     "@types/chai": "^4.2.5",
     "@types/mocha": "^7.0.1",
     "chai": "^4.2.0",
