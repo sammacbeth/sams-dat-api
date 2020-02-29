@@ -11,6 +11,7 @@ import { IDat } from '@sammacbeth/dat-types/lib/dat';
 
 const addresses = new Set<string>()
 program
+  .name('dat-seeder')
   .option('-f --file <dats>', 'File containing a list of dats to seed')
   .option('-d --cachedir <cachedir>', 'Folder to store dats', './dat')
   .option('-p --port <port>', 'Swarm listen port')
