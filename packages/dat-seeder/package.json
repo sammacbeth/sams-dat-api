@@ -1,6 +1,6 @@
 {
   "name": "@sammacbeth/dat-seeder",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Seed multiple dats",
   "author": "Sam Macbeth <sam@macbeth.cc>",
   "homepage": "https://github.com/sammacbeth/sams-dat-api#readme",
