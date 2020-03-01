@@ -4,10 +4,15 @@ import fs = require('fs');
 import raf = require('random-access-file');
 import datDns = require('dat-dns');
 import Listr = require('listr');
+import wrtc = require('wrtc');
 
 import { join } from 'path';
 import apiFactory from '@sammacbeth/dat-api-v1';
+import webrtcApiFactory, { CombinedOptions } from '@sammacbeth/dat-api-v1wrtc'
 import { IDat } from '@sammacbeth/dat-types/lib/dat';
+import { StorageOpts } from '@sammacbeth/dat-api-core';
+import { DiscoveryOptions } from '@sammacbeth/dat-network-hyperdiscovery';
+import { WRTCDiscoveryOptions } from '@sammacbeth/dat-network-hyperwebrtc';
 
 const addresses = new Set<string>()
 program
@@ -15,6 +20,8 @@ program
   .option('-f --file <dats>', 'File containing a list of dats to seed')
   .option('-d --cachedir <cachedir>', 'Folder to store dats', './dat')
   .option('-p --port <port>', 'Swarm listen port')
+  .option('--wrtc', 'Discover webrtc peers')
+  .option('--wrtcconf <wrtcconfig>', 'Simple peer configuration options for webrtc')
   .arguments('[addresses...]')
   .action((addrs) => {
     if (addrs) {
@@ -46,10 +53,10 @@ if (!fs.existsSync(program.cachedir)) {
   fs.mkdirSync(program.cachedir);
 }
 
-const api = apiFactory({
+const storageOpts: StorageOpts = {
   persistantStorageFactory: (key) => Promise.resolve((name) => raf(join(program.cachedir, key, name))),
-  autoListen: false,
-}, {
+};
+const defaultDatOpts = {
   persist: true,
   driveOptions: {
     sparse: false,
@@ -58,7 +65,24 @@ const api = apiFactory({
   swarmOptions: {
     announce: true,
   },
-});
+};
+const discOpts: DiscoveryOptions = {
+  autoListen: false,
+}
+const wrtcOpts: WRTCDiscoveryOptions = {
+  simplePeer: {
+    wrtc,
+    config: program.wrtcconf ? JSON.parse(fs.readFileSync(program.wrtcconf).toString('utf-8')) : undefined,
+  }
+}
+
+const api = program.wrtc ?
+  webrtcApiFactory({
+    ...storageOpts,
+    hyperdiscoveryOpts: discOpts,
+    wrtcOpts,
+  }, defaultDatOpts) :
+  apiFactory({ ...storageOpts, ...discOpts }, defaultDatOpts);
 
 if (program.port) {
   // force listening on specified port
