@@ -40,7 +40,7 @@
     "@sammacbeth/dat-util": "^0.5.0",
     "@types/fs-extra": "^8.0.1",
     "@types/node": "^13.1.8",
-    "commander": "^4.1.0",
+    "commander": "^5.0.0",
     "fs-extra": "^8.1.0",
     "pump": "^3.0.0",
     "rimraf": "^3.0.0"
