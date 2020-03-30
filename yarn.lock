@@ -3651,9 +3651,9 @@ hyperdrive@^10.8.16:
     unixify "^1.0.0"
 
 hyperswarm@^2.7.1:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/hyperswarm/-/hyperswarm-2.8.0.tgz#6e4fea30a7bab92fc2b1b8a6d492766b4c75de5b"
-  integrity sha512-B2tXr1EOGezCybSMXSojtEB5+QJJg7hUmWI0H7i0XfrQM6gDYEpV8374+Uwf3Jm6ZRXXXoj94AGRx4UJuAikaA==
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/hyperswarm/-/hyperswarm-2.9.0.tgz#97567cf2615191ae9a38643243fc6dd71b8058d3"
+  integrity sha512-do11piNLj4jhUA/6L5VgLb9QcpoNQzozQ+zqo+1/RcMMUJQCn6A340PXl5oMwFOhB6jGC7VqCjVbdOoHTK/X9Q==
   dependencies:
     "@hyperswarm/network" "^1.2.0"
     shuffled-priority-queue "^2.1.0"
