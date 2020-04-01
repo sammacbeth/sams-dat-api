@@ -2,7 +2,6 @@ import { expect } from 'chai';
 import ram = require('random-access-memory');
 import 'mocha';
 import apiFactory, { DatV1API } from '../';
-import { fail } from 'assert';
 
 describe('HyperdriveAPI', function() {
   this.timeout(10000);
@@ -23,7 +22,9 @@ describe('HyperdriveAPI', function() {
           deletedSet.add(key);
           return Promise.resolve();
         },
-        autoListen: false,
+        discoveryOpts: {
+          autoListen: false,
+        },
       },
       {
         driveOptions: {
