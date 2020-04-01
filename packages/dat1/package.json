@@ -27,7 +27,7 @@
     "@sammacbeth/dat-api-core": "^0.5.0",
     "@sammacbeth/dat-network-hyperdiscovery": "^0.5.0",
     "@sammacbeth/dat-types": "^0.5.0",
-    "hyperdrive": "9.16.0"
+    "hyperdrive": "10.8.20"
   },
   "devDependencies": {
     "@types/chai": "^4.2.5",
