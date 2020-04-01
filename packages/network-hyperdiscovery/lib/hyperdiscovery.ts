@@ -65,7 +65,7 @@ export default class HyperDiscovery<T extends IReplicable> extends EventEmitter
     }
 
     this.hyperswarm.on('connection', (connection, info) => {
-      const stream = this.disc._createReplicationStream(info.peer)
+      const stream = this.disc._createReplicationStream(info.peer || {})
       pump(connection, stream, connection);
     });
   }
