@@ -5,7 +5,7 @@ import apiFactory, { DatV1API } from '../';
 describe('HyperdriveAPI', function() {
   this.timeout(10000);
 
-  const datAddr = '41f8a987cfeba80a037e51cc8357d513b62514de36f2f9b3d3eeec7a8fb3b5a5';
+  const datAddr = '60c525b5589a5099aa3610a8ee550dcd454c3e118f7ac93b7d41b6b850272330';
   let api: DatV1API;
 
   beforeEach(() => {
@@ -26,12 +26,12 @@ describe('HyperdriveAPI', function() {
 
     await dat.ready;
     await new Promise((resolve, reject) => {
-      dat.drive.checkout(32).readdir('/', (err, files) => {
+      dat.drive.checkout(1302).readdir('/', (err, files) => {
         if (err) {
           reject(err);
           dat.close();
         } else {
-          expect(files).to.have.length(11);
+          expect(files).to.have.length(20);
           dat.close();
           resolve();
         }
