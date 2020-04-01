@@ -75,7 +75,7 @@ export default class HyperDiscovery<T extends IReplicable> extends EventEmitter
   }
 
   public add(feed: IReplicable, options: JoinSwarmOptions = {}) {
-    const { announce = false, lookup = true, upload = true, download = true } = options;
+    const { announce = true, lookup = true, upload = true, download = true } = options;
     const opts = { announce, lookup, upload, download };
     this.disc.add(feed, opts);
     this.hyperswarm.join(feed.discoveryKey, opts);
@@ -89,5 +89,6 @@ export default class HyperDiscovery<T extends IReplicable> extends EventEmitter
   public close() {
     this.disc.removeAllListeners();
     this.disc.close();
+    this.hyperswarm.destroy();
   }
 }
