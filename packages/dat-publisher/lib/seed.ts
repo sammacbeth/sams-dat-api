@@ -8,7 +8,12 @@ export default async function seed(datdir: string) {
   const address = await fs.readFile(join(datdir, 'metadata', 'key'));
   console.log(`Loading dat ${address.toString('hex')} from ${datdir}`);
   const loader = new DatV1Loader({
-    autoListen: true,
+    discoveryOpts: {
+      autoListen: false,
+    },
+    hyperswarmOpts: {
+      ephemeral: false,
+    },
     persistantStorageFactory: (_) => Promise.resolve((name) => raf(`${datdir}/${name}`)),
   });
   loader.swarm.on('connection', () => {

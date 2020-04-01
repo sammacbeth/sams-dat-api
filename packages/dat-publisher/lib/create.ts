@@ -14,7 +14,9 @@ export default async function create(pubdir: string, datDir: string) {
   }
 
   const loader = new DatV1Loader({
-    autoListen: false,
+    discoveryOpts: {
+      autoListen: false,
+    },
     persistantStorageFactory: (_) => Promise.resolve((name) => raf(`${datDir}/${name}`)),
   });
 

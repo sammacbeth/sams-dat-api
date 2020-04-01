@@ -45,7 +45,12 @@ export default async function update(
   }
 
   const loader = new DatV1Loader({
-    autoListen: false,
+    discoveryOpts: {
+      autoListen: false,
+    },
+    hyperswarmOpts: {
+      ephemeral: true,
+    },
     persistantStorageFactory: (addr) =>
       Promise.resolve((name) => {
         if (options.saveDir) {

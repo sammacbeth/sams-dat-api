@@ -1,5 +1,5 @@
 import WRTCDiscovery = require('@geut/discovery-swarm-webrtc');
-import HyperDiscovery, { DiscoveryOptions } from '@sammacbeth/dat-network-hyperdiscovery';
+import HyperDiscovery, { DiscoveryOptions, HyperswarmOpts } from '@sammacbeth/dat-network-hyperdiscovery';
 import { IReplicable } from '@sammacbeth/dat-types/lib/replicable';
 import { JoinSwarmOptions } from '@sammacbeth/dat-types/lib/swarm';
 
@@ -16,8 +16,8 @@ export type WRTCDiscoveryOptions = {
 export default class HyperWebRTC<T extends IReplicable> extends HyperDiscovery<T> {
   public wrtc: WRTCDiscovery;
 
-  constructor(discOpts?: DiscoveryOptions, wrtcOpts?: WRTCDiscoveryOptions) {
-    super(discOpts);
+  constructor(discOpts?: DiscoveryOptions, wrtcOpts?: WRTCDiscoveryOptions, hyperswarmOpts?: HyperswarmOpts) {
+    super(discOpts, hyperswarmOpts);
     this.wrtc = WRTCDiscovery({
       bootstrap: ['https://signal.dat-web.eu'],
       id: this.disc.id,

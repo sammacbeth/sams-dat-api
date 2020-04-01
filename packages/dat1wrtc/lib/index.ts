@@ -1,5 +1,5 @@
 import HyperdriveAPI, { DatLoaderBase, DatOptions, StorageOpts } from '@sammacbeth/dat-api-core';
-import { DiscoveryOptions } from '@sammacbeth/dat-network-hyperdiscovery';
+import { DiscoveryOptions, HyperswarmOpts } from '@sammacbeth/dat-network-hyperdiscovery';
 import HyperWebRTC, { WRTCDiscoveryOptions } from '@sammacbeth/dat-network-hyperwebrtc';
 import { Hyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
 import HyperdriveImpl = require('hyperdrive');
@@ -7,6 +7,7 @@ import HyperdriveImpl = require('hyperdrive');
 export type CombinedOptions = {
   hyperdiscoveryOpts?: DiscoveryOptions;
   wrtcOpts?: WRTCDiscoveryOptions;
+  hyperswarmOpts?: HyperswarmOpts;
 } & StorageOpts;
 
 /**
@@ -16,7 +17,7 @@ export class DatV1WebRTCLoader extends DatLoaderBase<Hyperdrive> {
   constructor(opts: CombinedOptions = {}) {
     super({
       hyperdriveFactory: (storage, key, driveOpts) => new HyperdriveImpl(storage, key, driveOpts),
-      swarmFactory: () => new HyperWebRTC(opts.hyperdiscoveryOpts || {}, opts.wrtcOpts || {}),
+      swarmFactory: () => new HyperWebRTC(opts.hyperdiscoveryOpts || {}, opts.wrtcOpts || {}, opts.hyperswarmOpts),
       ...opts,
     });
   }
