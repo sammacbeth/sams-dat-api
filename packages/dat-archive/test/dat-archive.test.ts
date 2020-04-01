@@ -11,6 +11,7 @@ async function expectPromiseRejected(asyncFunc) {
 }
 
 describe('DatArchive', function() {
+  this.timeout(10000);
   const testDatAddr = 'c2598003fcdbf6c3a342c228012d8489f0f07d83bb7fc7c71197482ea1013ad1';
   let api: DatV1API;
 
