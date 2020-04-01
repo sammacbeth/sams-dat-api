@@ -3665,7 +3665,7 @@ hyperdrive@^10.8.16:
     thunky "^1.0.3"
     unixify "^1.0.0"
 
-hyperswarm@^2.7.1:
+hyperswarm@^2.7.1, hyperswarm@^2.9.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/hyperswarm/-/hyperswarm-2.9.0.tgz#97567cf2615191ae9a38643243fc6dd71b8058d3"
   integrity sha512-do11piNLj4jhUA/6L5VgLb9QcpoNQzozQ+zqo+1/RcMMUJQCn6A340PXl5oMwFOhB6jGC7VqCjVbdOoHTK/X9Q==
