@@ -11,7 +11,7 @@ import apiFactory from '@sammacbeth/dat-api-v1';
 import webrtcApiFactory, { CombinedOptions } from '@sammacbeth/dat-api-v1wrtc'
 import { IDat } from '@sammacbeth/dat-types/lib/dat';
 import { StorageOpts } from '@sammacbeth/dat-api-core';
-import { DiscoveryOptions } from '@sammacbeth/dat-network-hyperdiscovery';
+import { DiscoveryOptions, HyperswarmOpts } from '@sammacbeth/dat-network-hyperdiscovery';
 import { WRTCDiscoveryOptions } from '@sammacbeth/dat-network-hyperwebrtc';
 
 const addresses = new Set<string>()
@@ -75,14 +75,22 @@ const wrtcOpts: WRTCDiscoveryOptions = {
     config: program.wrtcconf ? JSON.parse(fs.readFileSync(program.wrtcconf).toString('utf-8')) : undefined,
   }
 }
+const hyperswarmOpts: HyperswarmOpts = {
+  ephemeral: false,
+}
 
 const api = program.wrtc ?
   webrtcApiFactory({
     ...storageOpts,
     hyperdiscoveryOpts: discOpts,
     wrtcOpts,
+    hyperswarmOpts,
   }, defaultDatOpts) :
-  apiFactory({ ...storageOpts, ...discOpts }, defaultDatOpts);
+  apiFactory({
+    ...storageOpts,
+    discoveryOpts: discOpts,
+    hyperswarmOpts,
+   }, defaultDatOpts);
 
 if (program.port) {
   // force listening on specified port
