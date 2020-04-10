@@ -26,7 +26,7 @@
   "dependencies": {
     "@sammacbeth/dat-types": "^0.5.0",
     "@sammacbeth/hyperdiscovery": "^10.2.3",
-    "hyperswarm": "^2.9.0"
+    "hyperswarm": "^2.11.1"
   },
   "devDependencies": {
     "@types/chai": "^4.2.7",

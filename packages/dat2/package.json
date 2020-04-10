@@ -34,7 +34,7 @@
     "@sammacbeth/dat-api-core": "^0.5.0",
     "@sammacbeth/dat-types": "^0.5.0",
     "hyperdrive": "^10.8.16",
-    "hyperswarm": "^2.7.1",
+    "hyperswarm": "^2.11.1",
     "pump": "^3.0.0"
   },
   "devDependencies": {
