@@ -1,6 +1,6 @@
 {
   "name": "@sammacbeth/dat-network-hyperdiscovery",
-  "version": "0.5.0",
+  "version": "0.6.0-alpha.0",
   "description": "DAT Discovery network using the hyperdiscovery module",
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "",

@@ -1,6 +1,6 @@
 {
   "name": "@sammacbeth/dat-api-v1",
-  "version": "0.5.0",
+  "version": "0.6.0-alpha.0",
   "description": "DAT v1 API",
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "",
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@sammacbeth/dat-api-core": "^0.5.0",
-    "@sammacbeth/dat-network-hyperdiscovery": "^0.5.0",
+    "@sammacbeth/dat-network-hyperdiscovery": "^0.6.0-alpha.0",
     "@sammacbeth/dat-types": "^0.5.0",
     "hyperdrive": "9.16.0"
   },
