@@ -101,9 +101,9 @@ export default function createHandler<D extends IHyperdrive>(
     url: string,
     timeout: number = 30000,
   ): Promise<NodeJS.ReadableStream> {
-    const { protocol, host, pathname, version } = parseUrl(url);
-    if (protocol !== 'dat:' || !host) {
-      throw new Error('Not a dat URL');
+    const { host, pathname, version } = parseUrl(url);
+    if (!host) {
+      throw new Error(`Not a dat URL: ${url}`);
     }
     // resolve host to a dat hex address
     const address = await resolveDns(host);
