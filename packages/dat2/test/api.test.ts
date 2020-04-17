@@ -98,7 +98,7 @@ describe('HyperdriveAPI', function () {
     );
     try {
       const dat = await node.getDat(
-        '8b1c44dfb2dca5d723c79743c4807abfe8eb212b72fe7ff032a6398824f5e865',
+        'ccf6879e84bb5d5e9b134f9a43a2cca7d7b6c7b26c996de27e35756a406bcc66',
       );
       await dat.ready;
       const files = await new Promise((resolve, reject) => {
