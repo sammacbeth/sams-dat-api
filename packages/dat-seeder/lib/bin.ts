@@ -8,7 +8,8 @@ import wrtc = require('wrtc');
 
 import { join } from 'path';
 import apiFactory from '@sammacbeth/dat-api-v1';
-import webrtcApiFactory, { CombinedOptions } from '@sammacbeth/dat-api-v1wrtc'
+import webrtcApiFactory from '@sammacbeth/dat-api-v1wrtc'
+import dat2ApiFactory from '@sammacbeth/dat2-api';
 import { IDat } from '@sammacbeth/dat-types/lib/dat';
 import { StorageOpts } from '@sammacbeth/dat-api-core';
 import { DiscoveryOptions } from '@sammacbeth/dat-network-hyperdiscovery';
@@ -20,6 +21,7 @@ program
   .option('-f --file <dats>', 'File containing a list of dats to seed')
   .option('-d --cachedir <cachedir>', 'Folder to store dats', './dat')
   .option('-p --port <port>', 'Swarm listen port')
+  .option('--v2', 'Use dat2')
   .option('--wrtc', 'Discover webrtc peers')
   .option('--wrtcconf <wrtcconfig>', 'Simple peer configuration options for webrtc')
   .arguments('[addresses...]')
@@ -76,13 +78,24 @@ const wrtcOpts: WRTCDiscoveryOptions = {
   }
 }
 
-const api = program.wrtc ?
-  webrtcApiFactory({
-    ...storageOpts,
-    hyperdiscoveryOpts: discOpts,
-    wrtcOpts,
-  }, defaultDatOpts) :
-  apiFactory({ ...storageOpts, ...discOpts }, defaultDatOpts);
+function getApi() {
+  if (program.v2) {
+    return dat2ApiFactory({
+      ...storageOpts,
+      ephemeral: false,
+    }, defaultDatOpts);
+  }
+  if (program.wrtc) {
+    return webrtcApiFactory({
+      ...storageOpts,
+      hyperdiscoveryOpts: discOpts,
+      wrtcOpts,
+    }, defaultDatOpts)
+  }
+  return apiFactory({ ...storageOpts, ...discOpts }, defaultDatOpts);
+}
+
+const api = getApi();
 
 if (program.port) {
   // force listening on specified port
@@ -126,7 +139,7 @@ const tasks = new Listr([
       return new Listr([...dats.keys()].map((addr) => ({
         title: `${resolved.get(addr)} (${addr})`,
         task: async () => {
-          const dat = await api.dats.get(addr);
+          const dat = api.dats.get(addr);
           return new Promise((resolve, reject) => {
             dat.drive.download('/', (err) => {
               if (err) {

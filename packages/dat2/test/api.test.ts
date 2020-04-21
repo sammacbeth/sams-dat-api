@@ -4,7 +4,7 @@ import raf = require('random-access-file');
 import rimraf = require('rimraf');
 import apiFactory, { DatV2API } from '../';
 
-describe('HyperdriveAPI', function() {
+describe('HyperdriveAPI', function () {
   this.timeout(10000);
 
   async function testLocalSync(node1: DatV2API, node2: DatV2API) {
@@ -81,6 +81,37 @@ describe('HyperdriveAPI', function() {
       await testLocalSync(node1, node2);
     } finally {
       await new Promise((resolve) => rimraf('./tmpdats', resolve));
+    }
+  });
+
+  it('syncs with hyperdrive-daemon', async () => {
+    const node = apiFactory(
+      {
+        ephemeral: true,
+      },
+      {
+        autoSwarm: true,
+        persist: false,
+        swarmOptions: { announce: false },
+        driveOptions: { sparse: true },
+      },
+    );
+    try {
+      const dat = await node.getDat(
+        'ccf6879e84bb5d5e9b134f9a43a2cca7d7b6c7b26c996de27e35756a406bcc66',
+      );
+      await dat.ready;
+      const files = await new Promise((resolve, reject) => {
+        dat.drive.readdir('/', (err, result) => {
+          if (err) {
+            return reject(err);
+          }
+          return resolve(result);
+        });
+      });
+      expect(files).to.have.length(12);
+    } finally {
+      node.shutdown();
     }
   });
 });
