@@ -152,10 +152,10 @@
   dependencies:
     sodium-universal "^2.0.0"
 
-"@hyperswarm/network@^1.2.0":
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/@hyperswarm/network/-/network-1.3.2.tgz#807f2d3663f085e580f22378c7fef6e762258939"
-  integrity sha512-hD1x7b0mwhjPfIcjp3ZV9XhJySPmUvCKQ7VdzlgYoOfZadHk5SQl4gOzb8T/4EHTy/OqW31zCZNZGbvzjw1nkg==
+"@hyperswarm/network@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@hyperswarm/network/-/network-1.5.0.tgz#214280c98a115d38bd9bf7177271385586dba043"
+  integrity sha512-EtEGUew6+odJSMwbpzzSxtX7VXTDUQ16b/w7jl9MXegKPjQkLTVkGf18luO/sjWC8N81u5XEeabi6x4oKuP1tQ==
   dependencies:
     "@hyperswarm/discovery" "^1.6.0"
     nanoresource "^1.0.0"
@@ -3930,10 +3930,10 @@ hyperdrive@9.16.0, hyperdrive@^9.16.0:
     uint64be "^2.0.1"
     unixify "^1.0.0"
 
-hyperdrive@^10.8.20:
-  version "10.8.20"
-  resolved "https://registry.yarnpkg.com/hyperdrive/-/hyperdrive-10.8.20.tgz#9f56623232babe9f4d70b574f4641f3890a36c01"
-  integrity sha512-p4oY3zbVPKC8/Bm783qDN+zCbHWjFXUosNz32aYqvIzK99fIq66P+rbmbQeAel3gXO2YwnfWpf33yLyhD0YfXQ==
+hyperdrive@^10.9.0:
+  version "10.9.0"
+  resolved "https://registry.yarnpkg.com/hyperdrive/-/hyperdrive-10.9.0.tgz#594f9cf1572a19efc0b7041240d41c4b2668f958"
+  integrity sha512-H7QW0UPdtRKJAKDvtkUIXWOkXW2OsljBqfTYc99vFNF5/oiIH65ygfD+OAp8tPXQ2Jzn2rSbuvmIytqLkHjgpg==
   dependencies:
     byte-stream "^2.1.0"
     corestore "^5.0.0"
@@ -3961,14 +3961,14 @@ hyperlinker@^1.0.0:
   resolved "https://registry.yarnpkg.com/hyperlinker/-/hyperlinker-1.0.0.tgz#23dc9e38a206b208ee49bc2d6c8ef47027df0c0e"
   integrity sha512-Ty8UblRWFEcfSuIaajM34LdPXIhbs1ajEX/BBPv24J+enSVaEVY63xQ6lTO9VRYS5LAoghIG0IDJ+p+IPzKUQQ==
 
-hyperswarm@^2.11.2:
-  version "2.11.2"
-  resolved "https://registry.yarnpkg.com/hyperswarm/-/hyperswarm-2.11.2.tgz#91f3ed04bc2aeaf89ca3037781b3824085fb0d5a"
-  integrity sha512-iNRO2gr6VSRLszz0oDLvnSWPQ/+lO2gb3zL706BpZd7khoXB0nxKGXZKqnl9+wjlgBCHy9f+DT3L4JeuxAXMlA==
+hyperswarm@^2.13.0:
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/hyperswarm/-/hyperswarm-2.13.0.tgz#7578be90ca37cc504eff0ab539d7c3d426a5cfa3"
+  integrity sha512-w9YKJJXvvjP7K4ywCH2mf53vDhbL57fH8dxd0UJ9HzTSFqY/KNJVNRKplPn/mVscVo4tfOkjpdaHh12y9RwrxQ==
   dependencies:
-    "@hyperswarm/network" "^1.2.0"
+    "@hyperswarm/network" "^1.5.0"
     shuffled-priority-queue "^2.1.0"
-    utp-native "^2.1.3"
+    utp-native "^2.1.7"
 
 hypertrie@^4.2.2:
   version "4.7.1"
@@ -7749,7 +7749,7 @@ util-promisify@^2.1.0:
   dependencies:
     object.getownpropertydescriptors "^2.0.3"
 
-utp-native@^2.1.3:
+utp-native@^2.1.3, utp-native@^2.1.7:
   version "2.1.7"
   resolved "https://registry.yarnpkg.com/utp-native/-/utp-native-2.1.7.tgz#796f71a5ad94ebbeb316c7dd7b62317d55111b3c"
   integrity sha512-PQmXCdZOkmADtIqmhoiFEIdNlvkPouO8ktXqThFDBAt850B752bjQMF5KAJeMBJ5gzuI70ZiP9Qsr9mwCwzSyg==
