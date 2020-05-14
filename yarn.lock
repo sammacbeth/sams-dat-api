@@ -3118,6 +3118,13 @@ fd-lock@^1.0.2:
     napi-macros "^1.8.2"
     node-gyp-build "^3.8.0"
 
+fd-read-stream@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/fd-read-stream/-/fd-read-stream-1.1.0.tgz#d303ccbfee02a9a56a3493fb08bcb59691aa53b1"
+  integrity sha1-0wPMv+4CqaVqNJP7CLy1lpGqU7E=
+  dependencies:
+    readable-stream "^2.2.6"
+
 figgy-pudding@^3.4.1, figgy-pudding@^3.5.1:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/figgy-pudding/-/figgy-pudding-3.5.2.tgz#b4eee8148abb01dcf1d1ac34367d59e12fa61d6e"
@@ -3286,7 +3293,7 @@ fs-extra@^7.0.0:
     jsonfile "^4.0.0"
     universalify "^0.1.0"
 
-fs-extra@^8.0.1, fs-extra@^8.1.0:
+fs-extra@^8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-8.1.0.tgz#49d43c45a88cd9677668cb7be1b46efdb8d2e1c0"
   integrity sha512-yhlQgA6mnOJUKOsRUFsgJdQCvkKhcz8tlZG5HBQfReYZy46OwLcY+Zia0mtdHsOo9y/hP+CxMN0TU9QxoOtG4g==
@@ -3882,28 +3889,39 @@ hypercore@^8.0.0, hypercore@^8.11.0:
     fd-lock "^1.0.2"
 
 hyperdrive-daemon-client@^1.5.0:
-  version "1.11.2"
-  resolved "https://registry.yarnpkg.com/hyperdrive-daemon-client/-/hyperdrive-daemon-client-1.11.2.tgz#c30028ada6a56f981c3bd1d328b5385fe5188925"
-  integrity sha512-f1S/vl8lNo0J4hg0rrfJiMqE/CCHaHezvdT/fLkt/2fTTij18IRLLypbYn+xXQ1YbSRyTTCc5WzQ+v7apoxe+Q==
+  version "1.14.5"
+  resolved "https://registry.yarnpkg.com/hyperdrive-daemon-client/-/hyperdrive-daemon-client-1.14.5.tgz#750ae3b3c740d198edafb7d4f6e27fd682d2fc90"
+  integrity sha512-nQEwzzoU8+TE0i71TnLeufDrGy8FLDVvgfjV9K0ILhD3mQ5g5ja2XnjA1DkgACJDXGMUZu0yhE/QOvdXHmZgiQ==
   dependencies:
     "@grpc/grpc-js" "^0.5.1"
     "@oclif/command" "^1.5.19"
     "@oclif/config" "^1.14.0"
+    "@oclif/errors" "^1.2.2"
     "@oclif/plugin-autocomplete" "^0.1.5"
     "@oclif/plugin-help" "^2.2.3"
     call-me-maybe "^1.0.1"
     cli-progress "^3.4.0"
     codecs "^2.0.0"
     dat-encoding "^5.0.1"
-    fs-extra "^8.0.1"
     globby "^11.0.0"
     google-protobuf "^3.8.0"
-    hyperdrive-schemas beta
+    hyperdrive-schemas "^1.9.0"
+    last-one-wins "^1.0.4"
+    mirror-folder "^3.0.1"
     ora "^4.0.3"
+    protocol-buffers-encodings "^1.1.0"
+    pump "^3.0.0"
     pumpify "^2.0.0"
     stream-collector "^1.0.1"
     streamx "^2.6.0"
     through2-map "^3.0.0"
+
+hyperdrive-schemas@^1.9.0:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/hyperdrive-schemas/-/hyperdrive-schemas-1.9.1.tgz#9847967db9e4f5139d45af29cb9d10735135ac47"
+  integrity sha512-64lsePdat9K37mhbtj/4p6N1NxpI0fWtjtZDMbmWzU0OWHW67OZmGkS7FVnFe86bWlKwDROOitJP8b6cq8ccMA==
+  dependencies:
+    protocol-buffers-encodings "^1.1.0"
 
 hyperdrive-schemas@beta:
   version "1.8.1"
@@ -5098,6 +5116,14 @@ minizlib@^1.2.1:
   integrity sha512-6ZYMOEnmVsdCeTJVE0W9ZD+pVnE8h9Hma/iOwwRDsdQoePpoX56/8B6z3P9VNwppJuBKNRuFDRNRqRWexT9G9Q==
   dependencies:
     minipass "^2.9.0"
+
+mirror-folder@^3.0.1:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/mirror-folder/-/mirror-folder-3.1.0.tgz#e6516e31323624ac17097e6fa4b8085170e4f32c"
+  integrity sha512-OI7i/f1OjPWyloZi8kEZFSe50V9gMdMsCOzeS6DZ8OgpJP9bCDXDJRiDWYEfYNF2sCY7TBZBbLfKuEo3vohJhw==
+  dependencies:
+    fd-read-stream "^1.1.0"
+    recursive-watch "^1.1.1"
 
 mississippi@^3.0.0:
   version "3.0.0"
@@ -6393,6 +6419,13 @@ record-cache@^1.1.0:
   resolved "https://registry.yarnpkg.com/record-cache/-/record-cache-1.1.0.tgz#f8a467a691a469584b26e88d36b18afdb3932037"
   integrity sha512-u8rbtLEJV7HRacl/ZYwSBFD8NFyB3PfTTfGLP37IW3hftQCwu6z4Q2RLyxo1YJUNRTEzJfpLpGwVuEYdaIkG9Q==
 
+recursive-watch@^1.1.1:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/recursive-watch/-/recursive-watch-1.1.4.tgz#7a340f860dd715836a592f008cceba5a1dd0b734"
+  integrity sha512-fWejAmdLi7B/jipBUjTLnqId+PK+573fbGNbdaNA/AiAnQAx6OYOLCGWRs0W5+PyM1rLzZSWK2f40QpHSR49PQ==
+  dependencies:
+    ttl "^1.3.0"
+
 redent@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/redent/-/redent-1.0.0.tgz#cf916ab1fd5f1f16dfb20822dd6ec7f730c2afde"
@@ -7557,6 +7590,11 @@ tsutils@^2.29.0:
   integrity sha512-g5JVHCIJwzfISaXpXE1qvNalca5Jwob6FjI4AoPlqMusJ6ftFE7IkkFoMhVLRgK+4Kx3gkzb8UZK5t5yTTvEmA==
   dependencies:
     tslib "^1.8.1"
+
+ttl@^1.3.0:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/ttl/-/ttl-1.3.1.tgz#d8fa510bedb6a956d85b60ec56a57339ae0d5b2c"
+  integrity sha512-+bGy9iDAqg3WSfc2ZrprToSPJhZjqy7vUv9wupQzsiv+BVPVx1T2a6G4T0290SpQj+56Toaw9BiLO5j5Bd7QzA==
 
 tunnel-agent@^0.6.0:
   version "0.6.0"
