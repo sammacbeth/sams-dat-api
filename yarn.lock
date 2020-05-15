@@ -2334,19 +2334,19 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
 
-corestore@^5.0.0:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/corestore/-/corestore-5.1.1.tgz#859ab7275ebd8e9654ab66b150f8fe97d8aaddc5"
-  integrity sha512-rJOJTOl0yZlmh9mufcumSi7f4t9/GXdiq/ecV09xNOedV1l7T/3DwHLiVgCDnwgcugcNUTFcBsEQNJy4kmu+Dw==
+corestore@^5.0.0, corestore@^5.3.2:
+  version "5.3.2"
+  resolved "https://registry.yarnpkg.com/corestore/-/corestore-5.3.2.tgz#b0cc9719b14198526b69cdb414e0f424f5cfd825"
+  integrity sha512-9ciplR9Nx+B0tisvk9Rj8MlUeKnwoApA5d/sHt89xoEULfFnijK/buWl38qTgbEvTLsf3XGPW0oaqTSAXBs4gQ==
   dependencies:
     call-me-maybe "^1.0.1"
     dat-encoding "^5.0.1"
     derive-key "^1.0.0"
     derived-key-storage "^2.1.0"
     fd-lock "^1.0.2"
-    hypercore "^8.0.0"
-    hypercore-crypto "^1.0.0"
-    hypercore-protocol "^7.6.0"
+    hypercore "^9.0.0"
+    hypercore-crypto "^2.0.0"
+    hypercore-protocol "^8.0.0"
     lru "^3.1.0"
     nanoguard "^1.3.0"
     thunky "^1.1.0"
@@ -3722,6 +3722,14 @@ hmac-blake2b@^0.2.0:
     nanoassert "^1.1.0"
     sodium-universal "^2.0.0"
 
+hmac-blake2b@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/hmac-blake2b/-/hmac-blake2b-1.0.0.tgz#5cb18da6506d012658676a08a04b62fbad6e2601"
+  integrity sha512-sOdcBvyOQPHYjTOVmE4y1C8SlZDRJmKkAgWMFjoX6URTk7mbP35+QLzE4ZwfcScnP3r3NB3yV0vqJaofrWCMMQ==
+  dependencies:
+    nanoassert "^1.1.0"
+    sodium-native "^3.1.1"
+
 hosted-git-info@^2.1.4, hosted-git-info@^2.7.1:
   version "2.8.8"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.8.tgz#7539bd4bc1e0e0a895815a2e0262420b12858488"
@@ -3786,6 +3794,15 @@ hypercore-crypto@^1.0.0:
     sodium-universal "^2.0.0"
     uint64be "^2.0.2"
 
+hypercore-crypto@^2.0.0:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/hypercore-crypto/-/hypercore-crypto-2.0.2.tgz#4af225622075d34fa7611f0c3cf866d7b1c82e84"
+  integrity sha512-sCxubuIEjKoFInU3ZE1k3M6wP5uIUT7WZPWkIRBjwQI1L4P3MLISO0tb1imWs0Gwd7siWutgn/yAky75Co99XA==
+  dependencies:
+    sodium-javascript "^0.5.6"
+    sodium-native "^3.1.1"
+    uint64be "^3.0.0"
+
 hypercore-protocol@^6.5.0, hypercore-protocol@^6.9.0:
   version "6.12.0"
   resolved "https://registry.yarnpkg.com/hypercore-protocol/-/hypercore-protocol-6.12.0.tgz#0fafa7c047a7e4c35b2d77639e2489f60d7b1a0d"
@@ -3800,7 +3817,7 @@ hypercore-protocol@^6.5.0, hypercore-protocol@^6.9.0:
     sorted-indexof "^1.0.0"
     varint "^5.0.0"
 
-hypercore-protocol@^7.2.0, hypercore-protocol@^7.6.0, hypercore-protocol@^7.9.0:
+hypercore-protocol@^7.9.0:
   version "7.10.0"
   resolved "https://registry.yarnpkg.com/hypercore-protocol/-/hypercore-protocol-7.10.0.tgz#34858414aae5cd8dfbf1c3bb77cc723a67e4d3f1"
   integrity sha512-9p+Mm8yTp8pW3EURSSQYSqEcDOWW1Fyg/Pqfxr1WYnWAvotuqPq2lIBSIuUOb6AIvHISuCKRqLxSLfJkvIWZ7g==
@@ -3812,6 +3829,21 @@ hypercore-protocol@^7.2.0, hypercore-protocol@^7.6.0, hypercore-protocol@^7.9.0:
     nanoguard "^1.2.1"
     pretty-hash "^1.0.1"
     simple-hypercore-protocol "^1.4.0"
+    streamx "^2.1.0"
+    timeout-refresh "^1.0.0"
+
+hypercore-protocol@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/hypercore-protocol/-/hypercore-protocol-8.0.0.tgz#7d2e309faa095d5aceff09c8f70b63808e680ddd"
+  integrity sha512-KvB20YOd1LhrTzDt6gvN0CjOwbjy23oUWbXRo7smWAxwd3P61y5cQQEbTbXRLDX847jR4uNiyfIDIhMT9QStgw==
+  dependencies:
+    abstract-extension "^3.0.1"
+    debug "^4.1.1"
+    hypercore-crypto "^2.0.0"
+    inspect-custom-symbol "^1.1.0"
+    nanoguard "^1.2.1"
+    pretty-hash "^1.0.1"
+    simple-hypercore-protocol "^2.0.0"
     streamx "^2.1.0"
     timeout-refresh "^1.0.0"
 
@@ -3847,7 +3879,7 @@ hypercore@^7.5.0:
   optionalDependencies:
     fd-lock "^1.0.2"
 
-hypercore@^8.0.0, hypercore@^8.11.0:
+hypercore@^8.11.0:
   version "8.12.0"
   resolved "https://registry.yarnpkg.com/hypercore/-/hypercore-8.12.0.tgz#2e795f18201df2076045a0665c3dd1f2f22ed6b7"
   integrity sha512-sujt1JtufgvZDVhazrfEmTLAfIAVtF7eMk5aIgak057O6zDil8JkYhtcZcJHy8DquqX3n0chMLloHiJI8yeHlg==
@@ -3881,6 +3913,39 @@ hypercore@^8.0.0, hypercore@^8.11.0:
   optionalDependencies:
     fd-lock "^1.0.2"
 
+hypercore@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/hypercore/-/hypercore-9.0.0.tgz#ee32045d7c770bcc12d81d7c4667db6fb11c2250"
+  integrity sha512-qgXA4EN8CaXufUDlPXUKdeZs3PDmynVdRTdzeS3nLooc59FbXSGM7k8vkymJvYnXA6GtVOFVCjOnfDF9dWXoYQ==
+  dependencies:
+    abstract-extension "^3.0.1"
+    atomic-batcher "^1.0.2"
+    bitfield-rle "^2.2.1"
+    bulk-write-stream "^1.1.3"
+    codecs "^2.0.0"
+    fast-bitfield "^1.2.2"
+    flat-tree "^1.6.0"
+    from2 "^2.3.0"
+    hypercore-cache "^1.0.1"
+    hypercore-crypto "^2.0.0"
+    hypercore-protocol "^8.0.0"
+    inherits "^2.0.3"
+    inspect-custom-symbol "^1.1.0"
+    last-one-wins "^1.0.4"
+    memory-pager "^1.0.2"
+    merkle-tree-stream "^3.0.3"
+    nanoguard "^1.2.0"
+    nanoresource "^1.3.0"
+    pretty-hash "^1.0.1"
+    random-access-file "^2.1.0"
+    sparse-bitfield "^3.0.0"
+    timeout-refresh "^1.0.1"
+    uint64be "^2.0.1"
+    unordered-array-remove "^1.0.2"
+    unordered-set "^2.0.0"
+  optionalDependencies:
+    fd-lock "^1.0.2"
+
 hyperdrive-daemon-client@^1.5.0:
   version "1.11.2"
   resolved "https://registry.yarnpkg.com/hyperdrive-daemon-client/-/hyperdrive-daemon-client-1.11.2.tgz#c30028ada6a56f981c3bd1d328b5385fe5188925"
@@ -3904,6 +3969,13 @@ hyperdrive-daemon-client@^1.5.0:
     stream-collector "^1.0.1"
     streamx "^2.6.0"
     through2-map "^3.0.0"
+
+hyperdrive-schemas@^1.9.0:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/hyperdrive-schemas/-/hyperdrive-schemas-1.9.1.tgz#9847967db9e4f5139d45af29cb9d10735135ac47"
+  integrity sha512-64lsePdat9K37mhbtj/4p6N1NxpI0fWtjtZDMbmWzU0OWHW67OZmGkS7FVnFe86bWlKwDROOitJP8b6cq8ccMA==
+  dependencies:
+    protocol-buffers-encodings "^1.1.0"
 
 hyperdrive-schemas@beta:
   version "1.8.1"
@@ -3930,10 +4002,10 @@ hyperdrive@9.16.0, hyperdrive@^9.16.0:
     uint64be "^2.0.1"
     unixify "^1.0.0"
 
-hyperdrive@^10.9.0:
-  version "10.9.0"
-  resolved "https://registry.yarnpkg.com/hyperdrive/-/hyperdrive-10.9.0.tgz#594f9cf1572a19efc0b7041240d41c4b2668f958"
-  integrity sha512-H7QW0UPdtRKJAKDvtkUIXWOkXW2OsljBqfTYc99vFNF5/oiIH65ygfD+OAp8tPXQ2Jzn2rSbuvmIytqLkHjgpg==
+hyperdrive@^10.10.3:
+  version "10.10.3"
+  resolved "https://registry.yarnpkg.com/hyperdrive/-/hyperdrive-10.10.3.tgz#9934d7f87d31cc5fd7de0a43d6c2b72903b1ea9d"
+  integrity sha512-mCrDwTU+tH7IAOdjEcN8Qx+Q6LAXxzB/0C0Rt9R478oSfBAIt39cBo24ITM1oqJ5mWFD6Zv0qfduN7xVDylJdg==
   dependencies:
     byte-stream "^2.1.0"
     corestore "^5.0.0"
@@ -3941,30 +4013,30 @@ hyperdrive@^10.9.0:
     duplexify "^3.7.1"
     filesystem-constants "^1.0.0"
     hypercore-byte-stream "^1.0.2"
-    hypercore-protocol "^7.2.0"
-    hyperdrive-schemas beta
+    hypercore-protocol "^8.0.0"
+    hyperdrive-schemas "^1.9.0"
     mountable-hypertrie "^2.4.0"
     mutexify "^1.2.0"
     nanoiterator "^1.2.0"
+    nanoresource "^1.3.0"
     pump "^3.0.0"
     pumpify "^1.5.1"
-    sodium-universal "^2.0.0"
-    stackable-nanoiterator "^1.1.1"
     stream-collector "^1.0.1"
     through2 "^3.0.0"
     thunky "^1.0.3"
     thunky-map "^1.0.0"
     unixify "^1.0.0"
+    varint "^5.0.0"
 
 hyperlinker@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/hyperlinker/-/hyperlinker-1.0.0.tgz#23dc9e38a206b208ee49bc2d6c8ef47027df0c0e"
   integrity sha512-Ty8UblRWFEcfSuIaajM34LdPXIhbs1ajEX/BBPv24J+enSVaEVY63xQ6lTO9VRYS5LAoghIG0IDJ+p+IPzKUQQ==
 
-hyperswarm@^2.13.0:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/hyperswarm/-/hyperswarm-2.13.0.tgz#7578be90ca37cc504eff0ab539d7c3d426a5cfa3"
-  integrity sha512-w9YKJJXvvjP7K4ywCH2mf53vDhbL57fH8dxd0UJ9HzTSFqY/KNJVNRKplPn/mVscVo4tfOkjpdaHh12y9RwrxQ==
+hyperswarm@^2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/hyperswarm/-/hyperswarm-2.14.0.tgz#325357c78cabec76e3e0bb109470bf760c6fafe2"
+  integrity sha512-vJI6vVH0/PjlCVdRJLXr1an0guRSYRE1uE5wnEUmgjp4erYBIOALn+0YR/W95fTCZfp9Y+YA2Ku9npo87/tqqg==
   dependencies:
     "@hyperswarm/network" "^1.5.0"
     shuffled-priority-queue "^2.1.0"
@@ -5486,6 +5558,16 @@ noise-protocol@^1.0.0:
     nanoassert "^1.1.0"
     sodium-native "^2.2.1"
 
+noise-protocol@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/noise-protocol/-/noise-protocol-2.0.0.tgz#a9544b96dcf41b9c21eb68100f1a5bb0b2657c90"
+  integrity sha512-12WcN79T+5At0ja5gJIKHnfJ8wTZj5zY5c5P2pcG0ci34tGqLCCAv31eHcwMS9UfS9Z6MpDCLSBUU4tMdFTudQ==
+  dependencies:
+    clone "^2.1.2"
+    hmac-blake2b "^1.0.0"
+    nanoassert "^2.0.0"
+    sodium-native "^3.1.1"
+
 nopt@^4.0.1:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/nopt/-/nopt-4.0.3.tgz#a375cad9d02fd921278d954c2254d5aa57e15e48"
@@ -6712,6 +6794,14 @@ simple-handshake@^1.3.1:
     nanoassert "^1.1.0"
     noise-protocol "^1.0.0"
 
+simple-handshake@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/simple-handshake/-/simple-handshake-2.0.0.tgz#ad6bf4e3b4b2929c2caeb6ca7b5d0e0f69ffece6"
+  integrity sha512-9f832LFISpuUaL5yG9HccJ/wW8BlqqANC8DGcNTcKStG2Yjp6kaoq8IdEtUXbRe0sD+qoxAiluDiurmGHNBLjA==
+  dependencies:
+    nanoassert "^2.0.0"
+    noise-protocol "^2.0.0"
+
 simple-hypercore-protocol@^1.4.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/simple-hypercore-protocol/-/simple-hypercore-protocol-1.5.0.tgz#8e03961f015b67e138d42e84ef12d4f20e702d37"
@@ -6722,6 +6812,18 @@ simple-hypercore-protocol@^1.4.0:
     simple-message-channels "^1.2.1"
     sodium-universal "^2.0.0"
     varint "^5.0.0"
+
+simple-hypercore-protocol@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/simple-hypercore-protocol/-/simple-hypercore-protocol-2.0.0.tgz#3753d6f80bc7bcaace16dbfc273ef8beb587f44b"
+  integrity sha512-aK3CNRKCo5DQz5muW2jlfOytaYEsunNt3FvdxGCKoHzIpYB4QTxlDA+xn5q1sDIlUCZR3RTtGD+0RmU0U1E/Og==
+  dependencies:
+    hypercore-crypto "^2.0.0"
+    protocol-buffers-encodings "^1.1.0"
+    simple-handshake "^2.0.0"
+    simple-message-channels "^1.2.1"
+    varint "^5.0.0"
+    xsalsa20-universal "^1.0.0"
 
 simple-message-channels@^1.2.1:
   version "1.2.1"
@@ -6900,7 +7002,7 @@ socks@~2.3.2:
     ip "1.1.5"
     smart-buffer "^4.1.0"
 
-sodium-javascript@~0.5.0:
+sodium-javascript@^0.5.6, sodium-javascript@~0.5.0:
   version "0.5.6"
   resolved "https://registry.yarnpkg.com/sodium-javascript/-/sodium-javascript-0.5.6.tgz#748680f9bf0e33433d78660543afaeeec28ea199"
   integrity sha512-Uk+JpqHEbzsEmiMxwL7TB/ndhMEpc52KdReYXXSIX2oRFPaI7ZDlDImF8KbkFWbYl9BJRtc82AZ/kNf4/0n9KA==
@@ -6918,6 +7020,14 @@ sodium-native@^2.0.0, sodium-native@^2.2.1:
     ini "^1.3.5"
     nan "^2.14.0"
     node-gyp-build "^4.1.0"
+
+sodium-native@^3.0.1, sodium-native@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/sodium-native/-/sodium-native-3.1.1.tgz#268eb00cd438b21c7dac20cb5b50819ad2813ec3"
+  integrity sha512-XA85yUIW28Oeba0knYdLOobNEI4ACpyayjaG1eOwazcCtcIuB5xViPwV2bb3bc2ppUcX+dLTqxxj7cQBZNEpXw==
+  dependencies:
+    ini "^1.3.5"
+    node-gyp-build "^4.2.0"
 
 sodium-universal@^2.0.0:
   version "2.0.0"
@@ -7059,11 +7169,6 @@ ssri@^6.0.0, ssri@^6.0.1:
   integrity sha512-3Wge10hNcT1Kur4PDFwEieXSCMCJs/7WvSACcrMYrNp+b8kDL1/0wJch5Ni2WrtwEa2IO8OsVfeKIciKCDx/QA==
   dependencies:
     figgy-pudding "^3.5.1"
-
-stackable-nanoiterator@^1.1.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/stackable-nanoiterator/-/stackable-nanoiterator-1.2.1.tgz#387ffd54b379809c853f71112198c7cc26eb6af5"
-  integrity sha512-gHGbcKIZnju8QZdcAbJnIP3DPuXOxHEHdyJG8vZvRR+N2n/GqrFM4VpUnP7cBmgYDbOkPeeqduMr0xVCfuDWOg==
 
 static-extend@^0.1.1:
   version "0.1.2"
@@ -7618,6 +7723,11 @@ uint64be@^2.0.1, uint64be@^2.0.2:
   dependencies:
     buffer-alloc "^1.1.0"
 
+uint64be@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/uint64be/-/uint64be-3.0.0.tgz#2e9037689817b3714fb86034e05c25f5c3141604"
+  integrity sha512-mliiCSrsE29aNBI7O9W5gGv6WmA9kBR8PtTt6Apaxns076IRdYrrtFhXHEWMj5CSum3U7cv7/pi4xmi4XsIOqg==
+
 umask@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/umask/-/umask-1.1.0.tgz#f29cebf01df517912bb58ff9c4e50fde8e33320d"
@@ -7990,7 +8100,15 @@ xor-distance@^2.0.0:
   resolved "https://registry.yarnpkg.com/xor-distance/-/xor-distance-2.0.0.tgz#cad3920d3a1e3d73eeedc61a554e51972dae0798"
   integrity sha512-AsAqZfPAuWx7qB/0kyRDUEvoU3QKsHWzHU9smFlkaiprEpGfJ/NBbLze2Uq0rdkxCxkNM9uOLvz/KoNBCbZiLQ==
 
-xsalsa20@^1.0.0:
+xsalsa20-universal@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/xsalsa20-universal/-/xsalsa20-universal-1.0.0.tgz#aece5ca2a121c5f1e667dbb8e7dddb05ffb599ea"
+  integrity sha512-0M/X61wiKKAGAMqsxEyJ0kY6NtjpcMiKinYSSsl4K7ypgvqXDTMwQK6hxnYE1s1Jm7h6YKcN8obDUg2CC+jVGA==
+  dependencies:
+    sodium-native "^3.0.1"
+    xsalsa20 "^1.1.0"
+
+xsalsa20@^1.0.0, xsalsa20@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/xsalsa20/-/xsalsa20-1.1.0.tgz#bee27174af1913aaec0fe677d8ba161ec12bf87d"
   integrity sha512-zd3ytX2cm+tcSndRU+krm0eL4TMMpZE7evs5hLRAoOy6gviqLfe3qOlkjF3i5SeAkQUCeJk0lJZrEU56kHRfWw==
