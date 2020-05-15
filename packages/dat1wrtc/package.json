@@ -28,7 +28,7 @@
     "@sammacbeth/dat-network-hyperdiscovery": "^0.6.0",
     "@sammacbeth/dat-network-hyperwebrtc": "^0.6.0",
     "@sammacbeth/dat-types": "^0.6.0",
-    "hyperdrive": "^9.16.0"
+    "hyperdrive": "^10.10.3"
   },
   "devDependencies": {
     "@types/chai": "^4.2.5",
