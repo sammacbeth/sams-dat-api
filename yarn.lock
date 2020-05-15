@@ -3801,7 +3801,7 @@ hypercore-crypto@^1.0.0:
     sodium-universal "^2.0.0"
     uint64be "^2.0.2"
 
-hypercore-crypto@^2.0.0:
+hypercore-crypto@^2.0.0, hypercore-crypto@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/hypercore-crypto/-/hypercore-crypto-2.0.2.tgz#4af225622075d34fa7611f0c3cf866d7b1c82e84"
   integrity sha512-sCxubuIEjKoFInU3ZE1k3M6wP5uIUT7WZPWkIRBjwQI1L4P3MLISO0tb1imWs0Gwd7siWutgn/yAky75Co99XA==
