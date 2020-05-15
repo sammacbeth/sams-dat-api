@@ -98,7 +98,7 @@ describe('HyperdriveAPI', function () {
     );
     try {
       const dat = await node.getDat(
-        'ccf6879e84bb5d5e9b134f9a43a2cca7d7b6c7b26c996de27e35756a406bcc66',
+        'a8109b835d27c30ad4d55b321dd7c4032c037eaf1f6f2b00de7b03b5a6cc504a',
       );
       await dat.ready;
       const files = await new Promise((resolve, reject) => {
@@ -109,7 +109,7 @@ describe('HyperdriveAPI', function () {
           return resolve(result);
         });
       });
-      expect(files).to.have.length(12);
+      expect(files).to.have.length(8);
     } finally {
       node.shutdown();
     }
