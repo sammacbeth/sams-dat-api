@@ -1,6 +1,7 @@
 import HyperdriveAPI, { LoadOptions, SwarmOptions } from '@sammacbeth/dat-api-core/';
 import { IHyperdrive } from '@sammacbeth/dat-types/lib/hyperdrive';
 import { Stats } from 'fs';
+import { Readable } from 'stream';
 import parseUrl = require('parse-dat-url');
 import { join as joinPaths } from 'path';
 import pda = require('pauls-dat-api');
@@ -100,7 +101,7 @@ export default function createHandler<D extends IHyperdrive>(
   return async function handleRequest(
     url: string,
     timeout: number = 30000,
-  ): Promise<NodeJS.ReadableStream> {
+  ): Promise<Readable> {
     const { host, pathname, version } = parseUrl(url);
     if (!host) {
       throw new Error(`Not a dat URL: ${url}`);
