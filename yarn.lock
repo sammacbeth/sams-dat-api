@@ -3802,9 +3802,9 @@ hypercore-crypto@^1.0.0:
     uint64be "^2.0.2"
 
 hypercore-crypto@^2.0.0, hypercore-crypto@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/hypercore-crypto/-/hypercore-crypto-2.0.2.tgz#4af225622075d34fa7611f0c3cf866d7b1c82e84"
-  integrity sha512-sCxubuIEjKoFInU3ZE1k3M6wP5uIUT7WZPWkIRBjwQI1L4P3MLISO0tb1imWs0Gwd7siWutgn/yAky75Co99XA==
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/hypercore-crypto/-/hypercore-crypto-2.1.0.tgz#8270002eb12b6b1ee11a59f6382a677179ba1323"
+  integrity sha512-zFwn1vBLUTABZoy9pYJBXYVHRuKSGO5qj1K2rLnEou8zuI9MG73e9hi31PsH4r0oTKMYnhricknTcon+xhW1EA==
   dependencies:
     sodium-javascript "^0.5.6"
     sodium-native "^3.1.1"
