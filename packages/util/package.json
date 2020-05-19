@@ -1,6 +1,6 @@
 {
   "name": "@sammacbeth/dat-util",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "Utility functions for working with DAT",
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "https://github.com/sammacbeth/sams-dat-api#readme",
@@ -27,7 +27,7 @@
     "lint": "tslint --config ../../tslint.json --project tsconfig.json"
   },
   "dependencies": {
-    "@sammacbeth/dat-types": "^0.6.1",
+    "@sammacbeth/dat-types": "^0.7.0",
     "rimraf": "^3.0.0"
   },
   "devDependencies": {

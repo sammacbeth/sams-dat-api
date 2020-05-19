@@ -1,6 +1,6 @@
 {
   "name": "@sammacbeth/dat-publisher",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "CLI tools for publishing static sites to Dat",
   "author": "Sam Macbeth <sam@macbeth.cc>",
   "homepage": "https://github.com/sammacbeth/sams-dat-api#readme",
@@ -36,8 +36,8 @@
     "typescript": "^3.7.2"
   },
   "dependencies": {
-    "@sammacbeth/dat-api-v1": "^0.6.1",
-    "@sammacbeth/dat-util": "^0.6.1",
+    "@sammacbeth/dat-api-v1": "^0.7.0",
+    "@sammacbeth/dat-util": "^0.7.0",
     "@types/fs-extra": "^8.0.1",
     "@types/node": "^14.0.1",
     "commander": "^4.1.0",
