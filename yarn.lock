@@ -114,10 +114,10 @@
     socket.io "^2.2.0"
     socket.io-client "^2.2.0"
 
-"@grpc/grpc-js@^0.5.1":
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-0.5.4.tgz#20ee7880e69805cbc63a1c54a3af02cc6475c850"
-  integrity sha512-aY4fTCz7jq7oKFmfAeZVqGzMCR5I9NLdY9E2fJ70QtGXwlJnTaN6cnbRmCk23/aKPx9UHqOtk2lyjpN6LbAaxw==
+"@grpc/grpc-js@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.0.3.tgz#7fa2ba293ccc1e91b24074c2628c8c68336e18c4"
+  integrity sha512-JKV3f5Bv2TZxK6eJSB9EarsZrnLxrvcFNwI9goq0YRXa3S6NNoCSnI3cG3lkXVIJ03Wng1WXe76kc2JQtRe7AQ==
   dependencies:
     semver "^6.2.0"
 
@@ -3954,11 +3954,11 @@ hypercore@^9.0.0:
     fd-lock "^1.0.2"
 
 hyperdrive-daemon-client@^1.5.0:
-  version "1.14.7"
-  resolved "https://registry.yarnpkg.com/hyperdrive-daemon-client/-/hyperdrive-daemon-client-1.14.7.tgz#89a785a8b0cc52b9618968832cf0ef1e9ab46b87"
-  integrity sha512-ZerCoYBNE865i6uZ0ITVNMOvlV/5uAVkoxaPgTWLb/N7D0i7Rz/wJr7HqOr2NztCaE/fpBbe12IDaOkqp0G+TQ==
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/hyperdrive-daemon-client/-/hyperdrive-daemon-client-1.15.0.tgz#053abe2829792bd4bc57a7cc54c40a2bd3230b66"
+  integrity sha512-nxt+UNM1M0xrIi4FNy/F72AAvk+eny6OtljMKq6mPB5c6p/7uhxUs4BGHESBhYU63Q59XXUiBqDdZrgY9CRtvw==
   dependencies:
-    "@grpc/grpc-js" "^0.5.1"
+    "@grpc/grpc-js" "^1.0.3"
     "@oclif/command" "^1.5.19"
     "@oclif/config" "^1.14.0"
     "@oclif/errors" "^1.2.2"
