@@ -2334,6 +2334,18 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
 
+corestore-swarm-networking@^5.4.2:
+  version "5.4.2"
+  resolved "https://registry.yarnpkg.com/corestore-swarm-networking/-/corestore-swarm-networking-5.4.2.tgz#bfce6a7dede51f5c5d4ba3613b4244ca02b3bb38"
+  integrity sha512-6Iu4o7eXSW6PnR8FU4k2ttKLG9UpV5pJVevGStZeWZp2jZSqnCW4I7HykiKmyzHoB3Ug5Q7xwySFwoGl9pFuxg==
+  dependencies:
+    dat-encoding "^5.0.1"
+    debug "^4.1.1"
+    end-of-stream "^1.4.4"
+    hypercore-protocol "^8.0.0"
+    hyperswarm "^2.10.0"
+    pump "^3.0.0"
+
 corestore@^5.0.0, corestore@^5.3.2:
   version "5.3.2"
   resolved "https://registry.yarnpkg.com/corestore/-/corestore-5.3.2.tgz#b0cc9719b14198526b69cdb414e0f424f5cfd825"
@@ -4039,7 +4051,7 @@ hyperlinker@^1.0.0:
   resolved "https://registry.yarnpkg.com/hyperlinker/-/hyperlinker-1.0.0.tgz#23dc9e38a206b208ee49bc2d6c8ef47027df0c0e"
   integrity sha512-Ty8UblRWFEcfSuIaajM34LdPXIhbs1ajEX/BBPv24J+enSVaEVY63xQ6lTO9VRYS5LAoghIG0IDJ+p+IPzKUQQ==
 
-hyperswarm@^2.14.0:
+hyperswarm@^2.10.0:
   version "2.14.0"
   resolved "https://registry.yarnpkg.com/hyperswarm/-/hyperswarm-2.14.0.tgz#325357c78cabec76e3e0bb109470bf760c6fafe2"
   integrity sha512-vJI6vVH0/PjlCVdRJLXr1an0guRSYRE1uE5wnEUmgjp4erYBIOALn+0YR/W95fTCZfp9Y+YA2Ku9npo87/tqqg==
