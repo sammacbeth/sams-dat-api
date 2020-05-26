@@ -34,10 +34,8 @@
     "@sammacbeth/dat-api-core": "^0.7.0",
     "@sammacbeth/dat-types": "^0.7.0",
     "corestore": "^5.3.2",
-    "hypercore-protocol": "^8.0.0",
-    "hyperdrive": "^10.10.3",
-    "hyperswarm": "^2.14.0",
-    "pump": "^3.0.0"
+    "corestore-swarm-networking": "^5.4.2",
+    "hyperdrive": "^10.10.3"
   },
   "devDependencies": {
     "@types/chai": "^4.2.7",
