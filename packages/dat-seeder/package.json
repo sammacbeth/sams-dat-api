@@ -1,6 +1,6 @@
 {
   "name": "@sammacbeth/dat-seeder",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Seed multiple dats",
   "author": "Sam Macbeth <sam@macbeth.cc>",
   "homepage": "https://github.com/sammacbeth/sams-dat-api#readme",
@@ -38,7 +38,7 @@
   "dependencies": {
     "@sammacbeth/dat-api-v1": "^0.8.0",
     "@sammacbeth/dat-api-v1wrtc": "^0.8.0",
-    "@sammacbeth/dat2-api": "^0.8.0",
+    "@sammacbeth/dat2-api": "^0.8.1",
     "@types/node": "^14.0.1",
     "commander": "^4.1.0",
     "dat-dns": "^4.1.2",
