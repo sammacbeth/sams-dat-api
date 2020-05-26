@@ -1,6 +1,6 @@
 {
   "name": "@sammacbeth/dat-archive",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "DatArchive high level Hyperdrive API",
   "author": "Sam Macbeth <sam@cliqz.com>",
   "homepage": "https://github.com/sammacbeth/sams-dat-api#readme",
@@ -24,9 +24,9 @@
     "lint": "tslint --config ../../tslint.json --project tsconfig.json"
   },
   "dependencies": {
-    "@sammacbeth/dat-api-core": "^0.7.0",
+    "@sammacbeth/dat-api-core": "^0.8.0",
     "@sammacbeth/dat-node": "^1.0.4",
-    "@sammacbeth/dat-types": "^0.7.0",
+    "@sammacbeth/dat-types": "^0.8.0",
     "pauls-dat-api": "^8.1.0"
   },
   "devDependencies": {
