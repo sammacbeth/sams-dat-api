@@ -15,6 +15,7 @@ export type HyperswarmOpts = {
   maxClientSockets?: number;
   maxPeers?: number;
   announceLocalAddress?: boolean;
+  storeName?: string;
 };
 
 export type CoreStoreOpts = {
@@ -66,7 +67,7 @@ class CorestoreLoader extends DatLoaderBase<Hyperdrive10> {
     });
     this.ready = new Promise(async (resolve) => {
       if (opts.persistantStorageFactory) {
-        const storage = await opts.persistantStorageFactory('default');
+        const storage = await opts.persistantStorageFactory(opts.storeName || '');
         this.corestore = new Corestore(storage, opts);
       } else {
         this.corestore = new Corestore(ram, opts);
