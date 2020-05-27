@@ -2335,9 +2335,9 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
 
 corestore-swarm-networking@^5.4.2:
-  version "5.4.2"
-  resolved "https://registry.yarnpkg.com/corestore-swarm-networking/-/corestore-swarm-networking-5.4.2.tgz#bfce6a7dede51f5c5d4ba3613b4244ca02b3bb38"
-  integrity sha512-6Iu4o7eXSW6PnR8FU4k2ttKLG9UpV5pJVevGStZeWZp2jZSqnCW4I7HykiKmyzHoB3Ug5Q7xwySFwoGl9pFuxg==
+  version "5.4.3"
+  resolved "https://registry.yarnpkg.com/corestore-swarm-networking/-/corestore-swarm-networking-5.4.3.tgz#0e80ffd66c50a5132a94f085079ca714958b1029"
+  integrity sha512-mWys5qYKDb8jLZ4+rtZLOS0YSb1j+I8uISxbZltHNY1B+/QEy51VguKsKymElxglTfpcnbVGfjkuiMUi0GctDQ==
   dependencies:
     dat-encoding "^5.0.1"
     debug "^4.1.1"
