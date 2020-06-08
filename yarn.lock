@@ -3966,9 +3966,9 @@ hypercore@^9.0.0:
     fd-lock "^1.0.2"
 
 hyperdrive-daemon-client@^1.5.0:
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/hyperdrive-daemon-client/-/hyperdrive-daemon-client-1.15.1.tgz#a0b1838b90ceac5a5acf21eb7c04f764075fc063"
-  integrity sha512-5kz69Vn0vfqZBectSTVw0zTQQunV5zCK4htdKwGDk1LP9MuGoyXWuXV2O1tE5+YhOmILspTv2ciJ4rKJZqzo+g==
+  version "1.15.5"
+  resolved "https://registry.yarnpkg.com/hyperdrive-daemon-client/-/hyperdrive-daemon-client-1.15.5.tgz#075b8fe628ab7c5fc5cded5d8f160dcc950950f5"
+  integrity sha512-NsevE93A9zqTBJ3SJ1GDo68ll5L5FXTjislbVDPoF6hWo/wtWlDz4b2yRDYIyPwvzdgmM2G3dcojShWGZ+zgtQ==
   dependencies:
     "@grpc/grpc-js" "^0.5.1"
     "@oclif/command" "^1.5.19"
@@ -3991,7 +3991,6 @@ hyperdrive-daemon-client@^1.5.0:
     pumpify "^2.0.0"
     stream-collector "^1.0.1"
     streamx "^2.6.0"
-    through2-map "^3.0.0"
 
 hyperdrive-schemas@^1.9.0:
   version "1.9.1"
@@ -7507,15 +7506,7 @@ thenify-all@^1.0.0:
   dependencies:
     any-promise "^1.0.0"
 
-through2-map@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/through2-map/-/through2-map-3.0.0.tgz#a6c3026ce63b4898a997d540506b66ffd970f271"
-  integrity sha1-psMCbOY7SJipl9VAUGtm/9lw8nE=
-  dependencies:
-    through2 "~2.0.0"
-    xtend "^4.0.0"
-
-through2@^2.0.0, through2@^2.0.2, through2@~2.0.0:
+through2@^2.0.0, through2@^2.0.2:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/through2/-/through2-2.0.5.tgz#01c1e39eb31d07cb7d03a96a70823260b23132cd"
   integrity sha512-/mrRod8xqpA+IHSLyGCQ2s8SPHiCDEeQJSep1jqLYeEUClOFG2Qsh+4FU6G9VeqpZnGW/Su8LQGc4YKni5rYSQ==
@@ -8151,7 +8142,7 @@ xsalsa20@^1.0.0, xsalsa20@^1.1.0:
   resolved "https://registry.yarnpkg.com/xsalsa20/-/xsalsa20-1.1.0.tgz#bee27174af1913aaec0fe677d8ba161ec12bf87d"
   integrity sha512-zd3ytX2cm+tcSndRU+krm0eL4TMMpZE7evs5hLRAoOy6gviqLfe3qOlkjF3i5SeAkQUCeJk0lJZrEU56kHRfWw==
 
-xtend@^4.0.0, xtend@~4.0.1:
+xtend@~4.0.1:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   integrity sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
