@@ -2347,9 +2347,9 @@ corestore-swarm-networking@^5.4.2:
     pump "^3.0.0"
 
 corestore@^5.0.0, corestore@^5.3.2:
-  version "5.3.2"
-  resolved "https://registry.yarnpkg.com/corestore/-/corestore-5.3.2.tgz#b0cc9719b14198526b69cdb414e0f424f5cfd825"
-  integrity sha512-9ciplR9Nx+B0tisvk9Rj8MlUeKnwoApA5d/sHt89xoEULfFnijK/buWl38qTgbEvTLsf3XGPW0oaqTSAXBs4gQ==
+  version "5.7.3"
+  resolved "https://registry.yarnpkg.com/corestore/-/corestore-5.7.3.tgz#fced1d0b14a160f55310b4555422a5f386ae5477"
+  integrity sha512-H9JKy7cS0OMtaGX6uZRt+4GFqWlJNtzfQXk04xPGJSiNT96ecwY5tNwR5K72+zOX0sZuNainhvyGZkD9rVZhuA==
   dependencies:
     call-me-maybe "^1.0.1"
     dat-encoding "^5.0.1"
@@ -2359,9 +2359,8 @@ corestore@^5.0.0, corestore@^5.3.2:
     hypercore "^9.0.0"
     hypercore-crypto "^2.0.0"
     hypercore-protocol "^8.0.0"
-    lru "^3.1.0"
-    nanoguard "^1.3.0"
-    thunky "^1.1.0"
+    nanoresource "^1.3.0"
+    refpool "^1.2.0"
 
 cosmiconfig@^5.1.0:
   version "5.2.1"
@@ -5418,7 +5417,7 @@ nanobus@^4.3.3:
     nanotiming "^7.2.0"
     remove-array-items "^1.0.0"
 
-nanoguard@^1.2.0, nanoguard@^1.2.1, nanoguard@^1.3.0:
+nanoguard@^1.2.0, nanoguard@^1.2.1:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/nanoguard/-/nanoguard-1.3.0.tgz#9b38a2a69f30a848f8ed1e4f0dabee8ff506e54c"
   integrity sha512-K/ON5wyflyPyZskdeT3m7Y2gJVkm3QLdKykMCquAbK8A2erstyMpZUc3NG8Nz5jKdfatiYndONrlmLF8+pGl+A==
@@ -6531,6 +6530,13 @@ redeyed@~2.1.0:
   dependencies:
     esprima "~4.0.0"
 
+refpool@^1.2.0:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/refpool/-/refpool-1.2.1.tgz#ede31babc2cfb718b07390a7a52626d143b19e6e"
+  integrity sha512-14IP+RGLPL78cPvX79/c7WKDufiqwpic3sZIsJ7AhBp4+fcUfySChJc/aiHSrBKCAr7uoytWAw8yVI4/pLKjbQ==
+  dependencies:
+    time-ordered-set "^1.0.2"
+
 regenerator-runtime@^0.10.5:
   version "0.10.5"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.10.5.tgz#336c3efc1220adcedda2c9fab67b5a7955a33658"
@@ -7545,12 +7551,12 @@ thunky@^0.1.0:
   resolved "https://registry.yarnpkg.com/thunky/-/thunky-0.1.0.tgz#bf30146824e2b6e67b0f2d7a4ac8beb26908684e"
   integrity sha1-vzAUaCTituZ7Dy16Ssi+smkIaE4=
 
-thunky@^1.0.1, thunky@^1.0.2, thunky@^1.0.3, thunky@^1.1.0:
+thunky@^1.0.1, thunky@^1.0.2, thunky@^1.0.3:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/thunky/-/thunky-1.1.0.tgz#5abaf714a9405db0504732bbccd2cedd9ef9537d"
   integrity sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==
 
-time-ordered-set@^1.0.1:
+time-ordered-set@^1.0.1, time-ordered-set@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/time-ordered-set/-/time-ordered-set-1.0.2.tgz#3bd931fc048234147f8c2b8b1ebbebb0a3ecb96f"
   integrity sha512-vGO99JkxvgX+u+LtOKQEpYf31Kj3i/GNwVstfnh4dyINakMgeZCpew1e3Aj+06hEslhtHEd52g7m5IV+o1K8Mw==
